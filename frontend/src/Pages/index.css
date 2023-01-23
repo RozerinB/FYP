@@ -9,3 +9,8 @@
     fill: white;
     opacity: 0.09;
 }
+
+.started {
+    margin: 0 30px 0 !important;
+    float: right;
+}

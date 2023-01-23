@@ -10,6 +10,8 @@ import Navbar from "./Components/Navbar/Navbar";
 import "./Components/Navbar/Navbar.css"
 import About from "./Pages/About";
 import Home from "./Pages/Home";
+import Contact from "./Pages/Contact";
+import ParticipantSurvey1 from "./Pages/ParticipantSurvey1";
 
 const AppLayout = () => (
   <>
@@ -17,17 +19,6 @@ const AppLayout = () => (
     <Outlet />
   </>
 );
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route element={<AppLayout />}>
-//       <Route path="/" element={<Home />} />
-//       <Route path="/products" element={<Products />} />
-//       <Route path="/reports" element={<Reports />} />
-//     </Route>
-//   )
-// );
-
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -40,6 +31,16 @@ const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "participantSurvey1",
+        element: <ParticipantSurvey1 />,
+      },
+      
+
     ],
   },
 ]);

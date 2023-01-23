@@ -1,7 +1,10 @@
 import React from 'react'
 import "./index.css"
-import { ComposableMap, Geographies, Geography,  Graticule } from "react-simple-maps";
+import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import Cards from '../Components/Cards/Cards';
+import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
+
 
 function Home() {
 
@@ -30,7 +33,9 @@ function Home() {
         </ComposableMap>
       </div>
      <Cards />
-     <div> </div>
+      <NavLink to="/participantSurvey1" >
+        <Button variant="outlined" className='started'> Get Started </Button>
+      </NavLink>
   </div>
   )
 }

@@ -1,0 +1,37 @@
+/* .survey-container {
+    display: flex;
+    flex-flow: column;
+    width: 70%;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: center;
+    margin: 50px;
+    float: left;
+    text-decoration: none;
+} */
+
+.survey-container {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    padding: 10px;
+  }
+  
+  .sidebar {
+    width: 20%;
+    float: left;
+  }
+
+  .survey {
+    width: 80%;
+    margin-left: 15%;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: center;
+  }

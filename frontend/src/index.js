@@ -6,14 +6,14 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./App.css";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import "./Components/Sidebar/Sidebar.css"
+import Navbar from "./Components/Navbar/Navbar";
+import "./Components/Navbar/Navbar.css"
 import About from "./Pages/About";
 import Home from "./Pages/Home";
 
 const AppLayout = () => (
   <>
-    <Sidebar />
+    <Navbar />
     <Outlet />
   </>
 );

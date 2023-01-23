@@ -1,0 +1,11 @@
+.home
+{
+    height: 10%;
+    background: #0E00AB;
+    border-radius: 0 0 50% 50% / 50px;
+}
+
+.home path {
+    fill: white;
+    opacity: 0.09;
+}

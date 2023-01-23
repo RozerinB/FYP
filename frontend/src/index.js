@@ -1,9 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
+ RouterProvider, 
+ createBrowserRouter,
+ Outlet
 } from "react-router-dom";
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
@@ -14,11 +14,13 @@ import Contact from "./Pages/Contact";
 import ParticipantSurvey1 from "./Pages/ParticipantSurvey1";
 
 const AppLayout = () => (
-  <>
-    <Navbar />
+  <> 
+    <Navbar /> 
     <Outlet />
+    {/* <Footer /> */}
   </>
 );
+
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -35,14 +37,17 @@ const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
       },
-      {
-        path: "participantSurvey1",
-        element: <ParticipantSurvey1 />,
-      },
-      
-
+     
     ],
   },
+  {
+    children: [ 
+    {
+      path: "participantSurvey1",
+      element: <ParticipantSurvey1 />,
+    },
+  ]
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

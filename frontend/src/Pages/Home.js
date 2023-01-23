@@ -4,7 +4,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import Cards from '../Components/Cards/Cards';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
-
+import StartIcon from '@mui/icons-material/Start';
 
 function Home() {
 
@@ -34,7 +34,7 @@ function Home() {
       </div>
      <Cards />
       <NavLink to="/participantSurvey1" >
-        <Button variant="outlined" className='started'> Get Started </Button>
+        <Button variant="outlined" className='started' endIcon={<StartIcon/>}> Get Started </Button>
       </NavLink>
   </div>
   )

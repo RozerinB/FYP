@@ -1,0 +1,48 @@
+.container {
+    display: flex; 
+}
+
+.home
+{
+    height: 10%;
+    background: #0E00AB;
+    border-radius: 0 0 50% 50% / 50px;
+}
+
+
+.home svg {
+    display: inline-block;
+    vertical-align: middle;
+    background-color:  #0E00AB;;
+  }
+  
+.home path {
+    fill: white;
+    opacity: 0.02;
+}
+
+.container div { 
+    background-color: #f8f8f8;
+    border-radius: 30px;    
+    align-items: center;
+    width: 100%;
+    margin: 20px;
+    padding: 10px;
+    position: relative;
+}
+
+.container img {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    background-color: transparent !important;
+}
+
+.container h3{
+    text-align: center;
+    padding: 20px;
+}
+
+.container h4{
+    padding: 10px;
+}

@@ -1,36 +1,19 @@
-/* .survey-container {
-    display: flex;
-    flex-flow: column;
-    width: 70%;
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
-    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
-    border-radius: 10px;
-    overflow: hidden;
-    justify-content: center;
-    margin: 50px;
-    float: left;
-    text-decoration: none;
-} */
-
 .survey {
     display: flex;
     height: 100vh;
     overflow: hidden;
+    background-color: rgba(220, 220, 220, 0.294);
   }
-  
-  .survey-sidebar {
-    flex: 0.25 0.25 0;
-    margin: auto;
-  }
+
   .survey-stepper {
     flex: 0.35 0.35 0;
     margin: auto !important;
     background-color: white;
+    height: 100vh;
   }
+
   .survey-container {
     flex: 2 1 0;
-    background-color: rgba(220, 220, 220, 0.294);
   }
 
   .survey-heading{

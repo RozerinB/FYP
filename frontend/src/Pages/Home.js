@@ -5,6 +5,7 @@ import Cards from '../Components/Cards/Cards';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
 import StartIcon from '@mui/icons-material/Start';
+import computer from '../Images/Computer.png'
 
 function Home() {
 
@@ -32,6 +33,7 @@ function Home() {
             </Geographies>
         </ComposableMap>
       </div>
+      <img src={computer} />
      <Cards />
       <NavLink to="/participantSurvey1" >
         <Button variant="outlined" className='started' endIcon={<StartIcon/>}> Get Started </Button>

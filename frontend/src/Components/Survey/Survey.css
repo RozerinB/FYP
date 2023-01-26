@@ -1,7 +1,7 @@
 .survey {
     display: flex;
+    
     height: 100vh;
-    overflow: hidden;
     background-color: rgba(220, 220, 220, 0.294);
   }
 

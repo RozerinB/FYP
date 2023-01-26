@@ -9,23 +9,25 @@ import { Formik, Form } from 'formik';
 // import validationSchema from './FormModel/validationSchema';
 import SurveyFormModel from '../Components/Survey/SurveyFormModel';
 import SurveyInitialValues from '../Components/Survey/SurveyInitialValues';
-import AboutYou from '../Components/Survey/AboutYou.jsx';
+import Survey1 from '../Components/Survey/Survey1.jsx';
 import VerticalLinearStepper from '../Components/Stepper/Stepper'
 import "../Components/Survey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
 
-const steps = ['About you', 'Technology', 'Devices', 'Design Principles', 'Culture'];
+const steps = ['Survey', 'Report', 'Feedback', 'Global Data',];
 
 const { formId, formField } = SurveyFormModel;
 
 function _renderStepContent(step) {
   switch (step) {
     case 0:
-      return <AboutYou formField={formField} />;
+      return <Survey1 formField={formField} />;
     case 1:
-      return <AboutYou formField={formField} />;
+      return <Survey1 formField={formField} />;
     case 2:
-      return <AboutYou />;
+      return <Survey1 />;
+    case 3: 
+      return <Survey1 />;
     default:
       return <div>Not Found</div>;
   }

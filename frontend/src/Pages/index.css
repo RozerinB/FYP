@@ -10,7 +10,9 @@
     opacity: 0.09;
 }
 
-.started {
-    margin: 0 30px 30px !important;
-    float: right;
+.home-button  {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 20px;
 }

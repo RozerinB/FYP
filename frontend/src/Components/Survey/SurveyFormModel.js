@@ -77,7 +77,7 @@ export default {
       },
       deviceTypeOwnership: {
         name: 'deviceTypeOwnership',
-        label: 'If you have access to a device which of the following devices do you have access to?*',
+        label: 'If you own a device which of the following device types do you own?*',
         requiredErrorMsg: 'This field is required'
       },
       deviceAccess: {

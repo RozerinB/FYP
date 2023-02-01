@@ -9,7 +9,7 @@ import { Formik, Form } from 'formik';
 // import validationSchema from './FormModel/validationSchema';
 import SurveyFormModel from '../Components/Survey/SurveyFormModel';
 import SurveyInitialValues from '../Components/Survey/SurveyInitialValues';
-import Survey1 from '../Components/Survey/Survey1.jsx';
+import DataCollection from '../Components/Survey/DataCollection.jsx';
 import VerticalLinearStepper from '../Components/Stepper/Stepper'
 import "../Components/Survey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
@@ -21,13 +21,13 @@ const { formId, formField } = SurveyFormModel;
 function _renderStepContent(step) {
   switch (step) {
     case 0:
-      return <Survey1 formField={formField} />;
+      return <DataCollection formField={formField} />;
     case 1:
-      return <Survey1 formField={formField} />;
+      return <DataCollection formField={formField} />;
     case 2:
-      return <Survey1 />;
+      return <DataCollection />;
     case 3: 
-      return <Survey1 />;
+      return <DataCollection />;
     default:
       return <div>Not Found</div>;
   }
@@ -74,7 +74,7 @@ export default function ParticipantSurvey1(props) {
       <Typography variant="subtitle1">
         <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> {props.subtitle} </Box>
       </Typography>
-      <VerticalLinearStepper activeStep={activeStep} steps={steps} />
+        <VerticalLinearStepper activeStep={activeStep} steps={steps} />   
       </div>
         {/* {activeStep === steps.length ? (
           <success />
@@ -101,9 +101,10 @@ export default function ParticipantSurvey1(props) {
                       type="submit"
                       variant="contained"
                       color="primary"
+                      sx={{float:'right', m: 1}}
                      
                     >
-                      {isLastStep ? 'Place order' : 'Next'}
+                      {isLastStep ? 'Finish' : 'Next'}
                     </Button>
                     {isSubmitting && (
                       <CircularProgress

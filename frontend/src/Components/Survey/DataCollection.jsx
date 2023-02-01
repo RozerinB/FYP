@@ -5,9 +5,10 @@ import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import InputField from './InputField.jsx';
 import SelectField from './SelectField.jsx';
-import { countries, ageList, genders, textDirectionalities } from './Questions';
+import RadioField from './RadioField.jsx';
+import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, technicalCompetency } from './Questions';
 
-export default function Survey1(props) {
+export default function DataCollection(props) {
   const {
     formField: {
       age,
@@ -64,7 +65,7 @@ export default function Survey1(props) {
           <SelectField
             name={nationality.name}
             label={nationality.label}
-            data={countries}
+            data={nationalities}
             fullWidth
           />
         </Grid> 
@@ -72,7 +73,7 @@ export default function Survey1(props) {
           <SelectField
             name={ethnicity.name}
             label={ethnicity.label}
-            data={countries}
+            data={ethnicGroups}
             fullWidth
           />
         </Grid> 
@@ -89,13 +90,13 @@ export default function Survey1(props) {
           <Box sx={{ fontWeight: 'bold', m: 1}}> Technology </Box>
         </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <SelectField name={internetStability.name} label={internetStability.label} data = {ageList} fullWidth />
+        <Grid item xs={12}>
+          <SelectField name={internetStability.name} label={internetStability.label} data = {yesOrNo} fullWidth />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <SelectField name={broadbandContract.name} label={broadbandContract.label} data = {genders} fullWidth />
+        <Grid item xs={12} >
+          <SelectField name={broadbandContract.name} label={broadbandContract.label} data = {yesOrNo} fullWidth />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={ageForTech.name}
             label={ageForTech.label}
@@ -103,11 +104,11 @@ export default function Survey1(props) {
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
-          <SelectField
-            name={competency.name}
+        <Grid item xs={12} >
+          <RadioField
+            name={competency.label}
+            data={technicalCompetency}
             label={competency.label}
-            data={countries}
             fullWidth
           />
         </Grid> 
@@ -128,35 +129,35 @@ export default function Survey1(props) {
           <SelectField
             name={deviceOwnership.name}
             label={deviceOwnership.label}
-            data={ageList}
+            data={noOfDevices}
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
-          <SelectField
-            name={deviceTypeOwnership.name}
+        <Grid item xs={12} >
+          <RadioField
+            name={deviceTypeOwnership.label}
             label={deviceTypeOwnership.label}
-            data={ageList}
+            data={deviceType}
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={deviceShare.name}
             label={deviceShare.label}
-            data={ageList}
+            data={yesOrNo}
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
-          <SelectField
-            name={deviceAccess.name}
+        <Grid item xs={12} >
+          <RadioField
+            name={deviceAccess.label}
             label={deviceAccess.label}
-            data={ageList}
+            data={deviceType}
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={designPrinciples.name}
             label={designPrinciples.label}

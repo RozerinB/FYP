@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { at } from 'lodash';
 import { useField } from 'formik';
 import {
-  InputLabel,
   FormControl,
   Select,
   MenuItem,
-  FormHelperText
+  FormHelperText, 
+  FormLabel
 } from '@mui/material';
 
 function SelectField(props) {
-  const { label, data, ...rest } = props;
+  const { placeholder, label, data, ...rest } = props;
   const [field, meta] = useField(props);
   const { value: selectedValue } = field;
   const [touched, error] = at(meta, 'touched', 'error');
@@ -24,10 +24,10 @@ function SelectField(props) {
 
   return (
     <FormControl {...rest} error={isError}>
-      <InputLabel>{label}</InputLabel>
-      <Select {...field} value={selectedValue ? selectedValue : ''}>
+      <FormLabel> {label} </FormLabel>
+      <Select {...field} value={selectedValue ? selectedValue : ''} displayEmpty renderValue={selectedValue !== "" ? undefined : () => placeholder} sx={{color: '#AEAEAE'}} >
         {data.map((item, index) => (
-          <MenuItem key={index} value={item.value} disabled={item.disabled}>
+          <MenuItem key={index} value={item.value} disabled={item.disabled} >
             {item.label}
           </MenuItem>
         ))}

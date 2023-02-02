@@ -3,10 +3,10 @@ import Typography from '@mui/material/Typography';
 import "./Survey.css"
 import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
-import InputField from './InputField.jsx';
 import SelectField from './SelectField.jsx';
 import RadioField from './RadioField.jsx';
 import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, technicalCompetency, languages } from './Questions';
+import DataGridField from './DataGridField.tsx';
 
 export default function DataCollection(props) {
   const {
@@ -173,13 +173,7 @@ export default function DataCollection(props) {
         </Typography>
         <Grid container spacing={3}> 
         <Grid item xs={12} >
-          <SelectField
-            name={designPrinciples.name}
-            label={designPrinciples.label}
-            data={ageList}
-            placeholder={designPrinciples.placeholder}
-            fullWidth
-          />
+          <DataGridField />
           </Grid>   
         </Grid>  
     </div>

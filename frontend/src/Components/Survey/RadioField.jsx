@@ -22,9 +22,6 @@ export default function RadioField(props) {
       return <FormHelperText>{error}</FormHelperText>;
     }
   }
-
- 
-
   const handleChange = (event) => {
     setValue(event.target.value);
   };

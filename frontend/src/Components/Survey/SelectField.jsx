@@ -21,11 +21,11 @@ function SelectField(props) {
       return <FormHelperText>{error}</FormHelperText>;
     }
   }
-
+  
   return (
     <FormControl {...rest} error={isError}>
       <FormLabel> {label} </FormLabel>
-      <Select {...field} value={selectedValue ? selectedValue : ''} displayEmpty renderValue={selectedValue !== "" ? undefined : () => placeholder} sx={{color: '#AEAEAE'}} >
+      <Select {...field} value={selectedValue ? selectedValue : ''} displayEmpty renderValue={selectedValue !== '' ? undefined : () => placeholder} sx={{color:  selectedValue !== '' ?  'black' : '#AEAEAE' }} >
         {data.map((item, index) => (
           <MenuItem key={index} value={item.value} disabled={item.disabled} >
             {item.label}

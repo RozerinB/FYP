@@ -36,9 +36,8 @@ export default function RadioField(props) {
         checked={field.value === item.label}
         onChange={field.onChange}
         label={item.label}
-        control={
-          <Radio />
-        }
+        control={<Radio />}
+        sx={{fontSize: 2}}
       />
       ))}
       </RadioGroup>

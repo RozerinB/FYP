@@ -34,7 +34,7 @@ function Home() {
       </div>
      <Cards />
      <div className='home-button'> 
-      <NavLink to="/participantSurvey1" >
+      <NavLink to="/DataCollection" >
         <Button variant="outlined" className='started' endIcon={<StartIcon/>}> Get Started </Button>
       </NavLink>
       </div>

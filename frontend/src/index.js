@@ -11,7 +11,7 @@ import "./Components/Navbar/Navbar.css"
 import About from "./Pages/About";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
-import ParticipantSurvey1 from "./Pages/ParticipantSurvey1";
+import DataCollection from "./Pages/DataCollection";
 
 const AppLayout = () => (
   <> 
@@ -43,8 +43,8 @@ const router = createBrowserRouter([
   {
     children: [ 
     {
-      path: "participantSurvey1",
-      element: <ParticipantSurvey1 />,
+      path: "DataCollection",
+      element: <DataCollection />,
     },
   ]
   }

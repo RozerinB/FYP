@@ -1,7 +1,5 @@
 import * as React from "react";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
-import Checkbox from '@mui/material/Checkbox';
-import Radio from '@mui/material/Radio';
 
 const rows: GridRowsProp = [
   { id: 1, col1: "1st", col2: ""},
@@ -27,7 +25,7 @@ const columns: GridColDef[] = [
 
 export default function DataGridField() {
   return (
-    <div style={{ height: 500, width: "100%" }}>
+    <div style={{ height: 450, width: "100%" }}>
       <DataGrid rows={rows} columns={columns} />
     </div>
   );

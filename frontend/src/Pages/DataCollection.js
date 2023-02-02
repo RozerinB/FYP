@@ -9,7 +9,7 @@ import { Formik, Form } from 'formik';
 // import validationSchema from './FormModel/validationSchema';
 import SurveyFormModel from '../Components/Survey/SurveyFormModel';
 import SurveyInitialValues from '../Components/Survey/SurveyInitialValues';
-import DataCollection from '../Components/Survey/DataCollection.jsx';
+import DataCollectionForm from '../Components/Survey/DataCollectionForm.jsx';
 import VerticalLinearStepper from '../Components/Stepper/Stepper'
 import "../Components/Survey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
@@ -21,19 +21,19 @@ const { formId, formField } = SurveyFormModel;
 function _renderStepContent(step) {
   switch (step) {
     case 0:
-      return <DataCollection formField={formField} />;
+      return <DataCollectionForm formField={formField} />;
     case 1:
-      return <DataCollection formField={formField} />;
+      return <DataCollectionForm formField={formField} />;
     case 2:
-      return <DataCollection />;
+      return <DataCollectionForm />;
     case 3: 
-      return <DataCollection />;
+      return <DataCollectionForm />;
     default:
       return <div>Not Found</div>;
   }
 }
 
-export default function ParticipantSurvey1(props) {
+export default function DataCollection(props) {
   // const currentValidationSchema = validationSchema[activeStep];
   const [activeStep, setActiveStep] = useState(0);
 

@@ -20,7 +20,7 @@ function Footer() {
           </div>
           <div class='footer-link-items'>
             <h2>Get Started</h2>
-            <Link to='/participantSurvey1'>Get Started</Link>
+            <Link to='/DataCollection'>Get Started</Link>
           </div>
         </div>
       </div>

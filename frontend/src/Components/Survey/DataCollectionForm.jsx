@@ -41,10 +41,10 @@ export default function DataCollection(props) {
         <Box sx={{ fontWeight: 'bold'}}> About you </Box>
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <SelectField name={age.name} label={age.label} data={ageList} placeholder={age.placeholder} fullWidth />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField name={gender.name} label={gender.label} data={genders} placeholder={gender.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12}>
@@ -53,7 +53,7 @@ export default function DataCollection(props) {
         <Grid item xs={12}>
           <SelectField name={languageToRead.name} label={languageToRead.label} data ={languages} placeholder={languageToRead.placeholder} fullWidth />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={country.name}
             label={country.label}
@@ -62,7 +62,7 @@ export default function DataCollection(props) {
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={nationality.name}
             label={nationality.label}
@@ -71,7 +71,7 @@ export default function DataCollection(props) {
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={ethnicity.name}
             label={ethnicity.label}
@@ -80,7 +80,7 @@ export default function DataCollection(props) {
             fullWidth
           />
         </Grid> 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <SelectField
             name={textDirectionality.name}
             label={textDirectionality.label}

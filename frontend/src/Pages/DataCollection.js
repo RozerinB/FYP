@@ -6,6 +6,7 @@ import {
   CircularProgress
 } from '@mui/material';
 import { Formik, Form } from 'formik';
+import axios from "axios";
 // import validationSchema from './FormModel/validationSchema';
 import SurveyFormModel from '../Components/Survey/SurveyFormModel';
 import SurveyInitialValues from '../Components/Survey/SurveyInitialValues';
@@ -25,9 +26,9 @@ function _renderStepContent(step) {
     case 1:
       return <DataCollectionForm formField={formField} />;
     case 2:
-      return <DataCollectionForm />;
+      return <DataCollectionForm formField={formField} />;
     case 3: 
-      return <DataCollectionForm />;
+      return <DataCollectionForm formField={formField}/>;
     default:
       return <div>Not Found</div>;
   }
@@ -38,27 +39,21 @@ export default function DataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
 
   const isLastStep = activeStep === steps.length - 1;
+  const isSurvey = activeStep === 0
 
-  function _sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function _submitForm(values, actions) {
-    await _sleep(1000);
-    alert(JSON.stringify(values, null, 2));
-    actions.setSubmitting(false);
-
+  let refreshList = () => {
+    axios
+      .get("/api/survey/")
+      .then((res) => this.setState({ survey1: res.data }))
+      .catch((err) => console.log(err));
+  };
+  
+  function submitForm(values) {
+    console.log('values', values)
+    axios
+      .post("/api/survey/", values)
+      .then((res) => this.refreshList());
     setActiveStep(activeStep + 1);
-  }
-
-  function _handleSubmit(values, actions) {
-    if (isLastStep) {
-      _submitForm(values, actions);
-    } else {
-      setActiveStep(activeStep + 1);
-      actions.setTouched({});
-      actions.setSubmitting(false);
-    }
   }
 
   function _handleBack() {
@@ -83,9 +78,8 @@ export default function DataCollection(props) {
           <Formik
             initialValues={SurveyInitialValues}
             // validationSchema={currentValidationSchema}
-            onSubmit={_handleSubmit}
+            onSubmit={(values) => submitForm(values)}
           >
-            {({ isSubmitting }) => (
               <Form id={formId}>
                 {_renderStepContent(activeStep)}
 
@@ -97,26 +91,19 @@ export default function DataCollection(props) {
                   )}
                   <div >
                     <Button
-                      disabled={isSubmitting}
+                      // disabled={isSubmitting}
                       type="submit"
                       variant="contained"
                       color="primary"
                       sx={{float:'right', m: 1}}
                      
                     >
-                      {isLastStep ? 'Finish' : 'Next'}
+                      {isSurvey ? 'Submit' : 'Next'}
                     </Button>
-                    {isSubmitting && (
-                      <CircularProgress
-                        size={24}
-                      />
-                    )}
                   </div>
                 </div>
               </Form>
-            )}
           </Formik>
-        {/* )} */}
         </div>
       </div>
 

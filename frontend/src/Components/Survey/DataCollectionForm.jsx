@@ -111,9 +111,9 @@ export default function DataCollection(props) {
         </Grid>
         <Grid item xs={12} >
           <RadioField
-            name={competency.label}
-            data={technicalCompetency}
+            name={competency.name}
             label={competency.label}
+            data={technicalCompetency}
             placeholder={competency.placeholder}
             fullWidth
           />
@@ -151,7 +151,7 @@ export default function DataCollection(props) {
         </Grid> 
         <Grid item xs={12} >
           <RadioField
-            name={deviceTypeOwnership.label}
+            name={deviceTypeOwnership.name}
             label={deviceTypeOwnership.label}
             data={deviceType}
             placeholder={deviceTypeOwnership.placeholder}
@@ -160,7 +160,7 @@ export default function DataCollection(props) {
         </Grid> 
         <Grid item xs={12} >
           <RadioField
-            name={deviceAccess.label}
+            name={deviceAccess.name}
             label={deviceAccess.label}
             data={deviceType}
             placeholder={deviceAccess.placeholder}

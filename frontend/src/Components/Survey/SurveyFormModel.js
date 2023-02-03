@@ -103,7 +103,7 @@ export default {
         requiredErrorMsg: 'This field is required'
       },
       designPrinciples: {
-        name:'designPrinciples',
+        name: 'designPrinciples',
         label:'There are 7 different types of Universal Design Principles, which are explained below. Can you rank them in order of importance to you? You can select the same ranking twice.',
         requiredErrorMsg: 'This field is required'
       }

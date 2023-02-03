@@ -35,7 +35,6 @@ class App extends Component {
 
   handleSubmit = (item) => {
     this.toggle();
-
     if (item.id) {
       axios
         .put(`/api/survey/${item.id}/`, item)

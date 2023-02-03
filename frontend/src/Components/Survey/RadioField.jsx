@@ -9,12 +9,10 @@ import {
   FormLabel,
   RadioGroup
 } from '@mui/material';
-import { useState } from 'react';
 
 export default function RadioField(props) {
   const { data, name, label, ...rest } = props;
-  const [field, meta, helper] = useField(props);
-  const { setValue } = helper;
+  const [field, meta] = useField(props);
 
   function _renderHelperText() {
     const [touched, error] = at(meta, 'touched', 'error');
@@ -22,9 +20,6 @@ export default function RadioField(props) {
       return <FormHelperText>{error}</FormHelperText>;
     }
   }
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
 
   return (
     <FormControl {...rest}>   

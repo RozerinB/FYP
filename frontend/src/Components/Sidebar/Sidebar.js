@@ -8,7 +8,7 @@ export default function Sidebar() {
   return (
     <>
       <IconContext.Provider value={{ color: "#FFF" }}>
-        <nav className={"sidebar"}>
+        <nav className="sidebar">
           <ul className="sidebar-menu-items">
             {SidebarData.map((item, index) => {
               return (

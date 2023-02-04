@@ -41,18 +41,9 @@ export default function DataCollection(props) {
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey = activeStep === 0
 
-  let refreshList = () => {
-    axios
-      .get("/api/survey/")
-      .then((res) => this.setState({ survey1: res.data }))
-      .catch((err) => console.log(err));
-  };
-  
   function submitForm(values) {
-    console.log('values', values)
     axios
       .post("/api/survey/", values)
-      .then((res) => this.refreshList());
     setActiveStep(activeStep + 1);
   }
 
@@ -96,7 +87,6 @@ export default function DataCollection(props) {
                       variant="contained"
                       color="primary"
                       sx={{float:'right', m: 1}}
-                     
                     >
                       {isSurvey ? 'Submit' : 'Next'}
                     </Button>

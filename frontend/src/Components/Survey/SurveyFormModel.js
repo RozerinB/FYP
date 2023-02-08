@@ -104,7 +104,7 @@ export default {
       },
       designPrinciples: {
         name: 'designPrinciples',
-        label:'There are 7 different types of Universal Design Principles, which are explained below. Can you rank them in order of importance to you? You can select the same ranking twice.',
+        label:'There are 7 different types of Universal Design Principles, which are explained below. Can you rank them in order of importance to you? You can select the same ranking twice. 1 being the most important and 7 being the least.',
         requiredErrorMsg: 'This field is required'
       }
 

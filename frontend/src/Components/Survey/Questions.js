@@ -115,11 +115,11 @@ export const genders = [
 export const textDirectionalities = [
   {
     value: '1', 
-    label: 'left-to-right text'
+    label: 'Left-to-Right Text'
   },
   {
     value: '2', 
-    label: 'right-to-left text'
+    label: 'Right-to-Left Text'
   }
 ];
 
@@ -423,9 +423,6 @@ export const nationalities = [
       label: "Croatian"
   },
   {
-      "": "192",
-      "alpha_2_code": "CU",
-      "alpha_3_code": "CUB",
       value: "Cuba",
       label: "Cuban"
   },

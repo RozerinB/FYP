@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Typography,
-  CircularProgress
 } from '@mui/material';
 import { Formik, Form } from 'formik';
 import axios from "axios";
@@ -14,12 +13,14 @@ import DataCollectionForm from '../Components/Survey/DataCollectionForm.jsx';
 import VerticalLinearStepper from '../Components/Stepper/Stepper'
 import "../Components/Survey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
+import { v4 as uuidv4 } from 'uuid';
+import ValidationSchema from '../Components/Survey/ValidationSchema';
 
-const steps = ['Survey', 'Report', 'Feedback', 'Global Data',];
+const steps = ['Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
 const { formId, formField } = SurveyFormModel;
 
-function _renderStepContent(step) {
+function renderStepContent(step) {
   switch (step) {
     case 0:
       return <DataCollectionForm formField={formField} />;
@@ -35,19 +36,37 @@ function _renderStepContent(step) {
 }
 
 export default function DataCollection(props) {
-  // const currentValidationSchema = validationSchema[activeStep];
   const [activeStep, setActiveStep] = useState(0);
-
+  const currentValidationSchema = ValidationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey = activeStep === 0
 
   function submitForm(values) {
+    values.designPrinciples = {}
+    Object.assign(values.designPrinciples, {principle1: values.principle1});
+    Object.assign(values.designPrinciples, {principle2: values.principle2});
+    Object.assign(values.designPrinciples, {principle3: values.principle3});
+    Object.assign(values.designPrinciples, {principle4: values.principle4});
+    Object.assign(values.designPrinciples, {principle5: values.principle5});
+    Object.assign(values.designPrinciples, {principle6: values.principle6});
+    Object.assign(values.designPrinciples, {principle7: values.principle7});
+
+    delete values.principle1
+    delete values.principle2
+    delete values.principle3
+    delete values.principle4
+    delete values.principle5
+    delete values.principle6
+    delete values.principle7
+
+    values.id = uuidv4();
+    console.log('values', values)
     axios
       .post("/api/survey/", values)
     setActiveStep(activeStep + 1);
   }
 
-  function _handleBack() {
+  function handleBack() {
     setActiveStep(activeStep - 1);
   }
 
@@ -68,19 +87,18 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
-            // validationSchema={currentValidationSchema}
+            validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values)}
           >
               <Form id={formId}>
-                {_renderStepContent(activeStep)}
-
+                {renderStepContent(activeStep)}
                 <div >
-                  {activeStep !== 0 && (
-                    <Button onClick={_handleBack} >
+                 {activeStep !== 0 && (
+                    <Button onClick={handleBack} >
                       Back
                     </Button>
                   )}
-                  <div >
+                  <div>
                     <Button
                       // disabled={isSubmitting}
                       type="submit"

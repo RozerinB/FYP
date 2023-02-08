@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 
 # Create your models here.
 
@@ -27,3 +26,12 @@ class Survey(models.Model):
         return self.title
 
 # Create your models here.
+
+class Principles(models.Model):
+    principle1 = models.IntegerField(default=1)
+    principle2 = models.IntegerField(default=1)
+    principle3 = models.IntegerField(default=1)
+    principle4 = models.IntegerField(default=1)
+    principle5 = models.IntegerField(default=1)
+    principle6 = models.IntegerField(default=1)
+    principle7 = models.IntegerField(default=1)

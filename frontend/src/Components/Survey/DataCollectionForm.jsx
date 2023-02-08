@@ -6,7 +6,7 @@ import { Grid } from '@mui/material';
 import SelectField from './SelectField.jsx';
 import RadioField from './RadioField.jsx';
 import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, technicalCompetency, languages } from './Questions';
-import DataGridField from './DataGridField.tsx';
+import DataGridField from './DataGridField.jsx';
 
 export default function DataCollection(props) {
   const {
@@ -173,7 +173,7 @@ export default function DataCollection(props) {
         </Typography>
         <Grid container spacing={3}> 
         <Grid item xs={12} >
-          <DataGridField />
+          <DataGridField name={designPrinciples.name} label={designPrinciples.label} />
           </Grid>   
         </Grid>  
     </div>

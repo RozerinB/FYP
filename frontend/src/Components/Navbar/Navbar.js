@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { IconContext } from 'react-icons'
 import { FaBars, FaTimes } from "react-icons/fa";
 import * as IoIcons from "react-icons/io"
-import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [click, setClick] = useState(false);

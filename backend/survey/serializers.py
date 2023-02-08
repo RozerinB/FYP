@@ -22,5 +22,5 @@ class SurveySerializer(serializers.ModelSerializer):
         'deviceShare',
         'deviceTypeOwnership',
         'deviceAccess',
-        # 'designPrinciples'
+        'designPrinciples'
         )

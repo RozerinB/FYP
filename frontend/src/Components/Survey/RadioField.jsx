@@ -13,7 +13,8 @@ import {
 export default function RadioField(props) {
   const { data, name, label, ...rest } = props;
   const [field, meta] = useField(props);
-
+  const [touched, error] = at(meta, 'touched', 'error');
+  const isError = touched && error && true;
   function _renderHelperText() {
     const [touched, error] = at(meta, 'touched', 'error');
     if (touched && error) {
@@ -22,7 +23,7 @@ export default function RadioField(props) {
   }
 
   return (
-    <FormControl {...rest}>   
+    <FormControl {...rest} error={isError}>   
     <FormLabel>{label}</FormLabel>
     <RadioGroup {...field} {...props}>   
       {data.map((item) => (
@@ -33,6 +34,7 @@ export default function RadioField(props) {
         label={item.label}
         control={<Radio />}
         sx={{fontSize: 2}}
+        error={meta.touched && meta.error && true}
       />
       ))}
       </RadioGroup>

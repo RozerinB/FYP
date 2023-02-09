@@ -29,7 +29,7 @@ const {
     principle7,
   }
 } = surveyFormModel
-console.log(principle1)
+
 export default [
   Yup.object().shape({
     [age.name]: Yup.string().required(`${age.requiredErrorMsg}`),

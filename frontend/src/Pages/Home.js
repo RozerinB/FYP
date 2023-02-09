@@ -34,8 +34,8 @@ function Home() {
       </div>
      <Cards />
      <div className='home-button'> 
-      <NavLink to="/DataCollection" >
-        <Button variant="outlined" className='started' endIcon={<StartIcon/>}> Get Started </Button>
+      <NavLink to="/DataCollection"  style={{ textDecoration: 'none' }}>
+        <Button variant="contained" endIcon={<StartIcon/>}> Get Started </Button>
       </NavLink>
       </div>
   </div>

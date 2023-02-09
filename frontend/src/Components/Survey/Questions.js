@@ -57,7 +57,7 @@ export const deviceType = [
     }
 ]
 
-export const technicalCompetency = [
+export const competency = [
     {
         value: '1',
         label: 'Fundamental Awareness'

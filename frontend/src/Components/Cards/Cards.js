@@ -9,19 +9,19 @@ function Cards() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              title='Data Collection'
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              title = "Data Collection"
+              text="The main aim of this survey is to measure your exposure levels to technology depending on your location and wealth. You will be asked a set of questions about yourself, your level of access to technology and different devices, internet stability and your culture. Some of these questions will be optional and you can skip them if you wish. If you have any questions about the survey, please contact me at: 1905101@brunel.ac.uk "
               label='Info'
               //path='/survey'
             />
             <CardItem
               title='Automated Data Report'
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              text="This report will be generated automatically based on your answers to the survey. It will show you the results of your survey and the data that you have collected. You will be able to provide further feedback on the report and you will be able to view the global data collected by other users."
               label='Survey'
             />
             <CardItem
               title='Global Data'
-              text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              text = "The Global Data collected will then be displayed to you and UX Designers for them to analyse and use for their research. It will enable them to potentially make informed decisions and be able to connect with participants globally without language barriers and time-zone related problems."
               label='Data'
               //path='/data'
             />

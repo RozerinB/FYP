@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import SelectField from './SelectField.jsx';
 import RadioField from './RadioField.jsx';
-import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, technicalCompetency, languages } from './Questions';
+import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages } from './Questions';
 import DataGridField from './DataGridField.jsx';
 
 export default function DataCollection(props) {
@@ -13,24 +13,25 @@ export default function DataCollection(props) {
     formField: {
       age,
       gender,
-      languageToWrite,
-      languageToRead,
+      preferred_writing_language,
+      preferred_reading_language,
       country,
       nationality,
       ethnicity,
-      textDirectionality,
-      deviceOwnership,
-      deviceShare,
-      internetStability,
-      broadbandContract,
-      ageForTech,
-      ageForDevice, 
-      deviceTypeOwnership,
-      deviceAccess,
-      competency,
-      designPrinciples,
+      text_directionality,
+      device_ownership_status,
+      device_sharing_status,
+      internet_stability,
+      broadband_contract,
+      age_first_used_technology,
+      age_when_first_owned_device, 
+      device_type_owned,
+      device_access,
+      competency_level,
+      design_principles,
     }
   } = props;
+
   return (
     <div className='survey-heading'> 
         <Typography variant="h6">
@@ -48,10 +49,10 @@ export default function DataCollection(props) {
           <SelectField name={gender.name} label={gender.label} data={genders} placeholder={gender.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <SelectField name={languageToWrite.name} label={languageToWrite.label} data ={languages} placeholder={languageToWrite.placeholder} fullWidth />
+          <SelectField name={preferred_writing_language.name} label={preferred_writing_language.label} data ={languages} placeholder={preferred_writing_language.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <SelectField name={languageToRead.name} label={languageToRead.label} data ={languages} placeholder={languageToRead.placeholder} fullWidth />
+          <SelectField name={preferred_reading_language.name} label={preferred_reading_language.label} data ={languages} placeholder={preferred_reading_language.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
           <SelectField
@@ -82,10 +83,10 @@ export default function DataCollection(props) {
         </Grid> 
         <Grid item xs={12} >
           <SelectField
-            name={textDirectionality.name}
-            label={textDirectionality.label}
+            name={text_directionality.name}
+            label={text_directionality.label}
             data={textDirectionalities}
-            placeholder={textDirectionality.placeholder}
+            placeholder={text_directionality.placeholder}
             fullWidth
           />
         </Grid> 
@@ -96,25 +97,25 @@ export default function DataCollection(props) {
       <Grid container spacing={3}>
       <Grid item xs={12} >
           <SelectField
-            name={ageForTech.name}
-            label={ageForTech.label}
+            name={age_first_used_technology.name}
+            label={age_first_used_technology.label}
             data={ageList}
-            placeholder={ageForTech.placeholder}
+            placeholder={age_first_used_technology.placeholder}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12}>
-          <RadioField name={internetStability.name} label={internetStability.label} data = {yesOrNo} placeholder={internetStability.placeholder} fullWidth />
+          <RadioField name={internet_stability.name} label={internet_stability.label} data = {yesOrNo} placeholder={internet_stability.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-          <RadioField name={broadbandContract.name} label={broadbandContract.label} data = {yesOrNo} placeholder={broadbandContract.placeholder} fullWidth />
+          <RadioField name={broadband_contract.name} label={broadband_contract.label} data = {yesOrNo} placeholder={broadband_contract.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
           <RadioField
-            name={competency.name}
-            label={competency.label}
-            data={technicalCompetency}
-            placeholder={competency.placeholder}
+            name={competency_level.name}
+            label={competency_level.label}
+            data={competency}
+            placeholder={competency_level.placeholder}
             fullWidth
           />
         </Grid> 
@@ -125,45 +126,45 @@ export default function DataCollection(props) {
       <Grid container spacing={3}> 
       <Grid item xs={12} >
           <SelectField
-            name={ageForDevice.name}
-            label={ageForDevice.label}
+            name={age_when_first_owned_device.name}
+            label={age_when_first_owned_device.label}
             data={ageList}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12} >
           <SelectField
-            name={deviceOwnership.name}
-            label={deviceOwnership.label}
+            name={device_ownership_status.name}
+            label={device_ownership_status.label}
             data={noOfDevices}
-            placeholder={deviceOwnership.placeholder}
+            placeholder={device_ownership_status.placeholder}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12} >
           <RadioField
-            name={deviceShare.name}
-            label={deviceShare.label}
+            name={device_sharing_status.name}
+            label={device_sharing_status.label}
             data={yesOrNo}
-            placeholder={deviceShare.placeholder}
+            placeholder={device_sharing_status.placeholder}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12} >
           <RadioField
-            name={deviceTypeOwnership.name}
-            label={deviceTypeOwnership.label}
+            name={device_type_owned.name}
+            label={device_type_owned.label}
             data={deviceType}
-            placeholder={deviceTypeOwnership.placeholder}
+            placeholder={device_type_owned.placeholder}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12} >
           <RadioField
-            name={deviceAccess.name}
-            label={deviceAccess.label}
+            name={device_access.name}
+            label={device_access.label}
             data={deviceType}
-            placeholder={deviceAccess.placeholder}
+            placeholder={device_access.placeholder}
             fullWidth
           />
         </Grid> 
@@ -173,7 +174,7 @@ export default function DataCollection(props) {
         </Typography>
         <Grid container spacing={3}> 
         <Grid item xs={12} >
-          <DataGridField name={designPrinciples.name} label={designPrinciples.label} />
+          <DataGridField name={design_principles.name} label={design_principles.label} principleLabel = {design_principles.principleLabel.filter((i) => i.name)}/>
           </Grid>   
         </Grid>  
     </div>

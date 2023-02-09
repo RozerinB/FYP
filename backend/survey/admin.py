@@ -5,25 +5,23 @@ class SurveyAdmin(admin.ModelAdmin):
     list_display = (
         'age', 
         'gender', 
-        'languageToWrite', 
-        'languageToRead', 
+        'preferred_writing_language', 
+        'preferred_reading_language', 
         'country',
         'nationality',
         'ethnicity',
-        'textDirectionality',
-        'internetStability',
-        'broadbandContract',
-        'ageForTech',
-        'competency',
-        'ageForDevice',
-        'deviceOwnership',
-        'deviceShare',
-        'deviceTypeOwnership',
-        'deviceAccess',
-        # 'designPrinciples',
+        'text_directionality',
+        'internet_stability',
+        'broadband_contract',
+        'age_first_used_technology',
+        'competency_level',
+        'age_when_first_owned_device',
+        'device_ownership_status',
+        'device_sharing_status',
+        'device_type_owned',
+        'device_access',
+        'design_principles',
+        "client_id"
         )
 
-# Register your models here.
-
 admin.site.register(Survey, SurveyAdmin)
-# Register your models here.

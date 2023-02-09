@@ -4,22 +4,22 @@ const {
   formField: {
     age,
     gender,
-    languageToWrite,
-    languageToRead,
+    preferred_writing_language,
+    preferred_reading_language,
     country,
     nationality,
     ethnicity,
-    textDirectionality,
-    deviceOwnership,
-    deviceShare,
-    internetStability,
-    broadbandContract,
-    ageForTech,
-    ageForDevice, 
-    deviceTypeOwnership,
-    deviceAccess,
-    competency,
-    designPrinciples,
+    text_directionality ,
+    device_ownership_status,
+    device_sharing_status,
+    internet_stability,
+    broadband_contract,
+    age_first_used_technology,
+    age_when_first_owned_device, 
+    device_type_owned ,
+    device_access,
+    competency_level,
+    design_principles,
   }
 } = surveyFormModel;
 
@@ -29,12 +29,12 @@ export default [
     [gender.name]: Yup.string()
       .nullable()
       .required(`${gender.requiredErrorMsg}`),
-    [languageToWrite.name]: Yup.string()
+    [preferred_writing_language.name]: Yup.string()
       .nullable()
-      .required(`${languageToWrite.requiredErrorMsg}`),
-    [languageToRead.name]: Yup.string()
+      .required(`${preferred_writing_language.requiredErrorMsg}`),
+    [preferred_reading_language.name]: Yup.string()
       .nullable()
-      .required(`${languageToRead.requiredErrorMsg}`),
+      .required(`${preferred_reading_language.requiredErrorMsg}`),
     [country.name]: Yup.string()
       .nullable()
       .required(`${country.requiredErrorMsg}`),
@@ -47,45 +47,47 @@ export default [
     [nationality.name]: Yup.string()
       .nullable()
       .required(`${nationality.requiredErrorMsg}`),
-    [textDirectionality.name]: Yup.string()
+    [text_directionality.name]: Yup.string()
       .nullable()
-      .required(`${textDirectionality.requiredErrorMsg}`),
-    [deviceOwnership.name]: Yup.string()
+      .required(`${text_directionality.requiredErrorMsg}`),
+    [device_ownership_status.name]: Yup.string()
       .nullable()
-      .required(`${deviceOwnership.requiredErrorMsg}`),
-    [deviceShare.name]: Yup.string()
+      .required(`${device_ownership_status.requiredErrorMsg}`),
+    [device_sharing_status.name]: Yup.string()
       .nullable()
-        .required(`${deviceShare.requiredErrorMsg}`),
-    [internetStability.name]: Yup.string()
+        .required(`${device_sharing_status.requiredErrorMsg}`),
+    [internet_stability.name]: Yup.string()
       .nullable()
-      .required(`${internetStability.requiredErrorMsg}`),
-    [broadbandContract.name]: Yup.string()
+      .required(`${internet_stability.requiredErrorMsg}`),
+    [broadband_contract.name]: Yup.string()
       .nullable()
-      .required(`${broadbandContract.requiredErrorMsg}`),
-    [ageForTech.name]: Yup.string()
+      .required(`${broadband_contract.requiredErrorMsg}`),
+    [age_first_used_technology.name]: Yup.string()
       .nullable()
-      .required(`${ageForTech.requiredErrorMsg}`),
-    [ageForDevice.name]: Yup.string()
+      .required(`${age_first_used_technology.requiredErrorMsg}`),
+    [age_when_first_owned_device.name]: Yup.string()
       .nullable()
-      .required(`${ageForDevice.requiredErrorMsg}`),
-    [deviceTypeOwnership.name]: Yup.string()
+      .required(`${age_when_first_owned_device.requiredErrorMsg}`),
+    [device_type_owned.name]: Yup.string()
       .nullable()
-      .required(`${deviceTypeOwnership.requiredErrorMsg}`),
-    [deviceAccess.name]: Yup.string()
+      .required(`${device_type_owned .requiredErrorMsg}`),
+    [device_access.name]: Yup.string()
       .nullable()
-      .required(`${deviceAccess.requiredErrorMsg}`),
-    [competency.name]: Yup.string()
+      .required(`${device_access.requiredErrorMsg}`),
+    [competency_level.name]: Yup.string()
       .nullable()
-      .required(`${competency.requiredErrorMsg}`),
-    // [principle1.name]: Yup.object()
-    //     .shape({
-    //     principle1: Yup.string(),
-    //     principle2: Yup.string(),
-    //     principle3: Yup.string(),
-    //     principle4: Yup.string(),
-    //     principle5: Yup.string(),
-    //   })
-    //   .nullable()
-    //   .required(`${designPrinciples.requiredErrorMsg}`),
+      .required(`${competency_level.requiredErrorMsg}`),
+    [design_principles.name]: Yup.object()
+        .shape({
+        principle1: Yup.string(),
+        principle2: Yup.string(),
+        principle3: Yup.string(),
+        principle4: Yup.string(),
+        principle5: Yup.string(),
+        principle6: Yup.string(),
+        principle7: Yup.string(),
+      })
+      .nullable()
+      .required(`${design_principles.requiredErrorMsg}`),
   }),
 ];

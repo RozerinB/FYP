@@ -6,7 +6,6 @@ import {
 } from '@mui/material';
 import { Formik, Form } from 'formik';
 import axios from "axios";
-// import validationSchema from './FormModel/validationSchema';
 import SurveyFormModel from '../Components/Survey/SurveyFormModel';
 import SurveyInitialValues from '../Components/Survey/SurveyInitialValues';
 import DataCollectionForm from '../Components/Survey/DataCollectionForm.jsx';
@@ -42,14 +41,13 @@ export default function DataCollection(props) {
   const isSurvey = activeStep === 0
 
   function submitForm(values) {
-    values.designPrinciples = {}
-    Object.assign(values.designPrinciples, {principle1: values.principle1});
-    Object.assign(values.designPrinciples, {principle2: values.principle2});
-    Object.assign(values.designPrinciples, {principle3: values.principle3});
-    Object.assign(values.designPrinciples, {principle4: values.principle4});
-    Object.assign(values.designPrinciples, {principle5: values.principle5});
-    Object.assign(values.designPrinciples, {principle6: values.principle6});
-    Object.assign(values.designPrinciples, {principle7: values.principle7});
+    Object.assign(values.design_principles, {principle1: values.principle1});
+    Object.assign(values.design_principles, {principle2: values.principle2});
+    Object.assign(values.design_principles, {principle3: values.principle3});
+    Object.assign(values.design_principles, {principle4: values.principle4});
+    Object.assign(values.design_principles, {principle5: values.principle5});
+    Object.assign(values.design_principles, {principle6: values.principle6});
+    Object.assign(values.design_principles, {principle7: values.principle7});
 
     delete values.principle1
     delete values.principle2
@@ -59,8 +57,8 @@ export default function DataCollection(props) {
     delete values.principle6
     delete values.principle7
 
-    values.id = uuidv4();
-    console.log('values', values)
+    values.client_id = uuidv4();
+   console.log('values', values)
     axios
       .post("/api/survey/", values)
     setActiveStep(activeStep + 1);

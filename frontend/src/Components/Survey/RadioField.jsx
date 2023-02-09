@@ -21,6 +21,7 @@ export default function RadioField(props) {
       return <FormHelperText>{error}</FormHelperText>;
     }
   }
+  console.log('field.value', field.value)
 
   return (
     <FormControl {...rest} error={isError}>   

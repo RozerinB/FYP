@@ -15,14 +15,9 @@ export default function RadioField(props) {
   const [field, meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
   const isError = touched && error && true;
-  function _renderHelperText() {
-    const [touched, error] = at(meta, 'touched', 'error');
-    if (touched && error) {
-      return <FormHelperText>{error}</FormHelperText>;
-    }
-  }
-  console.log('field.value', field.value)
-
+  console.log('meta :>> ', meta);
+  console.log('error :>> ', error);
+console.log('isError :>> ', isError);
   return (
     <FormControl {...rest} error={isError}>   
     <FormLabel>{label}</FormLabel>
@@ -39,7 +34,6 @@ export default function RadioField(props) {
       />
       ))}
       </RadioGroup>
-      {_renderHelperText()}
     </FormControl>
   );
 }

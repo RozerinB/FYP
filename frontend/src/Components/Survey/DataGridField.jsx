@@ -1,11 +1,7 @@
 import * as React from "react";
 import {
-  Radio,
   FormControl,
-  FormControlLabel,
-  FormHelperText,
   FormLabel,
-  RadioGroup
 } from '@mui/material';
 import RadioField from "./RadioField";
 import { at } from 'lodash';
@@ -17,13 +13,12 @@ for (let i = 1; i <= 7; i++) {
     ranking.push({ value: i.toString() , label: i.toString() });
 }
 export default function DataGridField(props) {
-  const {label, principleLabel } = props;
+  const {label, principleLabel, ...rest } = props;
   const [meta,field] = useField(props);
-  console.log('field.value data grid', field.value.principle1)
   const [touched, error] = at(meta, 'touched', 'error');
   const isError = touched && error && true;
   return (
-    <FormControl error={isError}> 
+    <FormControl {...rest} error={isError}> 
     <FormLabel > {label } </FormLabel>
     {principleLabel.map((item) => (
       <RadioField
@@ -34,6 +29,7 @@ export default function DataGridField(props) {
       fullWidth   
       sx={{m: 1}}
       row={true}
+      error={meta.touched && meta.error && true}
     />
     ))}
       </FormControl>

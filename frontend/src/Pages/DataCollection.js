@@ -58,14 +58,10 @@ export default function DataCollection(props) {
     delete values.principle7
 
     values.client_id = uuidv4();
-   console.log('values', values)
+    console.log('values', values)
     axios
       .post("/api/survey/", values)
     setActiveStep(activeStep + 1);
-  }
-
-  function handleBack() {
-    setActiveStep(activeStep - 1);
   }
 
   return (
@@ -91,11 +87,6 @@ export default function DataCollection(props) {
               <Form id={formId}>
                 {renderStepContent(activeStep)}
                 <div >
-                 {activeStep !== 0 && (
-                    <Button onClick={handleBack} >
-                      Back
-                    </Button>
-                  )}
                   <div>
                     <Button
                       // disabled={isSubmitting}

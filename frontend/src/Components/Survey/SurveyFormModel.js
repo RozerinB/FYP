@@ -143,9 +143,49 @@ export default {
               guideline: ""
             },
           ]
-      }
-
-      
+      },
+      principle1: {
+        name: "principle1",
+        label: "Principle 1: Equitable Use -  The design is useful and marketable to people with diverse abilities.",
+        guideline: "" ,
+        requiredErrorMsg: 'This field is required'
+      },
+      principle2: {
+        name: "principle2",
+        label: "Principle 2: Flexibility in Use - The design accommodates a wide range of individual preferences and abilities.",
+        guideline: "",
+        requiredErrorMsg: 'This field is required'
+      },
+      principle3: {
+        name: "principle3",
+        label: "Principle 3: Simple and Intuitive Use - Use of the design is easy to understand, regardless of the user’s experience, knowledge, language skills, or current concentration level.",
+        guideline: "",
+        requiredErrorMsg: 'This field is required'
+      },
+      principle4: {
+        name: "principle4",
+        label: "Principle 4: Perceptible Information - The design communicates necessary information effectively to the user, regardless of ambient conditions or the user’s sensory abilities.",
+        guideline: "",
+        requiredErrorMsg: 'This field is required'
+      },
+      principle5: {
+        name: "principle5",
+        label: "Principle 5: Tolerance for Error - The design minimizes hazards and the adverse consequences of accidental or unintended actions.",
+        guideline: "",
+        requiredErrorMsg: 'This field is required'
+      },
+      principle6: {
+        name: "principle6",
+        label: "Principle 6: Low Physical Effort - The design can be used efficiently and comfortably and with a minimum of fatigue.",
+        guideline: "",
+        requiredErrorMsg: 'This field is required'
+      },
+      principle7: {
+        name: "principle7",
+        label: "Principle 7: Size and Space for Approach and Use - Appropriate size and space are provided for approach, reach, manipulation, and use regardless of user’s body size, posture, or mobility.",
+        guideline: "",
+        requiredErrorMsg: 'This field is required'
+      },
     }
   };
   

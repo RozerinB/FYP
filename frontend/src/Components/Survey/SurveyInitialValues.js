@@ -19,6 +19,13 @@ const {
     device_access,
     competency_level,
     design_principles,
+    principle1,
+    principle2,
+    principle3,
+    principle4,
+    principle5,
+    principle6,
+    principle7,
   }
 } = surveyFormModel;
 
@@ -41,4 +48,11 @@ export default {
   [device_access.name]: '',
   [competency_level.name]: '',
   [design_principles.name]: {principle1: '', principle2: '', principle3: '', principle4: '', principle5: '', principle6: '', principle7: ''},
+  [principle1.name]: '',
+  [principle2.name]: '',
+  [principle3.name]: '',
+  [principle4.name]: '',
+  [principle5.name]: '',
+  [principle6.name]: '',
+  [principle7.name]: '',
 };

@@ -20,9 +20,16 @@ const {
     device_access,
     competency_level,
     design_principles,
+    principle1,
+    principle2,
+    principle3,
+    principle4,
+    principle5,
+    principle6,
+    principle7,
   }
-} = surveyFormModel;
-
+} = surveyFormModel
+console.log(principle1)
 export default [
   Yup.object().shape({
     [age.name]: Yup.string().required(`${age.requiredErrorMsg}`),
@@ -77,17 +84,26 @@ export default [
     [competency_level.name]: Yup.string()
       .nullable()
       .required(`${competency_level.requiredErrorMsg}`),
-    [design_principles.name]: Yup.object()
-        .shape({
-        principle1: Yup.string(),
-        principle2: Yup.string(),
-        principle3: Yup.string(),
-        principle4: Yup.string(),
-        principle5: Yup.string(),
-        principle6: Yup.string(),
-        principle7: Yup.string(),
-      })
+    [principle1.name]: Yup.string()
       .nullable()
-      .required(`${design_principles.requiredErrorMsg}`),
+      .required(`${principle1.requiredErrorMsg}`),
+    [principle2.name]: Yup.string()
+      .nullable()
+      .required(`${principle2.requiredErrorMsg}`),
+    [principle3.name]: Yup.string()
+      .nullable()
+      .required(`${principle3.requiredErrorMsg}`),
+    [principle4.name]: Yup.string()
+      .nullable()
+      .required(`${principle4.requiredErrorMsg}`),
+    [principle5.name]: Yup.string()
+      .nullable()
+      .required(`${principle5.requiredErrorMsg}`),
+    [principle6.name]: Yup.string()
+      .nullable()
+      .required(`${principle6.requiredErrorMsg}`), 
+    [principle7.name]: Yup.string()
+      .nullable()
+      .required(`${principle7.requiredErrorMsg}`),
   }),
 ];

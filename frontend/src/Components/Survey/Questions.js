@@ -355,10 +355,6 @@ export const genders = [
     value: 'not-listed',
     label: 'Not Listed'
   }, 
-  {
-    value: 'n/a',
-    label: 'Prefer not to answer'
-  }, 
 ];
 
 export const textDirectionalities = [

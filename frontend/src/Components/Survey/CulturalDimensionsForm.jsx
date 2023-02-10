@@ -47,6 +47,9 @@ export default function CulturalDimensions(props) {
       </Typography>
       <div className='survey-questions'> 
       <Typography variant="subtitle1">
+        <Box sx={{ mt: 1, fontWeight: 'bold'}}> The following fields are optional, but if you could provide more data, I would be able to provide more information within the Global Data for UX Researchers to view.</Box>
+        </Typography>
+      <Typography variant="subtitle1">
         <Box sx={{ mt: 1, fontWeight: 'bold'}}> Please think of an ideal job, disregarding your present job, if you have one. In choosing an ideal job, how important would it be to you to...  </Box>
         </Typography>
         <Grid container> 

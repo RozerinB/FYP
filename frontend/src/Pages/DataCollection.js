@@ -16,7 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ValidationSchema from '../Components/Survey/ValidationSchema';
 import PIS from './PIS';
 import ConsentForm from '../Components/Survey/ConsentForm.jsx';
-import CulturalDimensions from '../Components/Survey/CulturalDimensions';
+import CulturalDimensions from '../Components/Survey/CulturalDimensionsForm';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 

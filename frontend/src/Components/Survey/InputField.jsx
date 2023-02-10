@@ -11,13 +11,6 @@ export default function InputField(props) {
   const { placeholder, label, errorText, ...rest } = props;
   const [field, meta] = useField(props);
 
-  function _renderHelperText() {
-    const [touched, error] = at(meta, 'touched', 'error');
-    if (touched && error) {
-      return error;
-    }
-  }
-
   return (
     <FormControl {...rest}>   
     <FormLabel>{label}</FormLabel>
@@ -25,7 +18,6 @@ export default function InputField(props) {
       placeholder={placeholder}
       type="text"
       error={meta.touched && meta.error && true}
-      helperText={_renderHelperText()}
       {...field}
       {...rest}
     />

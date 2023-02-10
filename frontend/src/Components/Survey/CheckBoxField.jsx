@@ -3,62 +3,34 @@ import { at } from 'lodash';
 import { useField } from 'formik';
 import {
     Checkbox,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Typography,
+    FormControlLabel,
+    FormControl,
 } from '@mui/material';
 
-export default function CheckboxField(props) {
-    const { name, label,  data ,...rest} = props;
+export default function CheckBoxField(props) {
+    const { label, ...rest } = props;
     const [field, meta, helper] = useField(props);
+    const { setValue } = helper;
     const [touched, error] = at(meta, 'touched', 'error');
-     const isError = touched && error && true;
-    const [checked, setChecked] = React.useState([0]);
-    console.log(field)
+    const isError = meta.value === false;
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
+    function _onChange(e) {
+      setValue(e.target.checked);
     }
-    setChecked(newChecked);
-  };
 
-  let ifChecked = checked.length === data.length + 1 ;
-  ifChecked === true ? field.value = true : field.value = false;
-  
     return (
-        <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          {data.map((value) => {
-            const labelId = `checkbox-list-label-${value.id}`;
-            return (
-              <ListItem
-                key={value.id}
-                disablePadding
-              >
-                <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-                  <ListItemIcon>
-                    <Checkbox
-                      edge="start"
-                      value={value.label}
-                      onChange={handleToggle(value)}
-                      checked={checked.indexOf(value) !== -1}
-                      tabIndex={-1}
-                      disableRipple
-                      error={meta.touched && meta.error && true}
-                    />
-                  </ListItemIcon>
-                  <ListItemText id={labelId} primary={value.name} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
-        </List>
-      );
-    }
+    <FormControl {...rest} error={isError}> 
+        <FormControlLabel 
+        value={field.checked}
+        checked={field.checked} 
+        control={<Checkbox {...field} onChange={_onChange}  style={{ color: isError ? "red" : undefined }}
+        />} 
+        label={label}  
+        error={isError} 
+        style={{ color: isError ? "red" : undefined }}
+  
+        />
+    </FormControl>
+    );
+    
+  }

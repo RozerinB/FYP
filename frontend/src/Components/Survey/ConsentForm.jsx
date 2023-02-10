@@ -1,9 +1,10 @@
 import React from 'react'
 import Typography from '@mui/material/Typography';
 import "./Survey.css"
-import { Box } from '@mui/material';
-import CheckboxField from './CheckBoxField.jsx';
+import { Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import CheckBoxField from './CheckBoxField.jsx';
 import { Grid } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
   
 const items = [
     {
@@ -66,9 +67,25 @@ export default function ConsentForm (props) {
       <Typography variant="h6">
         <Box sx={{ fontWeight: 'bold'}}> Usability Engineering and the importance of the level of exposure to technology </Box>
       </Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          {items.map((item) => (
+            <List>
+              <ListItem>
+              <ListItemIcon>
+                <CircleIcon sx={{fontSize: 'small', color: 'black'}} />
+              </ListItemIcon>
+                <ListItemText
+                  primary={item.name}
+                />
+              </ListItem>
+          </List>
+          ))}
+        </Grid>
+        </Grid>
       <Grid container spacing={3}> 
         <Grid item xs={12} >
-          <CheckboxField name={consent_form.name} label={consent_form.label} data={items} fullWidth />
+          <CheckBoxField name={consent_form.name} label={consent_form.label} fullWidth />
           </Grid>   
         </Grid>  
     </div>

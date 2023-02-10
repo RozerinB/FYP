@@ -73,7 +73,7 @@ export default {
       },
       competency_level: {
         name: 'competency_level',
-        label: 'How would you describe your technical competency_level?*',
+        label: 'How would you describe your technical competency level?*',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -254,26 +254,32 @@ export default {
       },
       nervous_tense: {
         name: 'nervous_tense',
+        placeholder: 'Please select',
         label: 'How often do you feel nervous or tense?',
       },
       happiness: {
         name: 'happiness',
-        label: 'Are you a happy person ?',
+        placeholder: 'Please select',
+        label: 'Are you a happy person?',
       },
       prevention_due_to_circumstances: {
         name: 'prevention_due_to_circumstances',
+        placeholder: 'Please select',
         label: 'Do other people or circumstances ever prevent you from doing what you really want to?',
       },
       state_of_health: {
         name: 'state_of_health',
+        placeholder: 'Please select',
         label: ' All in all, how would you describe your state of health these days?',
       },
       proud_citizen: {
         name: 'How proud are you to be a citizen of your country?',
+        placeholder: 'Please select',
         label: 'How proud are you to be a citizen of your country?',
       },
       contradicting_superior: {
         name: 'contradicting_superior',
+        placeholder: 'Please select',
         label: 'How often, in your experience, are subordinates afraid to contradict their boss (or students their teacher?)',
       }, 
       good_manager: {
@@ -294,10 +300,12 @@ export default {
       },
       education: {
         name: 'education',
+        placeholder: 'Years of formal education',
         label: 'How many years of formal school education (or their equivalent) did you complete (starting with primary school)?',
       },
       job: {
         name: 'job',
+        placeholder: 'Select type of job',
         label: 'If you have or have had a paid job, what kind of job is it / was it?',
       }
     }

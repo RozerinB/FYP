@@ -4,7 +4,9 @@ import "./Survey.css"
 import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import RadioField from './RadioField.jsx';
-import { experience, experience2, proudness, health, scale, educationAge, jobList } from './Questions';
+import { experience, experience2, proudness, health, scale, educationAge, jobList, importanceKey, agreementKey } from './Questions';
+import ListField from './ListField.jsx';
+import SelectField from './SelectField';
 
 export default function CulturalDimensions(props) {
   const {
@@ -47,6 +49,15 @@ export default function CulturalDimensions(props) {
       <Typography variant="subtitle1">
         <Box sx={{ mt: 1, fontWeight: 'bold'}}> Please think of an ideal job, disregarding your present job, if you have one. In choosing an ideal job, how important would it be to you to...  </Box>
         </Typography>
+        <Grid container> 
+        <Grid item xs={12} >
+          <ListField
+              data={importanceKey}
+              fullWidth
+              row={true}
+            />
+        </Grid> 
+        </Grid>
         <Grid container spacing={3}> 
         <Grid item xs={12} >
         <RadioField
@@ -149,7 +160,7 @@ export default function CulturalDimensions(props) {
         </Grid> 
         </Grid>
         <Typography variant="subtitle1">
-          <Box sx={{ mt: 1, fontWeight: 'bold'}}> In your private life, how important is each of the following to you: (please circle one answer in each line across):</Box>
+          <Box sx={{ mt: 1, fontWeight: 'bold'}}> In your private life, how important is each of the following to you: </Box>
         </Typography>
      <Grid container spacing={3}> 
         <Grid item xs={12} >
@@ -198,55 +209,61 @@ export default function CulturalDimensions(props) {
           />
         </Grid> 
             <Grid item xs={12}> 
-                <RadioField
+                <SelectField
                 name={nervous_tense.name}
                 label={nervous_tense.label}
                 data={experience}
+                placeholder={nervous_tense.placeholder}
                 fullWidth
                 row={false}
             />
             </Grid>
             <Grid item xs={12}> 
-                <RadioField
+                <SelectField
                 name={happiness.name}
                 label={happiness.label}
                 data={experience}
+                placeholder={happiness.placeholder}
                 fullWidth
                 row={false}
             />
             </Grid>
             <Grid item xs={12}> 
-                <RadioField
+                <SelectField
                 name={prevention_due_to_circumstances.name}
                 label={prevention_due_to_circumstances.label}
                 data={experience2}
+                placeholder={prevention_due_to_circumstances.placeholder}
                 fullWidth
                 row={false}
             />
             </Grid>
             <Grid item xs={12}> 
-                <RadioField
+                <SelectField
                 name={state_of_health.name}
                 label={state_of_health.label}
                 data={health}
+                placeholder={state_of_health.placeholder}
                 fullWidth
                 row={false}
             />
             </Grid>
             <Grid item xs={12}> 
-                <RadioField
+                <SelectField
                 name={proud_citizen.name}
                 label={proud_citizen.label}
                 data={proudness}
+                placeholder={proud_citizen.placeholder}
                 fullWidth
                 row={false}
             />
             </Grid>
             <Grid item xs={12}> 
-                <RadioField
+                <SelectField
                 name={contradicting_superior.name}
                 label={contradicting_superior.label}
                 data={experience}
+                placeholder={contradicting_superior.placeholder}
                 fullWidth
                 row={false}
                 />
@@ -255,6 +272,15 @@ export default function CulturalDimensions(props) {
         <Typography variant="subtitle1">
           <Box sx={{ mt: 1, fontWeight: 'bold'}}> To what extent do you agree or disagree with each of the following statements?</Box>
         </Typography>
+        <Grid container> 
+        <Grid item xs={12} >
+          <ListField
+              data={agreementKey}
+              fullWidth
+              row={true}
+            />
+        </Grid> 
+        </Grid>
         <Grid container spacing={3}>
             <Grid item xs={12} >
             <RadioField
@@ -293,24 +319,28 @@ export default function CulturalDimensions(props) {
                 />
             </Grid>     
         </Grid>
+        <Grid container spacing={3}>
         <Grid item xs={12} >
-            <RadioField
+            <SelectField
                 name={education.name}
                 label={education.label}
                 data={educationAge}
+                placeholder={education.placeholder}
                 fullWidth
                 row={false}
                 />
         </Grid>   
         <Grid item xs={12} >
-            <RadioField
+            <SelectField
                 name={job.name}
                 label={job.label}
                 data={jobList}
+                placeholder={job.placeholder}
                 fullWidth
                 row={false}
                 />
         </Grid>   
+        </Grid>
     </div>
     </div>
   )

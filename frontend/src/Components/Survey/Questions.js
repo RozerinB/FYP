@@ -1,5 +1,50 @@
 import countryList from 'react-select-country-list'
 
+export const importanceKey = [
+    {
+        value: '1',
+        label: '1 = of utmost importance'
+    },
+    {
+        value: '2',
+        label: '2 = very important'
+    },
+    {
+        value: '3',
+        label: '3 = of moderate importance'
+    },
+    {
+        value: '4',
+        label: '4 = of little importance'
+    },
+    {
+        value: '5',
+        label: '5 = of very little or no importance'
+    },
+]
+
+export const agreementKey = [
+    {
+        value: '1',
+        label: '1 = strongly agree'
+    },
+    {
+        value: '2',
+        label: '2 = agree'
+    },
+    {
+        value: '3',
+        label: '3 = undecided'
+    },
+    {
+        value: '4',
+        label: '4 = disagree'
+    },
+    {
+        value: '5',
+        label: '5 = strongly disagree'
+    },
+]
 export const countries = countryList().getData()
 
 export const ageList = [

@@ -174,7 +174,7 @@ export default function DataCollection(props) {
         </Typography>
         <Grid container spacing={3}> 
         <Grid item xs={12} >
-          <DataGridField name={design_principles.name} label={design_principles.label} principleLabel = {design_principles.principleLabel.filter((i) => i.name)}/>
+          <DataGridField name={design_principles.name} label={design_principles.label} data = {design_principles.principleLabel.filter((i) => i.name)}/>
           </Grid>   
         </Grid>  
     </div>

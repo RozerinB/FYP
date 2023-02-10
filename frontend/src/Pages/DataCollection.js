@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ValidationSchema from '../Components/Survey/ValidationSchema';
 import PIS from './PIS';
 import ConsentForm from '../Components/Survey/ConsentForm.jsx';
+import CulturalDimensions from '../Components/Survey/CulturalDimensions';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
@@ -30,7 +31,7 @@ function renderStepContent(step) {
     case 2:
       return <DataCollectionForm formField={formField} />;
     case 3: 
-      return <DataCollectionForm formField={formField}/>;
+      return <CulturalDimensions formField={formField}/>;
     default:
       return <div>Not Found</div>;
   }
@@ -62,7 +63,7 @@ export default function DataCollection(props) {
       delete values.principle7
 
       values.client_id = uuidv4();
-      
+
       axios
         .post("/api/survey/", values)
         setActiveStep(activeStep + 1);
@@ -89,7 +90,7 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
-            validationSchema={currentValidationSchema}
+            // validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values) }
           >
               <Form id={formId}>

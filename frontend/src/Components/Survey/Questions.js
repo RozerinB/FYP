@@ -2,11 +2,215 @@ import countryList from 'react-select-country-list'
 
 export const countries = countryList().getData()
 
-export let ageList = [];
+export const ageList = [
+    {
+        value: '18-19',
+        label: '18-19'
+    },
+    {
+        value: '20-24',
+        label: '20-24'
+    },
+    {
+        value: '25-29',
+        label: '25-29'
+    },
+    {
+        value: '30-34',
+        label: '30-34'
+    },
+    {
+        value: '35-39',
+        label: '36-39'
+    },
+    {
+        value: '40-49',
+        label: '40-49'
+    },
+    {
+        value: '50-59',
+        label: '50-59'
+    },
+    {
+        value: '60',
+        label: '60 or over'
+    },
+];
 
-for (let i = 18; i <= 90; i++) {
-    ageList.push({ value: i.toString() , label: i.toString() });
+export const jobList = [
+    {
+        value: '1',
+        label: 'No paid job (includes full-time students)'
+    },
+    {
+        value: '2',
+        label: 'Unskilled or semi-skilled manual worker'
+    },
+    {
+        value: '3',
+        label: 'Generally trained office worker or secretary'
+    },
+    {
+        value: '4',
+        label: 'Vocationally trained craftsperson, technician, IT-specialist, nurse, artist or equivalent'
+    },
+    {
+        value: '5',
+        label: 'Academically trained professional or equivalent (but not a manager of people)'
+    },
+    {
+        value: '6',
+        label: 'Manager of one or more subordinates (non-managers)'
+    },
+    {
+        value: '7',
+        label: 'Manager of one or more managers'
+    },
+]
+
+
+export const educationAge = [
+    {
+        value: '10',
+        label: '10 years or less'
+    },
+    {
+        value: '11',
+        label: '11 years'
+    },
+    {
+        value: '12',
+        label: '12 years'
+    },
+    {
+        value: '13',
+        label: '13 years'
+    },
+    {
+        value: '14',
+        label: '14 years'
+    },
+    {
+        value: '15',
+        label: '15 years'
+    },
+    {
+        value: '16',
+        label: '16 years'
+    },
+    {
+        value: '17',
+        label: '17 years'
+    },
+    {
+        value: '18',
+        label: '18 years or over'
+    },
+]
+
+export let scale = [];
+
+for (let i =1; i <= 5; i++) {
+    scale.push({ value: i.toString() , label: i.toString() });
 }
+
+
+export const experience = 
+[ 
+    {
+        value: 1,
+        label: 'Always'
+    },
+    {
+        value: 2,
+        label: 'Usually'
+    },
+    {
+        value: 3,
+        label: 'Sometimes'
+    },
+    {
+        value: 4,
+        label: 'Seldom'
+    },
+    {
+        value: 5,
+        label: 'Never'
+    }
+]
+
+export const experience2 = 
+[ 
+    {
+        value: 1,
+        label: 'Yes, always'
+    },
+    {
+        value: 2,
+        label: 'Yes, usually'
+    },
+    {
+        value: 3,
+        label: 'Sometimes'
+    },
+    {
+        value: 4,
+        label: 'No, seldom'
+    },
+    {
+        value: 5,
+        label: 'No, never'
+    }
+]
+
+export const health = 
+[ 
+    {
+        value: 1,
+        label: 'Very good'
+    },
+    {
+        value: 2,
+        label: 'Good'
+    },
+    {
+        value: 3,
+        label: 'Fair'
+    },
+    {
+        value: 4,
+        label: 'Poor'
+    },
+    {
+        value: 5,
+        label: 'Very poor'
+    }
+]
+
+export const proudness = 
+[ 
+    {
+        value: 1,
+        label: 'Very proud'
+    },
+    {
+        value: 2,
+        label: 'Fairly proud'
+    },
+    {
+        value: 3,
+        label: 'Somewhat proud'
+    },
+    {
+        value: 4,
+        label: 'Not very proud'
+    },
+    {
+        value: 5,
+        label: 'Not proud at all'
+    }
+]
+
 
 export const yesOrNo = [
     {

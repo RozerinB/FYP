@@ -190,6 +190,110 @@ export default {
         name: 'consent_form',
         label: 'I understand and agree with the points above. I would like to continue with this study and provide the data required.*',
         requiredErrorMsg: 'This field is required'
+      },
+      time_personal_home_life: {
+        name: 'time_personal_home_life',
+        label: 'have sufficient time for your personal or home life',
+      },
+      respected_by_superiors: {
+        name: 'respected_by_superiors',
+        label: ' have a boss (direct superior) you can respect',
+      },
+      good_performance: {
+        name: 'good_performance',
+        label: 'get recognition for good performance',
+      },
+      employment: {
+        name: 'employment',
+        label: 'have security of employment',
+      },
+      pleasant_people: {
+        name: 'pleasant_people',
+        label: 'have pleasant people to work with',
+      },
+      work_interesting: {
+        name: 'work_interesting',
+        label: 'do work that is interesting ',
+      },
+      consulted_by_superiors: {
+        name: 'consulted_by_superiors',
+        label: 'be consulted by your boss in decisions involving your work ',
+      },
+      desirable_area: {
+        name: 'desirable_area',
+        label: 'live in a desirable area',
+      },
+      respected_by_family: {
+        name: 'respected_by_family',
+        label: 'have a job respected by your family and friends',
+      },
+      chances_for_promotion: {
+        name: 'chances_for_promotion',
+        label: 'have chances for promotion',
+      },
+      keeping_time_for_fun: {
+        name: 'keeping_time_for_fun',
+        label: 'keeping time free for fun',
+      },
+      moderation: {
+        name: 'moderation',
+        label: 'moderation: having few desires',
+      },
+      service_to_friend: {
+        name: 'service_to_friend',
+        label: 'doing a service to a friend ',
+      },
+      thrift: {
+        name: 'thrift',
+        label: 'thrift (not spending more than needed)',
+      },
+      nervous_tense: {
+        name: 'nervous_tense',
+        label: 'How often do you feel nervous or tense?',
+      },
+      happiness: {
+        name: 'happiness',
+        label: 'Are you a happy person ?',
+      },
+      prevention_due_to_circumstances: {
+        name: 'prevention_due_to_circumstances',
+        label: 'Do other people or circumstances ever prevent you from doing what you really want to?',
+      },
+      state_of_health: {
+        name: 'state_of_health',
+        label: ' All in all, how would you describe your state of health these days?',
+      },
+      proud_citizen: {
+        name: 'How proud are you to be a citizen of your country?',
+        label: 'How proud are you to be a citizen of your country?',
+      },
+      contradicting_superior: {
+        name: 'contradicting_superior',
+        label: 'How often, in your experience, are subordinates afraid to contradict their boss (or students their teacher?)',
+      }, 
+      good_manager: {
+        name: 'good_manager',
+        label: 'One can be a good manager without having a precise answer to every question that a subordinate may raise about his or her work ',
+      },
+      persistent_efforts: {
+        name: 'persistent_efforts',
+        label: 'Persistent efforts are the surest way to results ',
+      },
+      organization_structure: {
+        name: 'organization_structure',
+        label: 'An organization structure in which certain subordinates have two bosses should be avoided at all cost ',
+      },
+      organization_rules: {
+        name: 'organization_rules',
+        label: 'A companys or organizations rules should not be broken - not even when the employee thinks breaking the rule would be in the organizations best interest ',
+      },
+      education: {
+        name: 'education',
+        label: 'How many years of formal school education (or their equivalent) did you complete (starting with primary school)?',
+      },
+      job: {
+        name: 'job',
+        label: 'If you have or have had a paid job, what kind of job is it / was it?',
       }
     }
   };

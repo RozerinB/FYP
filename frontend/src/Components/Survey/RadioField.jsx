@@ -27,6 +27,7 @@ export default function RadioField(props) {
         control={<Radio />}
         sx={{fontSize: 2}}
         error={meta.touched && meta.error && true}
+        row={props.row}
       />
       ))}
       </RadioGroup>

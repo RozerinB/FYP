@@ -1,6 +1,7 @@
 import surveyFormModel from './SurveyFormModel';
 const {
   formField: {
+    // Data Collection Survey 1
     age,
     gender,
     preferred_writing_language,
@@ -26,7 +27,35 @@ const {
     principle5,
     principle6,
     principle7,
-    consent_form
+    // Consent Form
+    consent_form,
+    // Cultural Dimensions
+    time_personal_home_life,
+    respected_by_superiors,
+    good_performance, 
+    employment,
+    pleasant_people,
+    work_interesting,
+    consulted_by_superiors,
+    desirable_area,
+    respected_by_family,
+    chances_for_promotion,
+    keeping_time_for_fun,
+    moderation, 
+    service_to_friend,
+    thrift,
+    nervous_tense,
+    happiness,
+    prevention_due_to_circumstances,
+    state_of_health,
+    proud_citizen,
+    contradicting_superior,
+    good_manager,
+    persistent_efforts,
+    organization_structure,
+    organization_rules,
+    education,
+    job
   }
 } = surveyFormModel;
 
@@ -57,4 +86,30 @@ export default {
   [principle6.name]: '',
   [principle7.name]: '',
   [consent_form.name]: false,
+  [time_personal_home_life.name]: '',
+  [respected_by_superiors.name]: '',
+  [good_performance.name]: '',
+  [employment.name]: '',
+  [pleasant_people.name]: '',
+  [work_interesting.name]: '',
+  [consulted_by_superiors.name]: '',
+  [desirable_area.name]: '',
+  [respected_by_family.name]: '',
+  [chances_for_promotion.name]: '',
+  [keeping_time_for_fun.name]: '',
+  [moderation.name]: '',
+  [service_to_friend.name]: '',
+  [thrift.name]: '',
+  [nervous_tense.name]: '',
+  [happiness.name]: '',
+  [prevention_due_to_circumstances.name]: '',
+  [state_of_health.name]: '',
+  [proud_citizen.name]: '',
+  [contradicting_superior.name]: '',
+  [good_manager.name]: '',
+  [persistent_efforts.name]: '',
+  [organization_structure.name]: '',
+  [organization_rules.name]: '',
+  [education.name]: '',
+  [job.name]: ''
 };

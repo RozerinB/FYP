@@ -36,6 +36,11 @@ export default {
         placeholder: 'Select nationality',
         requiredErrorMsg: 'This field is required'
       },
+      nationality_from_birth:{
+        name: 'nationality_from_birth',
+        label: 'What was your nationality at birth (if different)?',
+        placeholder: 'Select your nationality at birth',
+      },
       ethnicity: {
         name: 'ethnicity',
         label: 'What is your ethnicity?*',

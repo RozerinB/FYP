@@ -17,6 +17,7 @@ export default function DataCollection(props) {
       preferred_reading_language,
       country,
       nationality,
+      nationality_from_birth,
       ethnicity,
       text_directionality,
       device_ownership_status,
@@ -67,6 +68,15 @@ export default function DataCollection(props) {
           <SelectField
             name={nationality.name}
             label={nationality.label}
+            data={nationalities}
+            placeholder={nationality.placeholder}
+            fullWidth
+          />
+        </Grid> 
+        <Grid item xs={12} >
+          <SelectField
+            name={nationality_from_birth.name}
+            label={nationality_from_birth.label}
             data={nationalities}
             placeholder={nationality.placeholder}
             fullWidth

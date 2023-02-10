@@ -186,6 +186,10 @@ export default {
         guideline: "",
         requiredErrorMsg: 'This field is required'
       },
+      consent_form: {
+        name: 'consent_form',
+        label: 'Please tick this box if you consent to your data being used for research purposes*',
+      }
     }
   };
   

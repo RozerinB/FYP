@@ -27,6 +27,7 @@ const {
     principle5,
     principle6,
     principle7,
+    consent_form,
   }
 } = surveyFormModel
 

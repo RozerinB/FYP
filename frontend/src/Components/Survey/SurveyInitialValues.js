@@ -26,6 +26,7 @@ const {
     principle5,
     principle6,
     principle7,
+    consent_form
   }
 } = surveyFormModel;
 
@@ -55,4 +56,5 @@ export default {
   [principle5.name]: '',
   [principle6.name]: '',
   [principle7.name]: '',
+  [consent_form.name]: '',
 };

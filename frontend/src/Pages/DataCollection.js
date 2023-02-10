@@ -14,17 +14,19 @@ import "../Components/Survey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
 import { v4 as uuidv4 } from 'uuid';
 import ValidationSchema from '../Components/Survey/ValidationSchema';
+import PIS from './PIS';
+import ConsentForm from './ConsentForm';
 
-const steps = ['Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
+const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
 const { formId, formField } = SurveyFormModel;
 
 function renderStepContent(step) {
   switch (step) {
     case 0:
-      return <DataCollectionForm formField={formField} />;
+      return <PIS />;
     case 1:
-      return <DataCollectionForm formField={formField} />;
+      return <ConsentForm />;
     case 2:
       return <DataCollectionForm formField={formField} />;
     case 3: 
@@ -38,7 +40,7 @@ export default function DataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = ValidationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
-  const isSurvey = activeStep === 0
+  const isSurvey = activeStep === 2 || activeStep === 3;
 
   function submitForm(values) {
     Object.assign(values.design_principles, {principle1: values.principle1});
@@ -56,9 +58,7 @@ export default function DataCollection(props) {
     delete values.principle5
     delete values.principle6
     delete values.principle7
-
     values.client_id = uuidv4();
-    console.log('values', values)
     axios
       .post("/api/survey/", values)
     setActiveStep(activeStep + 1);
@@ -81,15 +81,14 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
-            validationSchema={currentValidationSchema}
-            onSubmit={(values) => submitForm(values)}
+            validationSchema={isSurvey ?currentValidationSchema : null}
+            onSubmit={(values) => isSurvey ? submitForm(values) : setActiveStep(activeStep + 1)}
           >
               <Form id={formId}>
                 {renderStepContent(activeStep)}
                 <div >
                   <div>
                     <Button
-                      // disabled={isSubmitting}
                       type="submit"
                       variant="contained"
                       color="primary"

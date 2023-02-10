@@ -3,10 +3,10 @@ import Typography from '@mui/material/Typography';
 import "./Survey.css"
 import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
-import SelectField from './SelectField.jsx';
-import RadioField from './RadioField.jsx';
+import SelectField from '../FormFields/SelectField.jsx';
+import RadioField from '../FormFields/RadioField.jsx';
 import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages } from './Questions';
-import DataGridField from './DataGridField.jsx';
+import DataGridField from '../FormFields/DataGridField.jsx';
 
 export default function DataCollection(props) {
   const {

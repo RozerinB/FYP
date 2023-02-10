@@ -11,7 +11,7 @@ import "./Components/Navbar/Navbar.css"
 import About from "./Pages/About";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
-import DataCollection from "./Pages/DataCollection";
+import DataCollection from "./Pages/ParticipantDataCollection";
 
 const AppLayout = () => (
   <> 

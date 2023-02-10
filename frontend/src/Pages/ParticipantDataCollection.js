@@ -6,17 +6,17 @@ import {
 } from '@mui/material';
 import { Formik, Form } from 'formik';
 import axios from "axios";
-import SurveyFormModel from '../Components/Survey/SurveyFormModel';
-import SurveyInitialValues from '../Components/Survey/SurveyInitialValues';
-import DataCollectionForm from '../Components/Survey/DataCollectionForm.jsx';
+import SurveyFormModel from '../Components/ParticipantSurvey/SurveyFormModel';
+import SurveyInitialValues from '../Components/ParticipantSurvey/SurveyInitialValues';
+import DataCollectionForm from '../Components/ParticipantSurvey/DataCollectionForm.jsx';
 import VerticalLinearStepper from '../Components/Stepper/Stepper'
-import "../Components/Survey/Survey.css"
+import "../Components/ParticipantSurvey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
 import { v4 as uuidv4 } from 'uuid';
-import ValidationSchema from '../Components/Survey/ValidationSchema';
-import PIS from './PIS';
-import ConsentForm from '../Components/Survey/ConsentForm.jsx';
-import CulturalDimensions from '../Components/Survey/CulturalDimensionsForm';
+import ValidationSchema from '../Components/ParticipantSurvey/ValidationSchema';
+import PIS from '../Components/ParticipantSurvey/PIS';
+import ConsentForm from '../Components/ParticipantSurvey/ConsentForm.jsx';
+import CulturalDimensions from '../Components/ParticipantSurvey/CulturalDimensionsForm';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 

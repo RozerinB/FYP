@@ -3,10 +3,10 @@ import Typography from '@mui/material/Typography';
 import "./Survey.css"
 import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
-import RadioField from './RadioField.jsx';
+import RadioField from '../FormFields/RadioField.jsx';
 import { experience, experience2, proudness, health, scale, educationAge, jobList, importanceKey, agreementKey } from './Questions';
-import ListField from './ListField.jsx';
-import SelectField from './SelectField';
+import ListField from '../FormFields/ListField.jsx';
+import SelectField from '../FormFields/SelectField';
 
 export default function CulturalDimensions(props) {
   const {

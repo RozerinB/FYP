@@ -1,6 +1,6 @@
 import React from 'react'
 import Typography from '@mui/material/Typography';
-import "../Components/Survey/Survey.css"
+import "./Survey.css"
 import { Box } from '@mui/material';
 
 const PIS = () => {

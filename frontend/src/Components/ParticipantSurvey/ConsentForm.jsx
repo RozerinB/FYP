@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import "./Survey.css"
 import { Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import CheckBoxField from './CheckBoxField.jsx';
+import CheckBoxField from '../FormFields/CheckBoxField.jsx';
 import { Grid } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
   

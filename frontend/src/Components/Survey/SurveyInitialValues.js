@@ -56,5 +56,5 @@ export default {
   [principle5.name]: '',
   [principle6.name]: '',
   [principle7.name]: '',
-  [consent_form.name]: '',
+  [consent_form.name]: false,
 };

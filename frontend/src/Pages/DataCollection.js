@@ -15,7 +15,7 @@ import Sidebar from '../Components/Sidebar/Sidebar';
 import { v4 as uuidv4 } from 'uuid';
 import ValidationSchema from '../Components/Survey/ValidationSchema';
 import PIS from './PIS';
-import ConsentForm from './ConsentForm';
+import ConsentForm from '../Components/Survey/ConsentForm.jsx';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
@@ -26,7 +26,7 @@ function renderStepContent(step) {
     case 0:
       return <PIS />;
     case 1:
-      return <ConsentForm />;
+      return <ConsentForm formField={formField}/>;
     case 2:
       return <DataCollectionForm formField={formField} />;
     case 3: 
@@ -43,6 +43,7 @@ export default function DataCollection(props) {
   const isSurvey = activeStep === 2 || activeStep === 3;
 
   function submitForm(values) {
+    if(isSurvey){
     Object.assign(values.design_principles, {principle1: values.principle1});
     Object.assign(values.design_principles, {principle2: values.principle2});
     Object.assign(values.design_principles, {principle3: values.principle3});
@@ -62,6 +63,11 @@ export default function DataCollection(props) {
     axios
       .post("/api/survey/", values)
     setActiveStep(activeStep + 1);
+    }
+    else {
+      console.log(values)
+      setActiveStep(activeStep + 1);
+    }
   }
 
   return (
@@ -80,9 +86,10 @@ export default function DataCollection(props) {
         ) : ( */}
         <div className='survey-container'>
           <Formik
+           enableReinitialize={true}
             initialValues={SurveyInitialValues}
-            validationSchema={isSurvey ?currentValidationSchema : null}
-            onSubmit={(values) => isSurvey ? submitForm(values) : setActiveStep(activeStep + 1)}
+            validationSchema={isSurvey ? currentValidationSchema : null}
+            onSubmit={(values) => submitForm(values) }
           >
               <Form id={formId}>
                 {renderStepContent(activeStep)}

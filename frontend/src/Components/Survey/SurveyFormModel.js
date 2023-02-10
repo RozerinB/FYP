@@ -189,6 +189,7 @@ export default {
       consent_form: {
         name: 'consent_form',
         label: 'Please tick this box if you consent to your data being used for research purposes*',
+        requiredErrorMsg: 'This field is required'
       }
     }
   };

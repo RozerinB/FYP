@@ -35,7 +35,6 @@ class App extends Component {
 
   handleSubmit = (item) => {
     this.toggle();
-
     if (item.id) {
       axios
         .put(`/api/survey/${item.id}/`, item)
@@ -105,8 +104,8 @@ class App extends Component {
         className="list-group-item d-flex justify-content-between align-items-center"
       >
         <span
-          className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
+          className={`survey-title mr-2 ${
+            this.state.viewCompleted ? "completed-survey" : ""
           }`}
           title={item.description}
         >
@@ -133,7 +132,7 @@ class App extends Component {
   render() {
     return (
       <main className="container">
-        <h1 className="text-white text-uppercase text-center my-4">Todo app</h1>
+        <h1 className="text-white text-uppercase text-center my-4">survey app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">

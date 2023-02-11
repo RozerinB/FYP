@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { IconContext } from 'react-icons'
 import { FaBars, FaTimes } from "react-icons/fa";
 import * as IoIcons from "react-icons/io"
-import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [click, setClick] = useState(false);
-
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -19,7 +17,7 @@ function Navbar() {
           <div className="navbar-container container">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
               <IoIcons.IoMdGlobe className="navbar-icon" />
-                Global Data Collection
+                GDC
             </Link>
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}

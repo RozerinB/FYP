@@ -2,9 +2,51 @@ from django.contrib import admin
 from .models import Survey
 
 class SurveyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'completed')
-
-# Register your models here.
+    list_display = (
+        'age', 
+        'gender', 
+        'preferred_writing_language', 
+        'preferred_reading_language', 
+        'country',
+        'nationality',
+        'ethnicity',
+        'text_directionality',
+        'internet_stability',
+        'broadband_contract',
+        'age_first_used_technology',
+        'competency_level',
+        'age_when_first_owned_device',
+        'device_ownership_status',
+        'device_sharing_status',
+        'device_type_owned',
+        'device_access',
+        'design_principles',
+        'client_id',
+        'time_personal_home_life',
+        'good_performance',
+        'employment',
+        'pleasant_people',
+        'work_interesting',
+        'consulted_by_superiors',
+        'desirable_area',
+        'respected_by_family',
+        'chances_for_promotion',
+        'keeping_time_for_fun',
+        'moderation',
+        'service_to_friend',
+        'thrift',
+        'nervous_tense',
+        'happiness',    
+        'prevention_due_to_circumstances',
+        'state_of_health',
+        'proud_citizen',
+        'contradicting_superior',
+        'good_manager',
+        'persistent_efforts',
+        'organization_structure',
+        'organization_rules',
+        'education',
+        'job',
+        )
 
 admin.site.register(Survey, SurveyAdmin)
-# Register your models here.

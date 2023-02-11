@@ -9,3 +9,11 @@
     fill: white;
     opacity: 0.09;
 }
+
+.home-button  {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 20px;
+    text-decoration: none;
+}

@@ -11,7 +11,8 @@ import "./Components/Navbar/Navbar.css"
 import About from "./Pages/About";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
-import DataCollection from "./Pages/ParticipantDataCollection";
+import ParticipantDataCollection from "./Pages/ParticipantDataCollection";
+import ResearcherDataCollection from "./Pages/ResearcherDataCollection";
 
 const AppLayout = () => (
   <> 
@@ -43,8 +44,12 @@ const router = createBrowserRouter([
   {
     children: [ 
     {
-      path: "DataCollection",
-      element: <DataCollection />,
+      path: "ParticipantDataCollection",
+      element: <ParticipantDataCollection />,
+    },
+    {
+      path: "ResearcherDataCollection",
+      element: <ResearcherDataCollection />,
     },
   ]
   }

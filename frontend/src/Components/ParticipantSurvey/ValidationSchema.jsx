@@ -19,7 +19,6 @@ const {
     device_type_owned ,
     device_access,
     competency_level,
-    design_principles,
     principle1,
     principle2,
     principle3,
@@ -81,7 +80,7 @@ export default [
       .required(`${age_when_first_owned_device.requiredErrorMsg}`),
     [device_type_owned.name]: Yup.string()
       .nullable()
-      .required(`${device_type_owned .requiredErrorMsg}`),
+      .required(`${device_type_owned.requiredErrorMsg}`),
     [device_access.name]: Yup.string()
       .nullable()
       .required(`${device_access.requiredErrorMsg}`),

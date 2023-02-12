@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 // import ValidationSchema from '../Components/ResearcherSurvey/ValidationSchema';
 import PIS from '../Components/ResearcherSurvey/PIS';
 import ConsentForm from '../Components/ResearcherSurvey/ConsentForm.jsx';
+import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/ResearcherDataCollectionSurvey';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Global Data', 'Data Collection'];
 
@@ -27,8 +28,10 @@ function renderStepContent(step) {
       return <PIS />;
     case 1:
       return <ConsentForm formField={formField}/>;
-    // case 2:
-    //   return <ParticipantDataCollection formField={formField} />;
+    case 2:
+      return <ResearcherDataCollectionSurvey formField={formField} />;
+    case 3: 
+      return <ResearcherDataCollectionSurvey formField={formField} />;
     default:
       return <div>Not Found</div>;
   }
@@ -42,28 +45,11 @@ export default function ResearcherDataCollection(props) {
   const isConsentForm = activeStep === 1;
 
   function submitForm(values) {
-    console.log('1',values);
+
     if(isSurvey){
-      Object.assign(values.design_principles, {principle1: values.principle1});
-      Object.assign(values.design_principles, {principle2: values.principle2});
-      Object.assign(values.design_principles, {principle3: values.principle3});
-      Object.assign(values.design_principles, {principle4: values.principle4});
-      Object.assign(values.design_principles, {principle5: values.principle5});
-      Object.assign(values.design_principles, {principle6: values.principle6});
-      Object.assign(values.design_principles, {principle7: values.principle7});
-
-      delete values.principle1
-      delete values.principle2
-      delete values.principle3
-      delete values.principle4
-      delete values.principle5
-      delete values.principle6
-      delete values.principle7
-
       values.client_id = uuidv4();
-      values.role = "participant";
-      
-      console.log(values);
+      values.role = "researcher";
+
       axios
         .post("/api/survey/", values)
         setActiveStep(activeStep + 1);

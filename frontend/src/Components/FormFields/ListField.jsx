@@ -11,7 +11,7 @@ import {
 
 export default function ListField(props) {
   const { data, name, label, ...rest } = props;
-  const [field, meta] = useField(props);
+  const [meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
   const isError = touched && error && true;
   return (

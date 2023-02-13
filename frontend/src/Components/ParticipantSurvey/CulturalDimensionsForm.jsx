@@ -186,15 +186,6 @@ export default function CulturalDimensions(props) {
         </Grid> 
         <Grid item xs={12} >
         <RadioField
-            name={moderation.name}
-            label={moderation.label}
-            data={scale}
-            fullWidth
-            row={true}
-          />
-        </Grid> 
-        <Grid item xs={12} >
-        <RadioField
             name={service_to_friend.name}
             label={service_to_friend.label}
             data={scale}

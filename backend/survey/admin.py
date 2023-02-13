@@ -1,8 +1,10 @@
 from django.contrib import admin
-from .models import Survey
-
+from .models import Survey, Evaluation
 class SurveyAdmin(admin.ModelAdmin):
     list_display = (
+        'role',
+        'client_id',
+        'consent_form',
         'age', 
         'gender', 
         'preferred_writing_language', 
@@ -21,7 +23,6 @@ class SurveyAdmin(admin.ModelAdmin):
         'device_type_owned',
         'device_access',
         'design_principles',
-        'client_id',
         'time_personal_home_life',
         'good_performance',
         'employment',
@@ -49,4 +50,17 @@ class SurveyAdmin(admin.ModelAdmin):
         'job',
         )
 
+class EvaluationAdmin(admin.ModelAdmin):
+    list_display = (
+        'role',
+        'client_id',
+        'consent_form', 
+        'usefulness_for_profession', 
+        'usefulness_for_researcher', 
+        'design_for_non_western', 
+        'design_for_western',
+        'feedback',
+    )
+    
 admin.site.register(Survey, SurveyAdmin)
+admin.site.register(Evaluation, EvaluationAdmin)

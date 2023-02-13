@@ -39,19 +39,17 @@ function renderStepContent(step) {
 
 export default function ResearcherDataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
-//   const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
+  // const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey = activeStep === 2 || activeStep === 3;
   const isConsentForm = activeStep === 1;
 
   function submitForm(values) {
-
     if(isSurvey){
       values.client_id = uuidv4();
       values.role = "researcher";
-
       axios
-        .post("/api/survey/", values)
+        .post("/api/evaluation/", values)
         setActiveStep(activeStep + 1);
     }
     else {

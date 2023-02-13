@@ -26,7 +26,6 @@ export default function CheckBoxField(props) {
         label={label}  
         error={isError} 
         style={{ color: isError ? "red" : undefined }}
-  
         />
     </FormControl>
     );

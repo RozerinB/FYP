@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import SurveySerializer
-from .models import Survey
-
-# Create your views here.
+from .serializers import SurveySerializer, EvaluationSerializer
+from .models import Survey, Evaluation
 
 class SurveyView(viewsets.ModelViewSet):
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
-# Create your views here.
+    
+class EvaluationView(viewsets.ModelViewSet):
+    serializer_class = EvaluationSerializer
+    queryset = Evaluation.objects.all()

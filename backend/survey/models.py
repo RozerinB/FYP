@@ -1,18 +1,17 @@
 from django.db import models
-
-# Create your models here.
-
 class DesignPrinciple(models.Model):
-    principle1 = models.IntegerField(default=None)
-    principle2 = models.IntegerField(default=None)
-    principle3 = models.IntegerField(default=None)
-    principle4 = models.IntegerField(default=None)
-    principle5 = models.IntegerField(default=None)
-    principle6 = models.IntegerField(default=None)
-    principle7 = models.IntegerField(default=None)
+    principle1 = models.IntegerField(default=None, blank=True)
+    principle2 = models.IntegerField(default=None, blank=True)
+    principle3 = models.IntegerField(default=None, blank=True)
+    principle4 = models.IntegerField(default=None, blank=True)
+    principle5 = models.IntegerField(default=None, blank=True)
+    principle6 = models.IntegerField(default=None, blank=True)
+    principle7 = models.IntegerField(default=None, blank=True)
     
 class Survey(models.Model):
-    age = models.PositiveIntegerField(default=18)
+    role= models.TextField(default="")
+    client_id = models.CharField(max_length=100, primary_key=True, default=None)
+    age = models.TextField(default="18-19")
     gender = models.TextField(default="")
     preferred_writing_language = models.TextField(default="")
     preferred_reading_language = models.TextField(default="")
@@ -29,8 +28,7 @@ class Survey(models.Model):
     device_sharing_status = models.TextField(default="")
     device_type_owned = models.TextField(default="")
     device_access = models.TextField(default="")
-    client_id = models.CharField(max_length=100, primary_key=True, default=None)
-    design_principles = models.ForeignKey(DesignPrinciple, on_delete=models.CASCADE, default=None)
+    design_principles = models.ForeignKey(DesignPrinciple, on_delete=models.CASCADE, default=None, blank=True)
     time_personal_home_life = models.TextField(blank=True)
     good_performance = models.TextField(blank=True)
     employment = models.TextField(blank=True)
@@ -56,7 +54,20 @@ class Survey(models.Model):
     organization_rules = models.TextField(blank=True)
     education = models.TextField(blank=True)
     job = models.TextField(blank=True)
+    consent_form = models.BooleanField(default=False)
     
     def _str_(self):
         return self.client_id
 
+class Evaluation(models.Model):
+    role= models.TextField(default="")
+    client_id = models.CharField(max_length=100, primary_key=True, default=None)
+    consent_form = models.BooleanField(default=False)
+    usefulness_for_profession = models.TextField(default="")
+    usefulness_for_researcher = models.TextField(default="")
+    design_for_non_western = models.TextField(default="")
+    design_for_western = models.TextField(default="")
+    feedback = models.TextField(default="")
+    
+    def _str_(self):
+        return self.client_id

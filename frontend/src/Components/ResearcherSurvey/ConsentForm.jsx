@@ -1,8 +1,7 @@
 import React from 'react'
 import Typography from '@mui/material/Typography';
-import { Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { Box, List, ListItem, ListItemIcon, ListItemText, Grid } from '@mui/material';
 import CheckBoxField from '../FormFields/CheckBoxField.jsx';
-import { Grid } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
   
 const items = [

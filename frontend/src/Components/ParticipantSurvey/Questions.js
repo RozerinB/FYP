@@ -1,5 +1,11 @@
 import countryList from 'react-select-country-list'
 
+export let allAge = [];
+for (let i = 18; i <= 90; i++) {
+    allAge.push({ value: i.toString() , label: i.toString() });
+}
+
+
 export const importanceKey = [
     {
         value: '1',

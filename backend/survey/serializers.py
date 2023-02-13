@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Survey, DesignPrinciple
+from .models import Survey, DesignPrinciple, Evaluation
 class DesignPrincipleSerializer(serializers.ModelSerializer):
     class Meta:
         model = DesignPrinciple
@@ -10,6 +10,9 @@ class SurveySerializer(serializers.ModelSerializer):
     class Meta:
         model = Survey
         fields = (
+            'role',
+            'client_id',
+            'consent_form',
             'age', 
             'gender', 
             'preferred_writing_language', 
@@ -28,7 +31,6 @@ class SurveySerializer(serializers.ModelSerializer):
             'device_type_owned',
             'device_access',
             'design_principles',
-            'client_id',
             # cultural dimensions
             'time_personal_home_life',
             'good_performance',
@@ -62,3 +64,17 @@ class SurveySerializer(serializers.ModelSerializer):
         design_principle = DesignPrinciple.objects.create(**design_principles_data)
         survey = Survey.objects.create(design_principles=design_principle, **validated_data)
         return survey
+
+class EvaluationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Evaluation
+        fields = (
+            'role',
+            'client_id',
+            'consent_form', 
+            'usefulness_for_profession', 
+            'usefulness_for_researcher', 
+            'design_for_non_western', 
+            'design_for_western',
+            'feedback',
+            )

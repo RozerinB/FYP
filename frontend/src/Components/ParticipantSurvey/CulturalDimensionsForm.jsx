@@ -118,15 +118,6 @@ export default function CulturalDimensions(props) {
         </Grid> 
         <Grid item xs={12} >
         <RadioField
-            name={respected_by_superiors.name}
-            label={respected_by_superiors.label}
-            data={scale}
-            fullWidth
-            row={true}
-          />
-        </Grid> 
-        <Grid item xs={12} >
-        <RadioField
             name={consulted_by_superiors.name}
             label={consulted_by_superiors.label}
             data={scale}
@@ -170,15 +161,6 @@ export default function CulturalDimensions(props) {
         <RadioField
             name={keeping_time_for_fun.name}
             label={keeping_time_for_fun.label}
-            data={scale}
-            fullWidth
-            row={true}
-          />
-        </Grid> 
-        <Grid item xs={12} >
-        <RadioField
-            name={moderation.name}
-            label={moderation.label}
             data={scale}
             fullWidth
             row={true}

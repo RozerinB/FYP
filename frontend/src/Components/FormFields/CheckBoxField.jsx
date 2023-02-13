@@ -1,5 +1,4 @@
 import React from 'react';
-import { at } from 'lodash';
 import { useField } from 'formik';
 import {
     Checkbox,
@@ -11,7 +10,6 @@ export default function CheckBoxField(props) {
     const { label, ...rest } = props;
     const [field, meta, helper] = useField(props);
     const { setValue } = helper;
-    const [touched, error] = at(meta, 'touched', 'error');
     const isError = meta.value === false;
 
     function _onChange(e) {
@@ -28,7 +26,6 @@ export default function CheckBoxField(props) {
         label={label}  
         error={isError} 
         style={{ color: isError ? "red" : undefined }}
-  
         />
     </FormControl>
     );

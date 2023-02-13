@@ -4,11 +4,7 @@ import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import Cards from '../Components/Cards/Cards';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
-import StartIcon from '@mui/icons-material/Start';
 import { Form } from 'reactstrap';
-import SurveyFormModel from '../Components/ParticipantSurvey/SurveyFormModel';
-
-const { formId, formField } = SurveyFormModel;
 
 export default function Home(props) {
   const geoUrl =
@@ -36,7 +32,7 @@ export default function Home(props) {
         </ComposableMap>
       </div>
      <Cards />
-     <Form id={formId}>
+     <Form>
      <div className='home-button'> 
       <NavLink to="/ParticipantDataCollection"  style={{ textDecoration: 'none' }}>
         <Button variant="contained" sx={{m:1}} > I am a participant </Button>

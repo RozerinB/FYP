@@ -21,7 +21,7 @@ export default function ResearcherDataCollectionSurvey (props) {
   return (
     <div className='survey-heading'> 
         <Typography variant="h6">
-        <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Consent Form </Box>
+        <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Evaluation Survey </Box>
       </Typography>
       <div className='survey-questions'> 
       <Typography variant="h6">

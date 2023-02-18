@@ -17,7 +17,7 @@ import PIS from '../Components/ResearcherSurvey/PIS';
 import ConsentForm from '../Components/ResearcherSurvey/ConsentForm.jsx';
 import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/ResearcherDataCollectionSurvey';
 
-const steps = ['Participant Information Sheet', 'Consent Form', 'Global Data', 'Data Collection'];
+const steps = ['Participant Information Sheet', 'Consent Form', 'Global Data', 'Evaluation Survey'];
 
 const { formId, formField } = SurveyFormModel;
 console.log(formField)
@@ -29,9 +29,9 @@ function renderStepContent(step) {
     case 1:
       return <ConsentForm formField={formField}/>;
     case 2:
-      return <ResearcherDataCollectionSurvey formField={formField} />;
+      return <ResearcherDataCollectionSurvey formField={formField} />; // REPORT
     case 3: 
-      return <ResearcherDataCollectionSurvey formField={formField} />;
+      return <ResearcherDataCollectionSurvey formField={formField} />; 
     default:
       return <div>Not Found</div>;
   }

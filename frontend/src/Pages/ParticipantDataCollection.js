@@ -17,6 +17,7 @@ import ValidationSchema from '../Components/ParticipantSurvey/ValidationSchema';
 import PIS from '../Components/ParticipantSurvey/PIS';
 import ConsentForm from '../Components/ParticipantSurvey/ConsentForm.jsx';
 import CulturalDimensions from '../Components/ParticipantSurvey/CulturalDimensionsForm';
+import Report from '../Components/ParticipantSurvey/Report';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
@@ -25,13 +26,17 @@ const { formId, formField } = SurveyFormModel;
 function renderStepContent(step) {
   switch (step) {
     case 0:
-      return <PIS />;
+      return <PIS/>
     case 1:
       return <ConsentForm formField={formField}/>;
     case 2:
       return <DataCollectionForm formField={formField} />;
     case 3: 
       return <CulturalDimensions formField={formField}/>;
+    case 4: 
+      return <Report formField={formField}/>;
+    case 5:
+      return <DataCollectionForm formField={formField} />;
     default:
       return <div>Not Found</div>;
   }

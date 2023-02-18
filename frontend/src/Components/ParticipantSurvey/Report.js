@@ -11,9 +11,7 @@ const Report = (props) => {
             client_id
         }
       } = props;
-      console.log('client_id :>> ', props);
     const res =  axios.get(`/api/survey`);
-    console.log('res :>> ', res);
 
   return (
     <div className='survey-heading'> 

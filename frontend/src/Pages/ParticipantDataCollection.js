@@ -49,10 +49,8 @@ export default function DataCollection(props) {
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
-  console.log('activeStep :>> ', activeStep);
 
   function submitForm(values) {
-    console.log('values if survey :>> ', values);
     if(isSurvey){
       Object.assign(values.design_principles, {principle1: values.principle1});
       Object.assign(values.design_principles, {principle2: values.principle2});
@@ -70,7 +68,6 @@ export default function DataCollection(props) {
         setActiveStep(activeStep + 1);
     }
     else {
-      console.log('values else :>> ', values);
       setActiveStep(activeStep + 1);
     }
   }

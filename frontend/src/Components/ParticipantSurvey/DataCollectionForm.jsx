@@ -34,6 +34,7 @@ export default function DataCollection(props) {
     }
   } = props;
 
+  
   return (
     <div className='survey-heading'> 
         <Typography variant="h6">

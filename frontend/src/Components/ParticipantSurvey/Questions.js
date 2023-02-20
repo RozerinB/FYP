@@ -339,27 +339,19 @@ export const competency = [
 export const genders = [
   {
     value: 'female',
-    label: 'Female'
+    label: 'Female (including Transgender Women)'
   }, 
   {
     value: 'male',
-    label: 'Male'
-  }, 
-  {
-    value: 't-female',
-    label: 'Transgender Female'
-  }, 
-  {
-    value: 't-male',
-    label: 'Transgender Male'
+    label: 'Male (including Transgender Men)'
   }, 
   {
     value: 'gender-variant',
     label: 'Gender Variant / Non-Conforming'
   }, 
   {
-    value: 'not-listed',
-    label: 'Not Listed'
+    value: 'other',
+    label: 'Other'
   }, 
 ];
 

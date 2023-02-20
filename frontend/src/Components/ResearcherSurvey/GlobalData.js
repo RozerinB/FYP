@@ -1,10 +1,14 @@
-import React , {useEffect, useState} from 'react'
+import React , {useEffect, useRef, useState} from 'react'
 import {VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryLegend, VictoryPie, VictoryPortal, VictoryStack } from 'victory'
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import './index.css'
 import axios from 'axios';
-import { UDP, UDPbyGender  } from '../GlobalData/Data';
+import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectionalityPercentage, calculateInternetAccessPercentage } from '../GlobalData/Data';
+import SelectField from '../FormFields/SelectField';
+import countryList from 'react-select-country-list';
+import { useField } from 'formik';
+import Chart from 'chart.js/dist/Chart.js'
 
 export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
 
@@ -40,6 +44,11 @@ const principlesLabel = {
 }
 
 const GlobalData = (props) => {
+  const {
+    formField: {
+     country
+    }
+  } = props;
   const [data, setData] = useState([]);
   const getData = async () => {
     const { data } = await axios.get('/api/survey/');
@@ -53,7 +62,17 @@ const GlobalData = (props) => {
     return participant.design_principles;
   });
 
-  console.log('data :>> ', data);
+  var allCountriesSubmitted = data.map(function(country) {
+    const label = countryList().getLabel(country.country)
+    return label;
+  });
+ 
+  const countryArray = [];
+  allCountriesSubmitted.forEach(country => {
+    if (!countryArray.find(obj => obj.label === country)) {
+      countryArray.push({label: country, value: countryList().getValue(country)});
+    }
+  });
 
   // get UDP values by gender
   const getUDP1ByGender = UDPbyGender(data,"principle1", 1)
@@ -63,99 +82,144 @@ const GlobalData = (props) => {
   const getUDP5ByGender = UDPbyGender(data,"principle5", 5)
   const getUDP6ByGender = UDPbyGender(data,"principle6", 6)
   const getUDP7ByGender = UDPbyGender(data,"principle7", 7)
-  const getMostSelectedUDPs = UDP(allDesignPrinciples);
+  const getMostSelectedUDPs = UDP(allDesignPrinciples); // get most selected UDPs by all participants 
   const getPrincipleLabels = getMostSelectedUDPs.map((principle) => principlesLabel[principle].label);
   
-  // const genderUDP = [
-  //   [
-  //     { x: "a", y: getUDP1ByGender["female"],z: getUDP1ByGender["female"] != undefined ? "F" : ""}, //principle1
-  //     { x: "b", y: getUDP2ByGender["female"],z: getUDP2ByGender["female"] != undefined ? "F" : ""}, //principle2
-  //     { x: "c", y: getUDP3ByGender["female"],z: getUDP3ByGender["female"] != undefined ? "F" : ""}, //principle3 
-  //     { x: "d", y: getUDP4ByGender["female"],z: getUDP4ByGender["female"] != undefined ? "F" : ""}, //principle4
-  //     { x: "e", y: getUDP5ByGender["female"],z: getUDP5ByGender["female"] != undefined ? "F" : ""}, //principle5 
-  //     { x: "f", y: getUDP6ByGender["female"],z: getUDP6ByGender["female"] != undefined ? "F" : ""}, //principle6
-  //     { x: "g", y: getUDP7ByGender["female"],z: getUDP7ByGender["female"] != undefined ? "F" : ""}  //principle7
-  //   ],
-  //   [
-  //     { x: "a", y: getUDP1ByGender["male"],z: getUDP1ByGender["male"] != undefined ? "M" : "" }, //principle1
-  //     { x: "b", y: getUDP2ByGender["male"],z: getUDP2ByGender["male"] != undefined ? "M" : ""}, //principle2
-  //     { x: "c", y: getUDP3ByGender["male"],z: getUDP3ByGender["male"] != undefined ? "M" : ""}, //principle3 
-  //     { x: "d", y: getUDP4ByGender["male"],z: getUDP4ByGender["male"] != undefined ? "M" : ""}, //principle4
-  //     { x: "e", y: getUDP5ByGender["male"],z: getUDP5ByGender["male"] != undefined ? "M" : ""}, //principle5 
-  //     { x: "f", y: getUDP6ByGender["male"],z: getUDP6ByGender["male"] != undefined ? "M" : ""}, //principle6
-  //     { x: "g", y: getUDP7ByGender["male"],z: getUDP7ByGender["male"] != undefined ? "M" : ""}  //principle7
+  const [field] = useField(props);
+  const { value: selectedValue } = field;
+  const selectedCountry = selectedValue.country;
+  const dataForCountrySelected = data.filter((country) => country.country === selectedCountry);
+  const competencyPerCountry = calculateCompetencyPercentage(dataForCountrySelected);
+  const textDirectionalityPerCountry = calculateTextDirectionalityPercentage(dataForCountrySelected);
+  const calculateInternetAccessPerCountry = calculateInternetAccessPercentage(dataForCountrySelected); 
 
-  // ],
-  // [
-  //   { x: "a", y: getUDP1ByGender["gender-variant"]}, //principle1
-  //   { x: "b", y: getUDP2ByGender["gender-variant"]}, //principle2
-  //   { x: "c", y: getUDP3ByGender["gender-variant"] }, //principle3 
-  //   { x: "d", y: getUDP4ByGender["gender-variant"] }, //principle4
-  //   { x: "e", y: getUDP5ByGender["gender-variant"] }, //principle5 
-  //   { x: "f", y: getUDP6ByGender["gender-variant"] }, //principle6
-  //   { x: "g", y: getUDP7ByGender["gender-variant"]}  //principle7
 
-  // ],
-  // [
-  //   { x: "a", y: getUDP1ByGender["other"] }, //principle1
-  //   { x: "b", y: getUDP2ByGender["other"]}, //principle2
-  //   { x: "c", y: getUDP3ByGender["other"] }, //principle3 
-  //   { x: "d", y: getUDP4ByGender["other"] }, //principle4
-  //   { x: "e", y: getUDP5ByGender["other"] }, //principle5 
-  //   { x: "f", y: getUDP6ByGender["other"] }, //principle6
-  //   { x: "g", y: getUDP7ByGender["other"]}  //principle7
-  // ],
-  // ];
-  
+const competencyByCountry = {};
+
+for (const participant of data) {
+  const competencyLevel = participant.competency_level;
+  const country = participant.country;
+
+  if (!competencyByCountry[country]) {
+    competencyByCountry[country] = {
+      Novice: 0,
+      Intermediate: 0,
+      Expert: 0
+    };
+  }
+  competencyByCountry[country][competencyLevel]++;
+}
+
+let chartData = {
+  labels: Object.keys(competencyByCountry),
+  datasets: [
+    {
+      label: 'Novice',
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1,
+      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Novice)
+    },
+    {
+      label: 'Intermediate',
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1,
+      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Intermediate)
+    },
+    {
+      label: 'Expert',
+      backgroundColor: 'rgba(255, 206, 86, 0.2)',
+      borderColor: 'rgba(255, 206, 86, 1)',
+      borderWidth: 1,
+      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Expert)
+    }
+  ]
+};
+
+
+function MyChart(data) {
+  const canvasRef = useRef(null);
+  console.log('data', data)
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      const chart = new Chart(canvas, {
+        type: 'bar',
+        data: data,
+        options: {
+          title: {
+            display: true,
+            text: 'Competency Level by Country',
+            fontSize: 18
+          },
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              fontColor: '#333',
+              fontSize: 14
+            }
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                fontColor: '#333',
+                fontSize: 14,
+                beginAtZero: true
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'Competency Level',
+                fontColor: '#333',
+                fontSize: 16
+              }
+            }],
+            yAxes: [{
+              stacked: false,
+              ticks: {
+                fontColor: '#333',
+                fontSize: 14,
+                beginAtZero: true
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'Number of Participants',
+                fontColor: '#333',
+                fontSize: 16
+              }
+            }]
+          }
+        }
+      });
+    }
+  }, []);
+
+  return <canvas ref={canvasRef} />;
+}
+
+
   return (
     <div className='survey-heading'> 
+    
     <Typography variant="h6">
       <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Global Data </Box>
     </Typography>
     <div className='survey-questions'> 
-    <Grid container spacing={2}>
-    <Grid>
-    {/* <Typography variant="h6">
-      <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Overall the highest ranked Design Principle(s): </Box>
-      <Box sx={{  ml: 1, pl:2 }}> {getPrincipleLabels} </Box>
-    </Typography> */}
-    </Grid>
-    </Grid>
-    {/* <Typography variant="h6">
-      <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Highest ranked Design Principle(s) by gender: </Box>
-    </Typography>
-    <Grid container>
-    <Grid item xs={5}>
-    <VictoryChart height={500} width={500}
-          domainPadding={{ x: 30, y: 20 }}
-        >
-            <VictoryLegend x={125} y={10}
-            orientation="horizontal"
-            gutter={20}
-            style={{ border: { stroke: 'none' } }}
-            colorScale={["#673ab7", "#3f51b5", "#2196f3", "#009688"]}
-            data={[
-              { name: "Female" }, { name: "Male" }, { name: "Gender Variant/ Non Conforming" }, {name: "Other"}
-            ]}
+    {MyChart(chartData)}
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+        <SelectField
+            value={selectedValue}
+            name={country.name}
+            label={country.label}
+            data={countryArray}
+            placeholder={country.placeholder}
+            fullWidth
           />
-            <VictoryStack
-              colorScale={["#673ab7", "#3f51b5", "#2196f3", "#009688"]}
-            >
-              {genderUDP.map((data) => {
-                return <VictoryBar data={data} />})}
-            </VictoryStack>
-            <VictoryAxis dependentAxis
-              tickFormat={(tick) => `${tick}%`}
-              style={{ tickLabels: { angle: -60, fontSize: 10 } }}
-            />
-            <VictoryAxis
-               style={{ tickLabels: { angle: -40, fontSize: 10 } }}
-              tickFormat={["Principle1", "Principle2", "Principle3", "Principle4", "Principle5", "Principle6", "Principle7"]}
-            />
-        </VictoryChart>
-    </Grid>
-    </Grid> */}
-  
+        </Grid>
+      </Grid>
     </div>
   </div>
   )

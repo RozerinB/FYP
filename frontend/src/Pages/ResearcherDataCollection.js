@@ -29,7 +29,7 @@ function renderStepContent(step) {
     case 1:
       return <ConsentForm formField={formField}/>;
     case 2:
-      return <GlobalData formField={formField} />; // REPORT
+      return <GlobalData formField={formField} />; 
     case 3: 
       return <ResearcherDataCollectionSurvey formField={formField} />; 
     default:

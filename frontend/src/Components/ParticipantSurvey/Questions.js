@@ -330,7 +330,7 @@ export const competency = [
         label: 'Advanced'
     },
     {
-        value: '4',
+        value: '5',
         label: 'Expert'
     }
 

@@ -15,10 +15,6 @@ function Footer() {
             <Link to='/about'>How it works</Link>
           </div>
           <div class='footer-link-items'>
-            <h2>Contact Us</h2>
-            <Link to='/contact'>Contact Us</Link>
-          </div>
-          <div class='footer-link-items'>
             <h2>Get Started</h2>
             <Link to='/DataCollection'>Get Started</Link>
           </div>

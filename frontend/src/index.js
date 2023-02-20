@@ -10,7 +10,6 @@ import Navbar from "./Components/Navbar/Navbar";
 import "./Components/Navbar/Navbar.css"
 import About from "./Pages/About";
 import Home from "./Pages/Home";
-import Contact from "./Pages/Contact";
 import ParticipantDataCollection from "./Pages/ParticipantDataCollection";
 import ResearcherDataCollection from "./Pages/ResearcherDataCollection";
 
@@ -33,10 +32,6 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
-      },
-      {
-        path: "contact",
-        element: <Contact />,
       },
      
     ],

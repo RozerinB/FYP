@@ -45,17 +45,6 @@ function Navbar() {
                   About
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/contact"
-                  className={({ isActive }) =>
-                    "nav-links" + (isActive ? " activated" : "")
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  Contact
-                </NavLink>
-              </li>
             </ul>
           </div>
         </nav>

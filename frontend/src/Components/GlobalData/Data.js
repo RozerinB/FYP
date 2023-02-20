@@ -43,19 +43,52 @@ export function UDPbyGender(participants,principleName,principleValue) {
     return percentByGender;
 }
 
-function calculateCompetencyPercentage(data) {
+export function calculateCompetencyPercentage(data) {
     const total = data.length;
-    const fundamentalCount = data.filter((item) => item.competency_level === '1').length;
-    const noviceCount = data.filter((item) => item.competency_level === '2').length;
-    const intermediateCount = data.filter((item) => item.competency_level === '3').length;
-    const advancedCount = data.filter((item) => item.competency_level === '4').length;
-    const expertCount = data.filter((item) => item.competency_level === '5').length;
+    const fundamentalCount = data.filter((item) => item.competency_level === 'Fundamental Awareness').length;
+    const noviceCount = data.filter((item) => item.competency_level === 'Novice').length;
+    const intermediateCount = data.filter((item) => item.competency_level === 'Intermediate').length;
+    const advancedCount = data.filter((item) => item.competency_level === 'Advanced').length;
+    const expertCount = data.filter((item) => item.competency_level === 'Expert').length;
   
-    const fundamentalPercentage= (fundamentalCount / total) * 100;
-    const novicePercentage = (noviceCount / total) * 100;
-    const intermediatePercentage = (intermediateCount / total) * 100;
-    const advancedPercentage = (advancedCount / total) * 100;
-    const expertPercentage = (expertCount / total) * 100;
-  
+    const fundamentalPercentage= fundamentalCount > 0 ? (fundamentalCount / total) * 100 : 0;
+    const novicePercentage = noviceCount > 0 ? (noviceCount / total) * 100 : 0;
+    const intermediatePercentage = intermediateCount > 0 ? (intermediateCount / total) * 100 : 0;
+    const advancedPercentage =  advancedCount ? (advancedCount / total) * 100 : 0;
+    const expertPercentage = expertCount > 0 ? (expertCount / total) * 100 : 0;
+
     return { fundamentalPercentage, novicePercentage, intermediatePercentage, advancedPercentage, expertPercentage };
+  }
+
+ export function calculateTextDirectionalityPercentage(data) {
+    const total = data.length;
+    const leftToRightCount = data.filter((item) => item.text_directionality === 'right-to-left').length;
+    const RightToLeftCount = data.filter((item) => item.text_directionality === 'left-to-right').length;
+  
+    const leftToRightPercentage= leftToRightCount > 0 ? (leftToRightCount / total) * 100 : 0;
+    const rightToLeftPercentage = RightToLeftCount > 0 ? (RightToLeftCount / total) * 100 : 0;
+
+    return { leftToRightPercentage, rightToLeftPercentage};
+  }
+
+  export function calculateInternetAccessPercentage(data) {
+    const total = data.length;
+    const internetCount = data.filter((item) => item.internet_stability === 'Yes').length;
+    const noInternetCount = data.filter((item) => item.internet_stability === 'No').length;
+
+    const internetPercentage= internetCount > 0 ? (internetCount / total) * 100 : 0;
+    const noInternetPercentage = noInternetCount > 0 ? (noInternetCount / total) * 100 : 0;
+
+    return { internetPercentage, noInternetPercentage};
+  }
+
+  export function calculateDeviceSharingPercentage(data) {
+    const total = data.length;
+    const deviceSharing = data.filter((item) => item.device_sharing_status === 'Yes').length;
+    const noDeviceSharing = data.filter((item) => item.device_sharing_status === 'No').length;
+
+    const deviceSharingPercentage= deviceSharing > 0 ? (deviceSharing / total) * 100 : 0;
+    const noDeviceSharingPercentage = noDeviceSharing > 0 ? (noDeviceSharing / total) * 100 : 0;
+
+    return { deviceSharingPercentage, noDeviceSharingPercentage};
   }

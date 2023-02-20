@@ -137,8 +137,7 @@ let chartData = {
   ]
 };
 
-
-function MyChart(data) {
+function MyChart({data}) {
   const canvasRef = useRef(null);
   console.log('data', data)
   useEffect(() => {

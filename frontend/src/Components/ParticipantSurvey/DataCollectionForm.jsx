@@ -7,7 +7,6 @@ import SelectField from '../FormFields/SelectField.jsx';
 import RadioField from '../FormFields/RadioField.jsx';
 import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge } from './Questions';
 import DataGridField from '../FormFields/DataGridField.jsx';
-import CheckBoxField from '../FormFields/CheckBoxField';
 
 export default function DataCollection(props) {
   const {
@@ -34,7 +33,7 @@ export default function DataCollection(props) {
     }
   } = props;
 
-  
+  console.log(props)
   return (
     <div className='survey-heading'> 
         <Typography variant="h6">

@@ -17,11 +17,15 @@ import ValidationSchema from '../Components/ParticipantSurvey/ValidationSchema';
 import PIS from '../Components/ParticipantSurvey/PIS';
 import ConsentForm from '../Components/ParticipantSurvey/ConsentForm.jsx';
 import CulturalDimensions from '../Components/ParticipantSurvey/CulturalDimensionsForm';
-import Report from '../Components/ParticipantSurvey/Report';
+// import Report from '../Components/ParticipantSurvey/Report';
+import FeedbackForm from '../Components/ParticipantSurvey/FeedbackForm';
+import EvaluationFormModel from '../Components/ParticipantSurvey/EvaluationFormModel';
+import GlobalData from '../Components/ResearcherSurvey/GlobalData';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
 const { formId, formField } = SurveyFormModel;
+const { evaluationFormId, evaluationFormField } = EvaluationFormModel;
 
 function renderStepContent(step) {
   switch (step) {
@@ -34,9 +38,9 @@ function renderStepContent(step) {
     case 3: 
       return <CulturalDimensions formField={formField}/>;
     case 4: 
-      return <Report formField={formField}/>;
+      return <GlobalData formField={formField}/>;
     case 5:
-      return <DataCollectionForm formField={formField} />;
+      return <FeedbackForm evaluationFormField={evaluationFormField} />;
     default:
       return <div>Not Found</div>;
   }
@@ -92,7 +96,7 @@ export default function DataCollection(props) {
             // validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values) }
           >
-              <Form id={formId}>
+              <Form id={formId || evaluationFormId}>
                 {renderStepContent(activeStep)}
                 <div >
                   <div>

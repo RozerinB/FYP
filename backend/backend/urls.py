@@ -21,6 +21,7 @@ from survey import views
 router = routers.DefaultRouter()
 router.register(r'survey', views.SurveyView, 'survey')
 router.register(r'evaluation', views.EvaluationView, 'evaluation')
+router.register(r'participant-evaluation', views.ParticipantEvaluationView, 'participant-evaluation')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Survey, DesignPrinciple, Evaluation
+from .models import Survey, DesignPrinciple, Evaluation, ParticipantEvaluation
 class DesignPrincipleSerializer(serializers.ModelSerializer):
     class Meta:
         model = DesignPrinciple
@@ -77,4 +77,18 @@ class EvaluationSerializer(serializers.ModelSerializer):
             'design_for_non_western', 
             'design_for_western',
             'feedback',
+            )
+
+class ParticipantEvaluationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ParticipantEvaluation
+        fields = (
+             'correlation',
+             'no_correlation_reason',
+             'correlation_culture',
+             'no_correlation_culture_reason',
+             'representation_of_user',
+             'no_representation_reason',
+             'generalisability',
+             'no_generalisability_reason'
             )

@@ -21,7 +21,7 @@ import CulturalDimensions from '../Components/ParticipantSurvey/CulturalDimensio
 import FeedbackForm from '../Components/ParticipantSurvey/FeedbackForm';
 import EvaluationFormModel from '../Components/ParticipantSurvey/EvaluationFormModel';
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
-
+import Success from './Success';
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Report', 'Feedback', 'Global Data',];
 
 const { formId, formField } = SurveyFormModel;
@@ -41,6 +41,8 @@ function renderStepContent(step) {
       return <GlobalData formField={formField}/>;
     case 5:
       return <FeedbackForm evaluationFormField={evaluationFormField} />;
+    case 6: 
+      return <Success/>;
     default:
       return <div>Not Found</div>;
   }
@@ -87,9 +89,13 @@ export default function DataCollection(props) {
       </Typography>
         <VerticalLinearStepper activeStep={activeStep} steps={steps} />   
       </div>
-        {/* {activeStep === steps.length ? (
-          <success />
-        ) : ( */}
+        {activeStep === steps.length ? (
+          <div className='survey-heading'>
+            <Typography variant="h6">
+              <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Thank you for your participation! </Box>
+            </Typography>
+          </div>
+        ) : (
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
@@ -104,16 +110,15 @@ export default function DataCollection(props) {
                       type="submit"
                       variant="contained"
                       color="primary"
-                      sx={{float:'right', m: 1}}
+                      sx={{float:'right', m: 1, display: isLastStep ? 'none' : 'block'}}
                     >
-                      {isSurvey  || isConsentForm ? 'Submit' : 'Next'}
+                      {isSurvey  || isConsentForm ? 'Submit' :'Next'}
                     </Button>
                   </div>
                 </div>
               </Form>
           </Formik>
         </div>
-      </div>
-
-  );
-}
+    )}
+    </div>
+  )};

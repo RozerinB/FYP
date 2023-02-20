@@ -17,6 +17,7 @@ import PIS from '../Components/ResearcherSurvey/PIS';
 import ConsentForm from '../Components/ResearcherSurvey/ConsentForm.jsx';
 import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/ResearcherDataCollectionSurvey';
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
+import Success from './Success';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Global Data', 'Evaluation Survey'];
 
@@ -32,6 +33,8 @@ function renderStepContent(step) {
       return <GlobalData formField={formField} />; 
     case 3: 
       return <ResearcherDataCollectionSurvey formField={formField} />; 
+    case 4: 
+    return <Success/>;
     default:
       return <div>Not Found</div>;
   }
@@ -68,9 +71,6 @@ export default function ResearcherDataCollection(props) {
       </Typography>
         <VerticalLinearStepper activeStep={activeStep} steps={steps} />   
       </div>
-        {/* {activeStep === steps.length ? (
-          <success />
-        ) : ( */}
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}

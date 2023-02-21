@@ -301,11 +301,11 @@ export const proudness =
 
 export const yesOrNo = [
     {
-        value: 'yes',
+        value: 'Yes',
         label: 'Yes'
     },
     {
-        value: 'no',
+        value: 'No',
         label: 'No'
     }
 ]

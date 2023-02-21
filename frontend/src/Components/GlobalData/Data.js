@@ -72,8 +72,8 @@ export function calculateCompetencyPercentage(data) {
 
   export function calculateInternetAccessPercentage(data) {
     const total = data.length;
-    const internetCount = data.filter((item) => item.internet_stability === 'yes').length;
-    const noInternetCount = data.filter((item) => item.internet_stability === 'no').length;
+    const internetCount = data.filter((item) => item.internet_stability === 'Yes').length;
+    const noInternetCount = data.filter((item) => item.internet_stability === 'No').length;
 
     const internetPercentage= internetCount > 0 ? (internetCount / total) * 100 : 0;
     const noInternetPercentage = noInternetCount > 0 ? (noInternetCount / total) * 100 : 0;
@@ -83,8 +83,8 @@ export function calculateCompetencyPercentage(data) {
 
   export function calculateDeviceSharingPercentage(data) {
     const total = data.length;
-    const deviceSharing = data.filter((item) => item.device_sharing_status === 'yes').length;
-    const noDeviceSharing = data.filter((item) => item.device_sharing_status === 'no').length;
+    const deviceSharing = data.filter((item) => item.device_sharing_status === 'Yes').length;
+    const noDeviceSharing = data.filter((item) => item.device_sharing_status === 'No').length;
 
     const deviceSharingPercentage= deviceSharing > 0 ? (deviceSharing / total) * 100 : 0;
     const noDeviceSharingPercentage = noDeviceSharing > 0 ? (noDeviceSharing / total) * 100 : 0;
@@ -93,12 +93,10 @@ export function calculateCompetencyPercentage(data) {
   }
 
   export function competencyByElementInData(data, element) {
-    console.log('element', element)
     const competencyByElement = {};
     for (const participant of data) {
       const competencyLevel = participant.competency_level;
       const participant_element = participant[element];
-      console.log('age',participant_element)
       if (!competencyByElement[participant_element]) {
         competencyByElement[participant_element] = {
           Fundamental: 0,
@@ -110,7 +108,21 @@ export function calculateCompetencyPercentage(data) {
       }
     competencyByElement[participant_element][competencyLevel]++;
     }
-    console.log(competencyByElement)
     return competencyByElement
-   
+  }
+
+  export function internetByElementInData(data, constant, element) {
+    const competencyByElement = {};
+    for (const participant of data) {
+      const competencyLevel = participant[constant];
+      const participant_element = participant[element];
+      if (!competencyByElement[participant_element]) {
+        competencyByElement[participant_element] = {
+          Yes: 0,
+          No: 0,
+        };
+      }
+    competencyByElement[participant_element][competencyLevel]++;
+    }
+    return competencyByElement
   }

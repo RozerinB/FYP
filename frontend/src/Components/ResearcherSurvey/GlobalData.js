@@ -1,18 +1,19 @@
-import React , {useEffect, useRef, useState} from 'react'
+import React , {useEffect, useState, useRef} from 'react'
 import Typography from '@mui/material/Typography';
 import { Box, Grid, Tab, Tabs } from '@mui/material';
 import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
-import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectionalityPercentage, calculateInternetAccessPercentage, competencyByElementInData } from '../GlobalData/Data';
+import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectionalityPercentage, calculateInternetAccessPercentage, competencyByElementInData, internetByElementInData } from '../GlobalData/Data';
 import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
-import Chart from 'chart.js/dist/Chart.js'
 import { ethnicGroups, nationalities, principlesLabel } from '../ParticipantSurvey/Questions';
+// import { ScatterChart , BarChart} from '../GlobalData/Chart';
+import Chart from 'chart.js/dist/Chart.js'
 
 export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
-
+export const competencyScatterLabels = ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert']
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -101,6 +102,7 @@ const GlobalData = (props) => {
   const textDirectionalityPerCountry = calculateTextDirectionalityPercentage(dataForCountrySelected);
   const calculateInternetAccessPerCountry = calculateInternetAccessPercentage(dataForCountrySelected); 
 
+  //Competency Page
   const competencyByCountry = competencyByElementInData(data, 'country');
   const competencyByEthnicity = competencyByElementInData(data, 'ethnicity');
   const competencyByNationality = competencyByElementInData(data, 'nationality');
@@ -110,6 +112,14 @@ const GlobalData = (props) => {
   const competencyCountriesLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
   const competencyEthnicityLabel = ethnicGroups.filter(ethnicity => competencyEthnicity.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
   const competencyNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
+
+  //Internet Page
+  const internetAccessByCountry = internetByElementInData(data,'internet_stability','country');
+  const broadbandByCountry = internetByElementInData(data,'broadband_contract','country');
+  const internetCountry = Object.keys(internetAccessByCountry);
+  const broadbandCountry = Object.keys(broadbandByCountry);
+  const internetCountryLabel = countryArray.filter(country => internetCountry.includes(country.value)).map(country => country.label);
+  const broadbandCountryLabel = countryArray.filter(country => broadbandCountry.includes(country.value)).map(country => country.label);
 
   const filteredDataForCompetencyAgeDevice = data.map(obj => ({
     x: obj.age_when_first_owned_device,
@@ -164,20 +174,42 @@ const GlobalData = (props) => {
     };
   }
 
-  function ScatterChart({data, title, x, y}) {
+  function createInternetChartData(selectedElementLabel, competencyByElement) {
+    return {
+      labels: selectedElementLabel,
+      datasets: [
+        {
+          label: 'Yes',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Yes)
+        },
+        {
+          label: 'No',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].No)
+        }
+      ]
+    };
+  }
+
+ function ScatterChart({data, title, x, y, labels}) {
     const canvasRef = useRef(null);
     useEffect(() => {
       const canvas = canvasRef.current;
       if (canvas) {
         const ctx = canvas.getContext('2d');
-        const chart = new Chart(canvas, {
+        const scatterChart = new Chart(canvas, {
           type: 'scatter',
           data: {
             datasets: [
               {
                 label:title,
                 data: data,
-                backgroundColor: 'rgba(255, 99, 132, 1)'
+                backgroundColor: 'rgba(54, 162, 235, 1)'
               }
             ]
           },
@@ -198,7 +230,7 @@ const GlobalData = (props) => {
               }],
               yAxes: [{
                 type: 'category',
-                labels: ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert'],
+                labels: labels,
                 ticks: {
                   reverse: true
                 },
@@ -215,7 +247,7 @@ const GlobalData = (props) => {
     return <canvas style = {{position: 'relative', height:'30vh', width:'40vw'}}ref={canvasRef} />;
   }
 
-  function BarChart({data, title, x , y}) {
+   function BarChart({data, title, x , y}) {
     const canvasRef = useRef(null);
     useEffect(() => {
       const canvas = canvasRef.current;
@@ -297,11 +329,11 @@ const GlobalData = (props) => {
       </Tabs>
     </Box>
     <TabPanel value={value} index={0}>
-    <BarChart data={createCompetencyChartData(competencyCountriesLabel, competencyByCountry)} title = {"Competency By Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-    <BarChart data={createCompetencyChartData(competencyEthnicityLabel, competencyByEthnicity)} title = {"Competency By Ethnicity"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-    <BarChart data={createCompetencyChartData(competencyNationalityLabel, competencyByNationality)} title = {"Competency By Nationality"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-    <ScatterChart data={filteredDataForCompetencyAgeDevice} title={"Age of First Device vs Competency Level"} x={"Age when first owned device"} y={"Competency level"}/>
-    <ScatterChart data={filteredDataForCompetencyAgeTech } title={"Age when started using Technology vs Competency Level"} x={"Age when started using Technology"} y={"Competency level"}/>
+      <BarChart data={createCompetencyChartData(competencyCountriesLabel, competencyByCountry)} title = {"Competency By Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+      <BarChart data={createCompetencyChartData(competencyEthnicityLabel, competencyByEthnicity)} title = {"Competency By Ethnicity"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+      <BarChart data={createCompetencyChartData(competencyNationalityLabel, competencyByNationality)} title = {"Competency By Nationality"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+      <ScatterChart data={filteredDataForCompetencyAgeDevice} title={"Age of First Device vs Competency Level"} x={"Age when first owned device"} y={"Competency level"} labels={competencyScatterLabels}/>
+      <ScatterChart data={filteredDataForCompetencyAgeTech} title={"Age when started using Technology vs Competency Level"} x={"Age when started using Technology"} y={"Competency level"} labels={competencyScatterLabels}/>
     </TabPanel>
     <TabPanel value={value} index={1}>
       Item Two
@@ -310,13 +342,14 @@ const GlobalData = (props) => {
       Item Three
     </TabPanel>
     <TabPanel value={value} index={3}>
-      Item Three
+      Item four
     </TabPanel>
     <TabPanel value={value} index={4}>
-      Item Three
+      Item five
     </TabPanel>
     <TabPanel value={value} index={5}>
-      Item Three
+      <BarChart data={createInternetChartData(internetCountryLabel, internetAccessByCountry)} title = {"Internet Stability By Country"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
+      <BarChart data={createInternetChartData(broadbandCountryLabel, broadbandByCountry)} title = {"Broadband Contract By Country"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
     </TabPanel>
     <TabPanel value={value} index={6}>
     <Grid container spacing={2}>

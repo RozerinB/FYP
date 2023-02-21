@@ -349,23 +349,28 @@ export const deviceType = [
 ]
 
 export const competency = [
-    {
+    {   
+        scale:1,
         value: 'Fundamental',
         label: 'Fundamental Awareness'
     },
     {
+        scale:2,
         value: 'Novice',
         label: 'Novice'
     },
     {
+        scale:3,
         value: 'Intermediate',
         label: 'Intermediate'
     },
     {
+        scale:4,
         value: 'Advanced',
         label: 'Advanced'
     },
     {
+        scale:5,
         value: 'Expert',
         label: 'Expert'
     }

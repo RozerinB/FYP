@@ -111,6 +111,15 @@ const GlobalData = (props) => {
   const competencyEthnicityLabel = ethnicGroups.filter(ethnicity => competencyEthnicity.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
   const competencyNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
 
+  const filteredDataForCompetencyAgeDevice = data.map(obj => ({
+    x: obj.age_when_first_owned_device,
+    y: obj.competency_level,
+  }));
+
+  const filteredDataForCompetencyAgeTech = data.map(obj => ({
+    x: obj.age_first_used_technology,
+    y: obj.competency_level,
+  }));
 
   function createCompetencyChartData(selectedElementLabel, competencyByElement) {
     return {
@@ -153,6 +162,57 @@ const GlobalData = (props) => {
         }
       ]
     };
+  }
+
+  function ScatterChart({data, title, x, y}) {
+    const canvasRef = useRef(null);
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        const chart = new Chart(canvas, {
+          type: 'scatter',
+          data: {
+            datasets: [
+              {
+                label:title,
+                data: data,
+                backgroundColor: 'rgba(255, 99, 132, 1)'
+              }
+            ]
+          },
+          options: {
+            title: {
+              display: true,
+              text: title,
+              fontSize: 18
+            },
+            scales: {
+              xAxes: [{ 
+                type: 'linear',
+                position: 'bottom',
+                scaleLabel: {
+                  display: true,
+                  labelString: x
+                }
+              }],
+              yAxes: [{
+                type: 'category',
+                labels: ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert'],
+                ticks: {
+                  reverse: true
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: y
+                }
+              }]
+            }
+          }
+        });
+      }
+    }, []);
+    return <canvas style = {{position: 'relative', height:'30vh', width:'40vw'}}ref={canvasRef} />;
   }
 
   function BarChart({data, title, x , y}) {
@@ -216,7 +276,7 @@ const GlobalData = (props) => {
         });
       }
     }, []);
-    return <canvas style = {{position: 'relative', height:'30vh', width:'40vw'}}ref={canvasRef} />;
+    return <canvas style = {{position: 'relative', height:'25vh', width:'30vw'}}ref={canvasRef} />;
   }
 
   return (
@@ -240,6 +300,8 @@ const GlobalData = (props) => {
     <BarChart data={createCompetencyChartData(competencyCountriesLabel, competencyByCountry)} title = {"Competency By Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
     <BarChart data={createCompetencyChartData(competencyEthnicityLabel, competencyByEthnicity)} title = {"Competency By Ethnicity"}  x ={"Competency Level"} y ={"Number of Participants"}/>
     <BarChart data={createCompetencyChartData(competencyNationalityLabel, competencyByNationality)} title = {"Competency By Nationality"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+    <ScatterChart data={filteredDataForCompetencyAgeDevice} title={"Age of First Device vs Competency Level"} x={"Age when first owned device"} y={"Competency level"}/>
+    <ScatterChart data={filteredDataForCompetencyAgeTech } title={"Age when started using Technology vs Competency Level"} x={"Age when started using Technology"} y={"Competency level"}/>
     </TabPanel>
     <TabPanel value={value} index={1}>
       Item Two

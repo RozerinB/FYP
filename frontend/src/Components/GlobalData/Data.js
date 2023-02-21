@@ -93,11 +93,12 @@ export function calculateCompetencyPercentage(data) {
   }
 
   export function competencyByElementInData(data, element) {
+    console.log('element', element)
     const competencyByElement = {};
     for (const participant of data) {
       const competencyLevel = participant.competency_level;
       const participant_element = participant[element];
-
+      console.log('age',participant_element)
       if (!competencyByElement[participant_element]) {
         competencyByElement[participant_element] = {
           Fundamental: 0,

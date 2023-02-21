@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import SelectField from '../FormFields/SelectField.jsx';
 import RadioField from '../FormFields/RadioField.jsx';
-import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge } from './Questions';
+import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge, technologyAge } from './Questions';
 import DataGridField from '../FormFields/DataGridField.jsx';
 
 export default function DataCollection(props) {
@@ -33,7 +33,6 @@ export default function DataCollection(props) {
     }
   } = props;
 
-  console.log(props)
   return (
     <div className='survey-heading'> 
         <Typography variant="h6">
@@ -110,7 +109,7 @@ export default function DataCollection(props) {
           <SelectField
             name={age_first_used_technology.name}
             label={age_first_used_technology.label}
-            data={allAge}
+            data={technologyAge}
             placeholder={age_first_used_technology.placeholder}
             fullWidth
           />
@@ -139,7 +138,7 @@ export default function DataCollection(props) {
           <SelectField
             name={age_when_first_owned_device.name}
             label={age_when_first_owned_device.label}
-            data={allAge}
+            data={technologyAge}
             fullWidth
           />
         </Grid> 

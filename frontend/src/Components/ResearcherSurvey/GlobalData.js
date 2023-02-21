@@ -102,17 +102,30 @@ for (const participant of data) {
 
   if (!competencyByCountry[country]) {
     competencyByCountry[country] = {
+      Fundamental: 0,
       Novice: 0,
       Intermediate: 0,
+      Advanced: 0,
       Expert: 0
     };
   }
   competencyByCountry[country][competencyLevel]++;
 }
 
+
+const competencyCountryLabel = Object.keys(competencyByCountry);
+const selectedCountries = countryArray.filter(country => competencyCountryLabel.includes(country.value)).map(country => country.label);
+
 let chartData = {
-  labels: Object.keys(competencyByCountry),
+  labels: selectedCountries,
   datasets: [
+    {
+      label: 'Fundamental Awareness',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 0.2)',
+      borderWidth: 1,
+      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Fundamental)
+    },
     {
       label: 'Novice',
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -128,6 +141,13 @@ let chartData = {
       data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Intermediate)
     },
     {
+      label: 'Advanced',
+      backgroundColor:  'rgba(153, 102, 255, 0.2)',
+      borderColor: 'rgba(153, 102, 255, 0.2)',
+      borderWidth: 1,
+      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Advanced)
+    },
+    {
       label: 'Expert',
       backgroundColor: 'rgba(255, 206, 86, 0.2)',
       borderColor: 'rgba(255, 206, 86, 1)',
@@ -139,7 +159,6 @@ let chartData = {
 
 function MyChart({data}) {
   const canvasRef = useRef(null);
-  console.log('data', data)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -206,7 +225,7 @@ function MyChart({data}) {
       <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Global Data </Box>
     </Typography>
     <div className='survey-questions'> 
-    {MyChart(chartData)}
+    <MyChart data={chartData} />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <SelectField

@@ -45,11 +45,11 @@ export function UDPbyGender(participants,principleName,principleValue) {
 
 export function calculateCompetencyPercentage(data) {
     const total = data.length;
-    const fundamentalCount = data.filter((item) => item.competency_level === 'Fundamental Awareness').length;
-    const noviceCount = data.filter((item) => item.competency_level === 'Novice').length;
-    const intermediateCount = data.filter((item) => item.competency_level === 'Intermediate').length;
-    const advancedCount = data.filter((item) => item.competency_level === 'Advanced').length;
-    const expertCount = data.filter((item) => item.competency_level === 'Expert').length;
+    const fundamentalCount = data.filter((item) => item.competency_level === '1').length;
+    const noviceCount = data.filter((item) => item.competency_level === '2').length;
+    const intermediateCount = data.filter((item) => item.competency_level === '3').length;
+    const advancedCount = data.filter((item) => item.competency_level === '4').length;
+    const expertCount = data.filter((item) => item.competency_level === '5').length;
   
     const fundamentalPercentage= fundamentalCount > 0 ? (fundamentalCount / total) * 100 : 0;
     const novicePercentage = noviceCount > 0 ? (noviceCount / total) * 100 : 0;
@@ -73,8 +73,8 @@ export function calculateCompetencyPercentage(data) {
 
   export function calculateInternetAccessPercentage(data) {
     const total = data.length;
-    const internetCount = data.filter((item) => item.internet_stability === 'Yes').length;
-    const noInternetCount = data.filter((item) => item.internet_stability === 'No').length;
+    const internetCount = data.filter((item) => item.internet_stability === 'yes').length;
+    const noInternetCount = data.filter((item) => item.internet_stability === 'no').length;
 
     const internetPercentage= internetCount > 0 ? (internetCount / total) * 100 : 0;
     const noInternetPercentage = noInternetCount > 0 ? (noInternetCount / total) * 100 : 0;
@@ -84,8 +84,8 @@ export function calculateCompetencyPercentage(data) {
 
   export function calculateDeviceSharingPercentage(data) {
     const total = data.length;
-    const deviceSharing = data.filter((item) => item.device_sharing_status === 'Yes').length;
-    const noDeviceSharing = data.filter((item) => item.device_sharing_status === 'No').length;
+    const deviceSharing = data.filter((item) => item.device_sharing_status === 'yes').length;
+    const noDeviceSharing = data.filter((item) => item.device_sharing_status === 'no').length;
 
     const deviceSharingPercentage= deviceSharing > 0 ? (deviceSharing / total) * 100 : 0;
     const noDeviceSharingPercentage = noDeviceSharing > 0 ? (noDeviceSharing / total) * 100 : 0;

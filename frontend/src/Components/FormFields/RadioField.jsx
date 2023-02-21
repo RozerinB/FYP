@@ -14,14 +14,15 @@ export default function RadioField(props) {
   const [field, meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
   const isError = touched && error && true;
+  
   return (
     <FormControl {...rest} error={isError}>   
     <FormLabel>{label}</FormLabel>
     <RadioGroup {...field} {...props}>   
       {data.map((item) => (
         <FormControlLabel
-        value={item.label}
-        checked={field.value === item.label}
+        value={item.value}
+        checked={field.value === item.value}
         onChange={field.onChange}
         label={item.label}
         control={<Radio />}

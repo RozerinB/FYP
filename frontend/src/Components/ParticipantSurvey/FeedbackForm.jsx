@@ -23,8 +23,6 @@ export default function FeedbackForm (props) {
       }
     } = props;
   
-    console.log(props);
-  
     return (
       <div className='survey-heading'> 
           <Typography variant="h6">
@@ -43,9 +41,6 @@ export default function FeedbackForm (props) {
         </Grid>
         <Grid item xs={12} >
         <RadioField name={correlation_culture.name} label={correlation_culture.label} data = {yesOrNo} fullWidth />
-        </Grid>
-        <Grid item xs={12} >
-        <TextField name={no_correlation_reason.name} label={no_correlation_reason.label} data = {yesOrNo} fullWidth />
         </Grid>
         <Grid item xs={12} >
         <TextField name={no_correlation_culture_reason.name} label={no_correlation_culture_reason.label} data = {yesOrNo} fullWidth />

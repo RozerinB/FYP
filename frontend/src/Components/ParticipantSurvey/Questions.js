@@ -5,6 +5,10 @@ for (let i = 18; i <= 90; i++) {
     allAge.push({ value: i.toString() , label: i.toString() });
 }
 
+export let technologyAge = [];
+for (let i = 5; i <= 90; i++) {
+    technologyAge.push({ value: i.toString() , label: i.toString() });
+}
 
 export const importanceKey = [
     {
@@ -314,23 +318,23 @@ export const deviceType = [
 
 export const competency = [
     {
-        value: '1',
+        value: 'Fundamental',
         label: 'Fundamental Awareness'
     },
     {
-        value: '2',
+        value: 'Novice',
         label: 'Novice'
     },
     {
-        value: '3',
+        value: 'Intermediate',
         label: 'Intermediate'
     },
     {
-        value: '4',
+        value: 'Advanced',
         label: 'Advanced'
     },
     {
-        value: '5',
+        value: 'Expert',
         label: 'Expert'
     }
 

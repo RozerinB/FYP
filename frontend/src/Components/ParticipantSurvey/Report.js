@@ -1,7 +1,6 @@
 import React from 'react'
-import {VictoryPie } from 'victory'
 import Typography from '@mui/material/Typography';
-import { Box, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import './Survey.css'
 import axios from 'axios';
 

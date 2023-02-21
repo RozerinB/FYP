@@ -1,5 +1,4 @@
 import React , {useEffect, useRef, useState} from 'react'
-import {VictoryAxis, VictoryBar, VictoryChart, VictoryLabel, VictoryLegend, VictoryPie, VictoryPortal, VictoryStack } from 'victory'
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import './index.css'
@@ -9,7 +8,6 @@ import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
 import Chart from 'chart.js/dist/Chart.js'
-
 
 export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
 
@@ -94,8 +92,6 @@ const GlobalData = (props) => {
   const textDirectionalityPerCountry = calculateTextDirectionalityPercentage(dataForCountrySelected);
   const calculateInternetAccessPerCountry = calculateInternetAccessPercentage(dataForCountrySelected); 
 
-
-
 const competencyByCountry = {};
 
 for (const participant of data) {
@@ -160,8 +156,6 @@ let chartData = {
     }
   ]
 };
-
-// Chart.register(Colors);
 
 function CompetencyByCountryChart({data, label}) {
   const canvasRef = useRef(null);

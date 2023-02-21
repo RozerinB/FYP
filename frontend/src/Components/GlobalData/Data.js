@@ -31,7 +31,6 @@ export function UDPbyGender(participants,principleName,principleValue) {
     acc[user.gender] = (acc[user.gender] || 0) + 1;
     return acc;
     }, {});
-    console.log('userCountByGender', userCountByGender)
 
     const totalParticipants = filteredParticipants.length;
     const percentByGender = {};
@@ -40,7 +39,6 @@ export function UDPbyGender(participants,principleName,principleValue) {
     const percent = count / totalParticipants * 100;
     percentByGender[gender] = percent.toFixed(2) ;
     }
-    console.log('percentByGender', percentByGender)
     return percentByGender;
 }
 
@@ -92,4 +90,24 @@ export function calculateCompetencyPercentage(data) {
     const noDeviceSharingPercentage = noDeviceSharing > 0 ? (noDeviceSharing / total) * 100 : 0;
 
     return { deviceSharingPercentage, noDeviceSharingPercentage};
+  }
+
+  export function competencyByElementInData(data, element) {
+    const competencyByElement = {};
+    for (const participant of data) {
+      const competencyLevel = participant.competency_level;
+      const participant_element = participant[element];
+
+      if (!competencyByElement[participant_element]) {
+        competencyByElement[participant_element] = {
+          Fundamental: 0,
+          Novice: 0,
+          Intermediate: 0,
+          Advanced: 0,
+          Expert: 0
+        };
+      }
+    competencyByElement[participant_element][competencyLevel]++;
+    }
+    return competencyByElement
   }

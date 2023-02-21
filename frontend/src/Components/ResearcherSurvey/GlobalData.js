@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
 import './index.css'
 import axios from 'axios';
-import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectionalityPercentage, calculateInternetAccessPercentage } from '../GlobalData/Data';
+import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectionalityPercentage, calculateInternetAccessPercentage, competencyByElementInData } from '../GlobalData/Data';
 import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
@@ -83,7 +83,6 @@ const GlobalData = (props) => {
   const getUDP7ByGender = UDPbyGender(data,"principle7", 7)
   const getMostSelectedUDPs = UDP(allDesignPrinciples); // get most selected UDPs by all participants 
   const getPrincipleLabels = getMostSelectedUDPs.map((principle) => principlesLabel[principle].label);
-  console.log('getUDP1ByGender', getUDP1ByGender)
   const [field] = useField(props);
   const { value: selectedValue } = field;
   const selectedCountry = selectedValue.country;
@@ -92,72 +91,54 @@ const GlobalData = (props) => {
   const textDirectionalityPerCountry = calculateTextDirectionalityPercentage(dataForCountrySelected);
   const calculateInternetAccessPerCountry = calculateInternetAccessPercentage(dataForCountrySelected); 
 
-const competencyByCountry = {};
+  const competencyByCountry = competencyByElementInData(data, 'country');
+  const competencyByEthnicity = competencyByElementInData(data, 'ethnicity');
 
-for (const participant of data) {
-  const competencyLevel = participant.competency_level;
-  const country = participant.country;
+  const competencyCountryLabel = Object.keys(competencyByCountry);
+  const selectedCountries = countryArray.filter(country => competencyCountryLabel.includes(country.value)).map(country => country.label);
 
-  if (!competencyByCountry[country]) {
-    competencyByCountry[country] = {
-      Fundamental: 0,
-      Novice: 0,
-      Intermediate: 0,
-      Advanced: 0,
-      Expert: 0
-    };
-  }
-  competencyByCountry[country][competencyLevel]++;
-}
+  let chartData = {
+    labels: selectedCountries,
+    datasets: [
+      {
+        label: 'Fundamental Awareness',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 1,
+        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Fundamental)
+      },
+      {
+        label: 'Novice',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1,
+        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Novice)
+      },
+      {
+        label: 'Intermediate',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Intermediate)
+      },
+      {
+        label: 'Advanced',
+        backgroundColor:  'rgba(153, 102, 255, 0.2)',
+        borderColor: 'rgba(153, 102, 255, 0.2)',
+        borderWidth: 1,
+        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Advanced)
+      },
+      {
+        label: 'Expert',
+        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+        borderColor: 'rgba(255, 206, 86, 1)',
+        borderWidth: 1,
+        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Expert)
+      }
+    ]
+  };
 
-console.log('competencyByCountry', competencyByCountry)
-
-const competencyCountryLabel = Object.keys(competencyByCountry);
-const selectedCountries = countryArray.filter(country => competencyCountryLabel.includes(country.value)).map(country => country.label);
-
-
-let chartData = {
-  labels: selectedCountries,
-  datasets: [
-    {
-      label: 'Fundamental Awareness',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 0.2)',
-      borderWidth: 1,
-      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Fundamental)
-    },
-    {
-      label: 'Novice',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1,
-      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Novice)
-    },
-    {
-      label: 'Intermediate',
-      backgroundColor: 'rgba(54, 162, 235, 0.2)',
-      borderColor: 'rgba(54, 162, 235, 1)',
-      borderWidth: 1,
-      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Intermediate)
-    },
-    {
-      label: 'Advanced',
-      backgroundColor:  'rgba(153, 102, 255, 0.2)',
-      borderColor: 'rgba(153, 102, 255, 0.2)',
-      borderWidth: 1,
-      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Advanced)
-    },
-    {
-      label: 'Expert',
-      backgroundColor: 'rgba(255, 206, 86, 0.2)',
-      borderColor: 'rgba(255, 206, 86, 1)',
-      borderWidth: 1,
-      data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Expert)
-    }
-  ]
-};
-
-function CompetencyByCountryChart({data, label}) {
+function CompetencyByCountryChart({data, title, x , y}) {
   const canvasRef = useRef(null);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -174,7 +155,7 @@ function CompetencyByCountryChart({data, label}) {
           },
           title: {
             display: true,
-            text: 'Competency Level by Country',
+            text: title,
             fontSize: 18
           },
           legend: {
@@ -194,7 +175,7 @@ function CompetencyByCountryChart({data, label}) {
               },
               scaleLabel: {
                 display: true,
-                labelString: 'Competency Level',
+                labelString: x,
                 fontColor: '#333',
                 fontSize: 16
               }
@@ -208,7 +189,7 @@ function CompetencyByCountryChart({data, label}) {
               },
               scaleLabel: {
                 display: true,
-                labelString: 'Number of Participants',
+                labelString: y,
                 fontColor: '#333',
                 fontSize: 16
               }
@@ -231,7 +212,7 @@ function CompetencyByCountryChart({data, label}) {
       <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Global Data </Box>
     </Typography>
     <div className='survey-questions'> 
-    <CompetencyByCountryChart data={chartData} />
+    <CompetencyByCountryChart data={chartData} title = {"Competency By Country"}  x ={"'Competency Level'"} y ={'Number of Participants'}/>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <SelectField

@@ -109,5 +109,7 @@ export function calculateCompetencyPercentage(data) {
       }
     competencyByElement[participant_element][competencyLevel]++;
     }
+    console.log(competencyByElement)
     return competencyByElement
+   
   }

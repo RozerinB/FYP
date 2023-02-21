@@ -1,6 +1,7 @@
 import React , {useEffect, useRef, useState} from 'react'
 import Typography from '@mui/material/Typography';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Tab, Tabs } from '@mui/material';
+import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
 import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectionalityPercentage, calculateInternetAccessPercentage, competencyByElementInData } from '../GlobalData/Data';
@@ -8,38 +9,41 @@ import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
 import Chart from 'chart.js/dist/Chart.js'
+import { ethnicGroups, nationalities, principlesLabel } from '../ParticipantSurvey/Questions';
 
 export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
 
-const principlesLabel = {
-  principle1: {
-    name: "principle1",
-    label: "Principle 1: Equitable Use -  The design is useful and marketable to people with diverse abilities.",
-  },
-  principle2: {
-    name: "principle2",
-    label: "Principle 2: Flexibility in Use - The design accommodates a wide range of individual preferences and abilities.",
-  },
-  principle3: {
-    name: "principle3",
-    label: "Principle 3: Simple and Intuitive Use - Use of the design is easy to understand, regardless of the user’s experience, knowledge, language skills, or current concentration level.",
-  },
-  principle4: {
-    name: "principle4",
-    label: "Principle 4: Perceptible Information - The design communicates necessary information effectively to the user, regardless of ambient conditions or the user’s sensory abilities.",
-  },
-  principle5: {
-    name: "principle5",
-    label: "Principle 5: Tolerance for Error - The design minimizes hazards and the adverse consequences of accidental or unintended actions.",
-  },
-  principle6: {
-    name: "principle6",
-    label: "Principle 6: Low Physical Effort - The design can be used efficiently and comfortably and with a minimum of fatigue.",
-  },
-  principle7: {
-    name: "principle7",
-    label: "Principle 7: Size and Space for Approach and Use - Appropriate size and space are provided for approach, reach, manipulation, and use regardless of user’s body size, posture, or mobility.",
-  },
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
 }
 
 const GlobalData = (props) => {
@@ -56,6 +60,12 @@ const GlobalData = (props) => {
   useEffect(() => {
     getData();
   }, []);
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   var allDesignPrinciples = data.map(function(participant) {
     return participant.design_principles;
@@ -93,127 +103,161 @@ const GlobalData = (props) => {
 
   const competencyByCountry = competencyByElementInData(data, 'country');
   const competencyByEthnicity = competencyByElementInData(data, 'ethnicity');
+  const competencyByNationality = competencyByElementInData(data, 'nationality');
+  const competencyCountries= Object.keys(competencyByCountry);
+  const competencyEthnicity = Object.keys(competencyByEthnicity);
+  const competencyNationality = Object.keys(competencyByNationality);
+  const competencyCountriesLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
+  const competencyEthnicityLabel = ethnicGroups.filter(ethnicity => competencyEthnicity.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
+  const competencyNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
 
-  const competencyCountryLabel = Object.keys(competencyByCountry);
-  const selectedCountries = countryArray.filter(country => competencyCountryLabel.includes(country.value)).map(country => country.label);
 
-  let chartData = {
-    labels: selectedCountries,
-    datasets: [
-      {
-        label: 'Fundamental Awareness',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
-        borderWidth: 1,
-        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Fundamental)
-      },
-      {
-        label: 'Novice',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1,
-        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Novice)
-      },
-      {
-        label: 'Intermediate',
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1,
-        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Intermediate)
-      },
-      {
-        label: 'Advanced',
-        backgroundColor:  'rgba(153, 102, 255, 0.2)',
-        borderColor: 'rgba(153, 102, 255, 0.2)',
-        borderWidth: 1,
-        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Advanced)
-      },
-      {
-        label: 'Expert',
-        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-        borderColor: 'rgba(255, 206, 86, 1)',
-        borderWidth: 1,
-        data: Object.keys(competencyByCountry).map(country => competencyByCountry[country].Expert)
-      }
-    ]
-  };
-
-function CompetencyByCountryChart({data, title, x , y}) {
-  const canvasRef = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      const chart = new Chart(canvas, {
-        type: 'bar',
-        data: data,
-        options: {
-          plugins: {
-            colors: {
-              forceOverride: true
-            }
-          },
-          title: {
-            display: true,
-            text: title,
-            fontSize: 18
-          },
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-              fontColor: '#333',
-              fontSize: 14
-            }
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontColor: '#333',
-                fontSize: 14,
-                beginAtZero: true
-              },
-              scaleLabel: {
-                display: true,
-                labelString: x,
-                fontColor: '#333',
-                fontSize: 16
-              }
-            }],
-            yAxes: [{
-              stacked: false,
-              ticks: {
-                fontColor: '#333',
-                fontSize: 14,
-                beginAtZero: true
-              },
-              scaleLabel: {
-                display: true,
-                labelString: y,
-                fontColor: '#333',
-                fontSize: 16
-              }
-            }]
-          }
+  function createCompetencyChartData(selectedElementLabel, competencyByElement) {
+    return {
+      labels: selectedElementLabel,
+      datasets: [
+        {
+          label: 'Fundamental Awareness',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 0.2)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Fundamental)
+        },
+        {
+          label: 'Novice',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Novice)
+        },
+        {
+          label: 'Intermediate',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Intermediate)
+        },
+        {
+          label: 'Advanced',
+          backgroundColor:  'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 0.2)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Advanced)
+        },
+        {
+          label: 'Expert',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Expert)
         }
-      });
-    }
-  }, []);
-  return <canvas ref={canvasRef} />;
-}
+      ]
+    };
+  }
 
-
-
+  function BarChart({data, title, x , y}) {
+    const canvasRef = useRef(null);
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        const chart = new Chart(canvas, {
+          type: 'bar',
+          data: data,
+          options: {
+            plugins: {
+              colors: {
+                forceOverride: true
+              }
+            },
+            title: {
+              display: true,
+              text: title,
+              fontSize: 18
+            },
+            legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                fontColor: '#333',
+                fontSize: 14
+              }
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  fontColor: '#333',
+                  fontSize: 14,
+                  beginAtZero: true
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: x,
+                  fontColor: '#333',
+                  fontSize: 16
+                }
+              }],
+              yAxes: [{
+                stacked: false,
+                ticks: {
+                  fontColor: '#333',
+                  fontSize: 14,
+                  beginAtZero: true
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: y,
+                  fontColor: '#333',
+                  fontSize: 16
+                }
+              }]
+            }
+          }
+        });
+      }
+    }, []);
+    return <canvas style = {{position: 'relative', height:'30vh', width:'40vw'}}ref={canvasRef} />;
+  }
 
   return (
-    <div className='survey-heading'> 
-    
+    <div className='survey-heading'>  
     <Typography variant="h6">
       <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Global Data </Box>
     </Typography>
     <div className='survey-questions'> 
-    <CompetencyByCountryChart data={chartData} title = {"Competency By Country"}  x ={"'Competency Level'"} y ={'Number of Participants'}/>
-      <Grid container spacing={2}>
+    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tab label="Competency" {...a11yProps(0)} />
+        <Tab label="Design Principles" {...a11yProps(1)} />
+        <Tab label="Culture" {...a11yProps(2)} />
+        <Tab label="Language" {...a11yProps(3)} />
+        <Tab label="Technology" {...a11yProps(4)} /> 
+        <Tab label="Internet Connection" {...a11yProps(5)} />
+        <Tab label="Specific Location" {...a11yProps(6)} />
+      </Tabs>
+    </Box>
+    <TabPanel value={value} index={0}>
+    <BarChart data={createCompetencyChartData(competencyCountriesLabel, competencyByCountry)} title = {"Competency By Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+    <BarChart data={createCompetencyChartData(competencyEthnicityLabel, competencyByEthnicity)} title = {"Competency By Ethnicity"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+    <BarChart data={createCompetencyChartData(competencyNationalityLabel, competencyByNationality)} title = {"Competency By Nationality"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+    </TabPanel>
+    <TabPanel value={value} index={1}>
+      Item Two
+    </TabPanel>
+    <TabPanel value={value} index={2}>
+      Item Three
+    </TabPanel>
+    <TabPanel value={value} index={3}>
+      Item Three
+    </TabPanel>
+    <TabPanel value={value} index={4}>
+      Item Three
+    </TabPanel>
+    <TabPanel value={value} index={5}>
+      Item Three
+    </TabPanel>
+    <TabPanel value={value} index={6}>
+    <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <SelectField
             value={selectedValue}
@@ -225,6 +269,9 @@ function CompetencyByCountryChart({data, title, x , y}) {
           />
         </Grid>
       </Grid>
+    </TabPanel>
+
+     
     </div>
   </div>
   )

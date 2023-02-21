@@ -31,6 +31,7 @@ export function UDPbyGender(participants,principleName,principleValue) {
     acc[user.gender] = (acc[user.gender] || 0) + 1;
     return acc;
     }, {});
+    console.log('userCountByGender', userCountByGender)
 
     const totalParticipants = filteredParticipants.length;
     const percentByGender = {};
@@ -39,7 +40,7 @@ export function UDPbyGender(participants,principleName,principleValue) {
     const percent = count / totalParticipants * 100;
     percentByGender[gender] = percent.toFixed(2) ;
     }
-
+    console.log('percentByGender', percentByGender)
     return percentByGender;
 }
 

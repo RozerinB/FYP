@@ -10,6 +10,7 @@ import countryList from 'react-select-country-list';
 import { useField } from 'formik';
 import Chart from 'chart.js/dist/Chart.js'
 
+
 export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
 
 const principlesLabel = {
@@ -84,7 +85,7 @@ const GlobalData = (props) => {
   const getUDP7ByGender = UDPbyGender(data,"principle7", 7)
   const getMostSelectedUDPs = UDP(allDesignPrinciples); // get most selected UDPs by all participants 
   const getPrincipleLabels = getMostSelectedUDPs.map((principle) => principlesLabel[principle].label);
-  
+  console.log('getUDP1ByGender', getUDP1ByGender)
   const [field] = useField(props);
   const { value: selectedValue } = field;
   const selectedCountry = selectedValue.country;
@@ -92,6 +93,7 @@ const GlobalData = (props) => {
   const competencyPerCountry = calculateCompetencyPercentage(dataForCountrySelected);
   const textDirectionalityPerCountry = calculateTextDirectionalityPercentage(dataForCountrySelected);
   const calculateInternetAccessPerCountry = calculateInternetAccessPercentage(dataForCountrySelected); 
+
 
 
 const competencyByCountry = {};
@@ -112,9 +114,11 @@ for (const participant of data) {
   competencyByCountry[country][competencyLevel]++;
 }
 
+console.log('competencyByCountry', competencyByCountry)
 
 const competencyCountryLabel = Object.keys(competencyByCountry);
 const selectedCountries = countryArray.filter(country => competencyCountryLabel.includes(country.value)).map(country => country.label);
+
 
 let chartData = {
   labels: selectedCountries,
@@ -157,7 +161,9 @@ let chartData = {
   ]
 };
 
-function MyChart({data}) {
+// Chart.register(Colors);
+
+function CompetencyByCountryChart({data, label}) {
   const canvasRef = useRef(null);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -167,6 +173,11 @@ function MyChart({data}) {
         type: 'bar',
         data: data,
         options: {
+          plugins: {
+            colors: {
+              forceOverride: true
+            }
+          },
           title: {
             display: true,
             text: 'Competency Level by Country',
@@ -213,9 +224,10 @@ function MyChart({data}) {
       });
     }
   }, []);
-
   return <canvas ref={canvasRef} />;
 }
+
+
 
 
   return (
@@ -225,7 +237,7 @@ function MyChart({data}) {
       <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Global Data </Box>
     </Typography>
     <div className='survey-questions'> 
-    <MyChart data={chartData} />
+    <CompetencyByCountryChart data={chartData} />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
         <SelectField

@@ -52,9 +52,12 @@ export default function DataCollection(props) {
 
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
+  console.log('activeStep', activeStep)
+  console.log(ValidationSchema[activeStep])
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
+  const isFeedback = activeStep === 5;
 
   function submitForm(values) {
     if(isSurvey){
@@ -72,6 +75,11 @@ export default function DataCollection(props) {
       axios
         .post("/api/survey/", values)
         setActiveStep(activeStep + 1);
+    }
+    else if (isFeedback)  {
+      axios
+      .post("/api/participant-evaluation/", values)
+      setActiveStep(activeStep + 1);
     }
     else {
       setActiveStep(activeStep + 1);
@@ -99,7 +107,7 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
-            // validationSchema={currentValidationSchema}
+            validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values) }
           >
               <Form id={formId || evaluationFormId}>

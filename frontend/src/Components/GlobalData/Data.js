@@ -111,6 +111,31 @@ export function calculateCompetencyPercentage(data) {
     return competencyByElement
   }
 
+  export function designPrincipleByElementInData(data, element) {
+    const designPrincipleByElement = {};
+  for (const participant of data) {
+    const designPrinciple = participant.design_principles;
+    const participant_element = participant[element];
+    if (!designPrincipleByElement[participant_element]) {
+      designPrincipleByElement[participant_element] = {
+        principle1: 0,
+        principle2: 0,
+        principle3: 0,
+        principle4: 0,
+        principle5: 0,
+        principle6: 0,
+        principle7: 0,
+      };
+    }
+    Object.keys(designPrinciple).forEach((key) => {
+      if (designPrinciple[key] === 1) {
+        designPrincipleByElement[participant_element][key]++;
+      }
+    });
+  }
+  return designPrincipleByElement
+  }
+
   export function internetByElementInData(data, constant, element) {
     const competencyByElement = {};
     for (const participant of data) {

@@ -78,11 +78,11 @@ export default [
     [age_when_first_owned_device.name]: Yup.string()
       .nullable()
       .required(`${age_when_first_owned_device.requiredErrorMsg}`),
-    [device_type_owned.name]: Yup.string()
-      .nullable()
+    [device_type_owned.name]: Yup.array()
+      .min(1)
       .required(`${device_type_owned.requiredErrorMsg}`),
-    [device_access.name]: Yup.string()
-      .nullable()
+    [device_access.name]: Yup.array()
+      .min(1)
       .required(`${device_access.requiredErrorMsg}`),
     [competency_level.name]: Yup.string()
       .nullable()

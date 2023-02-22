@@ -74,13 +74,13 @@ class Evaluation(models.Model):
         return self.client_id
     
 class ParticipantEvaluation(models.Model):
-    correlation= models.TextField(default="")
+    correlation= models.BooleanField(default=False)
     no_correlation_reason = models.TextField(default="", blank=True)
     correlation_culture = models.BooleanField(default=False)
     no_correlation_culture_reason = models.TextField(default="", blank=True)
-    representation_of_user = models.TextField(default="")
+    representation_of_user = models.BooleanField(default=False)
     no_representation_reason = models.TextField(default="", blank=True)
-    generalisability = models.TextField(default="")
+    generalisability = models.BooleanField(default=False)
     no_generalisability_reason = models.TextField(default="", blank=True)
     
     def _str_(self):

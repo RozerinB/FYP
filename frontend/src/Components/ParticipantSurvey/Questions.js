@@ -475,10 +475,6 @@ export const ethnicGroups = [
     value: 'other-white',
     label: 'Any other White background, please describe'
   }, 
-  {
-    value: 'n/a',
-    label: 'Prefer not to answer'
-  }, 
 ];
 
 export const nationalities = [

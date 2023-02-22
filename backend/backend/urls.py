@@ -26,4 +26,5 @@ router.register(r'participant-evaluation', views.ParticipantEvaluationView, 'par
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('export-to-excel/', views.export_surveys_to_excel, name='export_to_excel'),
 ]

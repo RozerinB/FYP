@@ -1,6 +1,6 @@
 import React , {useEffect, useState, useRef} from 'react'
 import Typography from '@mui/material/Typography';
-import { Box, Grid, Tab, Tabs } from '@mui/material';
+import { Box, Button, Grid, Tab, Tabs } from '@mui/material';
 import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
@@ -11,6 +11,7 @@ import { useField } from 'formik';
 import { allAge, ethnicGroups, genders, nationalities, principlesLabel } from '../ParticipantSurvey/Questions';
 // import { ScatterChart , BarChart} from '../GlobalData/Chart';
 import Chart from 'chart.js/dist/Chart.js'
+import DownloadIcon from '@mui/icons-material/Download';
 
 export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
 export const competencyScatterLabels = ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert']
@@ -141,6 +142,27 @@ const GlobalData = (props) => {
     y: obj.competency_level,
   }));
 
+  function downloadExcel() {
+    fetch('/export-to-excel/')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'cultural-dimensions.xlsx');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
   function createCompetencyChartData(selectedElementLabel, competencyByElement) {
     return {
       labels: selectedElementLabel,
@@ -410,7 +432,7 @@ const GlobalData = (props) => {
     <BarChart data={createDesignPrincipleChartData(chartGenderLabel, designPrinciplesByGender)} title = {"Most Chosen Design Principle by Gender"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
     </TabPanel>
     <TabPanel value={value} index={2}>
-      Item Three
+    <Button variant="contained" size="large" endIcon={<DownloadIcon/>} onClick={downloadExcel}>Download data collected on Hofstedes Cultural Dimensions</Button>
     </TabPanel>
     <TabPanel value={value} index={3}>
       Item four

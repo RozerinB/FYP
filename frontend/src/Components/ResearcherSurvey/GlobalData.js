@@ -8,7 +8,7 @@ import { UDP, UDPbyGender , calculateCompetencyPercentage, calculateTextDirectio
 import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
-import { ethnicGroups, nationalities, principlesLabel } from '../ParticipantSurvey/Questions';
+import { allAge, ethnicGroups, genders, nationalities, principlesLabel } from '../ParticipantSurvey/Questions';
 // import { ScatterChart , BarChart} from '../GlobalData/Chart';
 import Chart from 'chart.js/dist/Chart.js'
 
@@ -107,17 +107,21 @@ const GlobalData = (props) => {
   const competencyByCountry = competencyByElementInData(data, 'country');
   const competencyByEthnicity = competencyByElementInData(data, 'ethnicity');
   const competencyByNationality = competencyByElementInData(data, 'nationality');
-  const competencyCountries= Object.keys(competencyByCountry);
-  const competencyEthnicity = Object.keys(competencyByEthnicity);
-  const competencyNationality = Object.keys(competencyByNationality);
-  const chartCountryLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
-  const chartEthnicityLabel = ethnicGroups.filter(ethnicity => competencyEthnicity.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
-  const chartNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
   const designPrinciplesByCountry = designPrincipleByElementInData(data, 'country');
   const designPrinciplesByEthnicity = designPrincipleByElementInData(data, 'ethnicity');
   const designPrinciplesByNationality = designPrincipleByElementInData(data, 'nationality');
   const designPrinciplesByCompetency = designPrincipleByElementInData(data, 'competency_level');
+  const designPrinciplesByGender = designPrincipleByElementInData(data, 'gender');
+  const competencyCountries= Object.keys(competencyByCountry);
+  const competencyEthnicity = Object.keys(competencyByEthnicity);
+  const competencyNationality = Object.keys(competencyByNationality);
+  const genderList = Object.keys(designPrinciplesByGender);
+  const chartCountryLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
+  const chartEthnicityLabel = ethnicGroups.filter(ethnicity => competencyEthnicity.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
+  const chartNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
+  const chartGenderLabel = genders.filter(gender => genderList.includes(gender.value)).map(gender => gender.label);
   const competencyLabel = ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert']
+  
   console.log('designPrinciplesByCompetency', designPrinciplesByCompetency)
   //Internet Page
   const internetAccessByCountry = internetByElementInData(data,'internet_stability','country');
@@ -403,6 +407,7 @@ const GlobalData = (props) => {
     <BarChart data={createDesignPrincipleChartData(chartEthnicityLabel, designPrinciplesByEthnicity)} title = {"Most Chosen Design Principle by Ethnicity"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
     <BarChart data={createDesignPrincipleChartData(chartNationalityLabel, designPrinciplesByNationality)} title = {"Most Chosen Design Principle by Nationality"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
     <BarChart data={createDesignPrincipleChartData(competencyLabel, designPrinciplesByCompetency)} title = {"Most Chosen Design Principle by Competency"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+    <BarChart data={createDesignPrincipleChartData(chartGenderLabel, designPrinciplesByGender)} title = {"Most Chosen Design Principle by Gender"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
     </TabPanel>
     <TabPanel value={value} index={2}>
       Item Three

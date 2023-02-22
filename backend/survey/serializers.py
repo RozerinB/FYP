@@ -13,6 +13,7 @@ class SurveySerializer(serializers.ModelSerializer):
             'role',
             'client_id',
             'consent_form',
+            'nationality_from_birth',
             'age', 
             'gender', 
             'preferred_writing_language', 

@@ -26,8 +26,8 @@ class Survey(models.Model):
     age_when_first_owned_device = models.PositiveIntegerField(default=18)
     device_ownership_status = models.TextField(default="")
     device_sharing_status = models.TextField(default="")
-    device_type_owned = models.TextField(default="")
-    device_access = models.TextField(default="")
+    device_type_owned = models.JSONField(default=list)
+    device_access = models.JSONField(default=list)
     design_principles = models.ForeignKey(DesignPrinciple, on_delete=models.CASCADE, default=None, blank=True)
     time_personal_home_life = models.TextField(blank=True)
     good_performance = models.TextField(blank=True)
@@ -55,6 +55,7 @@ class Survey(models.Model):
     education = models.TextField(blank=True)
     job = models.TextField(blank=True)
     consent_form = models.BooleanField(default=False)
+    nationality_from_birth = models.TextField( blank=True)
     
     def _str_(self):
         return self.client_id

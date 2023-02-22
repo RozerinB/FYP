@@ -7,6 +7,7 @@ import SelectField from '../FormFields/SelectField.jsx';
 import RadioField from '../FormFields/RadioField.jsx';
 import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge, technologyAge } from './Questions';
 import DataGridField from '../FormFields/DataGridField.jsx';
+import FormCheckBox from '../FormFields/FormCheckBox.jsx';
 
 export default function DataCollection(props) {
   const {
@@ -161,18 +162,20 @@ export default function DataCollection(props) {
           />
         </Grid> 
         <Grid item xs={12} >
-          <RadioField
+          <FormCheckBox
             name={device_type_owned.name}
             label={device_type_owned.label}
+            fieldName="device_type_owned"
             data={deviceType}
             placeholder={device_type_owned.placeholder}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12} >
-          <RadioField
+          <FormCheckBox
             name={device_access.name}
             label={device_access.label}
+            fieldName="device_access"
             data={deviceType}
             placeholder={device_access.placeholder}
             fullWidth

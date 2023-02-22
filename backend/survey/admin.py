@@ -48,6 +48,7 @@ class SurveyAdmin(admin.ModelAdmin):
         'organization_rules',
         'education',
         'job',
+        'nationality_from_birth'
         )
 
 class EvaluationAdmin(admin.ModelAdmin):

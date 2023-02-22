@@ -21,6 +21,7 @@ export default function RadioField(props) {
     <RadioGroup {...field} {...props}>   
       {data.map((item) => (
         <FormControlLabel
+        key={item}
         value={item.value}
         checked={field.value === item.value}
         onChange={field.onChange}

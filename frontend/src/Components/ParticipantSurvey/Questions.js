@@ -331,19 +331,19 @@ export const noOfDevices = [
 
 export const deviceType = [
     {
-        value: '1',
+        value: 'tablet',
         label: 'Tablet'
     },
     {
-        value: '2',
+        value: 'computer',
         label: 'Computer'
     },
     {
-        value: '3',
+        value: 'smartphone',
         label: 'Smartphone'
     },
     {
-        value: '4',
+        value: 'nonsmartphone',
         label: 'Non-smartphone'
     }
 ]

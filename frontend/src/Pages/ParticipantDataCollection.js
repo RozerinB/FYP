@@ -52,8 +52,7 @@ export default function DataCollection(props) {
 
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
-  console.log('activeStep', activeStep)
-  console.log(ValidationSchema[activeStep])
+
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;

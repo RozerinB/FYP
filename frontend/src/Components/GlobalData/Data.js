@@ -42,21 +42,15 @@ export function UDPbyGender(participants,principleName,principleValue) {
     return percentByGender;
 }
 
-export function calculateCompetencyPercentage(data) {
+export function calculateCompetencyCount(data) {
     const total = data.length;
     const fundamentalCount = data.filter((item) => item.competency_level === '1').length;
     const noviceCount = data.filter((item) => item.competency_level === '2').length;
     const intermediateCount = data.filter((item) => item.competency_level === '3').length;
     const advancedCount = data.filter((item) => item.competency_level === '4').length;
     const expertCount = data.filter((item) => item.competency_level === '5').length;
-  
-    const fundamentalPercentage= fundamentalCount > 0 ? (fundamentalCount / total) * 100 : 0;
-    const novicePercentage = noviceCount > 0 ? (noviceCount / total) * 100 : 0;
-    const intermediatePercentage = intermediateCount > 0 ? (intermediateCount / total) * 100 : 0;
-    const advancedPercentage =  advancedCount ? (advancedCount / total) * 100 : 0;
-    const expertPercentage = expertCount > 0 ? (expertCount / total) * 100 : 0;
 
-    return { fundamentalPercentage, novicePercentage, intermediatePercentage, advancedPercentage, expertPercentage };
+    return {fundamentalCount, noviceCount, intermediateCount, advancedCount, expertCount}
   }
 
  export function calculateTextDirectionalityPercentage(data) {
@@ -136,7 +130,48 @@ export function calculateCompetencyPercentage(data) {
   return designPrincipleByElement
   }
 
-  export function internetByElementInData(data, constant, element) {
+  export function technologyByElementInData(data, constant, element) {
+    const technologyByElement = {};
+  for (const participant of data) {
+    const technologies = participant[constant];
+    const participant_element = participant[element];
+    if (!technologyByElement[participant_element]) {
+      technologyByElement[participant_element] = {
+        Computer: 0,
+        Laptop:0,
+        Tablet: 0,
+        Smartphone: 0,
+        Nonsmartphone:0,
+        Other: 0,
+      };
+    }
+    for (const technology of technologies) {
+      technologyByElement[participant_element][technology]++;
+      }
+    }
+  return technologyByElement
+  }
+
+
+  export function deviceStatus(data, element) {
+    const counts = data.reduce((acc, curr) => {
+      if(element === 'device_sharing') {
+      acc[curr[element] === 'Yes' ? 'yes' : 'no']++;
+      return acc;
+    }
+    else if(element === 'device_ownership_status' ){
+      acc[curr[element] === 'None' ? 'no' : 'yes']++;
+      return acc;
+    }}, { yes: 0, no: 0 }); 
+  
+    
+    const elementYesCount = counts.yes;
+    const elementNoCount = counts.no;
+
+    return { elementYesCount, elementNoCount };
+  }
+
+  export function ByElementInDataYesOrNo(data, constant, element) {
     const competencyByElement = {};
     for (const participant of data) {
       const competencyLevel = participant[constant];
@@ -150,4 +185,26 @@ export function calculateCompetencyPercentage(data) {
     competencyByElement[participant_element][competencyLevel]++;
     }
     return competencyByElement
+  }
+
+export function downloadExcel() {
+    fetch('/export-to-excel/')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'cultural-dimensions.xlsx');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }

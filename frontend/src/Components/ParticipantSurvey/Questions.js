@@ -331,12 +331,16 @@ export const noOfDevices = [
 
 export const deviceType = [
     {
-        value: 'tablet',
-        label: 'Tablet'
-    },
-    {
         value: 'computer',
         label: 'Computer'
+    },
+    {
+        value: 'laptop',
+        label: 'Laptop'
+    },
+    {
+        value: 'tablet',
+        label: 'Tablet'
     },
     {
         value: 'smartphone',
@@ -345,7 +349,16 @@ export const deviceType = [
     {
         value: 'nonsmartphone',
         label: 'Non-smartphone'
-    }
+    },
+    {
+        value: 'other',
+        label: 'Other'
+    },
+    {
+        value: 'none',
+        label: 'None'
+    },
+    
 ]
 
 export const competency = [

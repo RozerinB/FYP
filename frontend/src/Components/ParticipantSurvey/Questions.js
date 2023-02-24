@@ -312,20 +312,32 @@ export const yesOrNo = [
 
 export const noOfDevices = [
     {
-        value: 'none',
+        value: '0',
         label: 'None'
     },
     {
-        value: '1-3',
-        label: '1-3'
+        value: '1',
+        label: '1'
     },
     {
-        value: '3-5',
-        label: '3-5'
+        value: '2',
+        label: '2'
+    },
+    {
+        value: '3',
+        label: '3'
+    },
+    {
+        value: '4',
+        label: '4'
     },
     {
         value: '5',
-        label: '5+'
+        label: '5'
+    },
+    {
+        value: '6',
+        label: '6+'
     }
 ]
 
@@ -411,11 +423,11 @@ export const genders = [
 
 export const textDirectionalities = [
   {
-    value: 'left-to-right', 
+    value: 'leftToRight', 
     label: 'Left-to-Right Text'
   },
   {
-    value: 'right-to-left', 
+    value: 'rightToLeft', 
     label: 'Right-to-Left Text'
   }
 ];

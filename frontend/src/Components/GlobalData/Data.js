@@ -105,6 +105,22 @@ export function calculateCompetencyCount(data) {
     return competencyByElement
   }
 
+  export function textDirectionalityByElementInData(data, element) {
+    const textDirectionalityByElement = {};
+    for (const participant of data) {
+      const competencyLevel = participant.text_directionality;
+      const participant_element = participant[element];
+      if (!textDirectionalityByElement[participant_element]) {
+        textDirectionalityByElement[participant_element] = {
+          leftToRight: 0,
+          rightToLeft: 0,
+        };
+      }
+      textDirectionalityByElement[participant_element][competencyLevel]++;
+    }
+    return textDirectionalityByElement
+  }
+
   export function designPrincipleByElementInData(data, element) {
     const designPrincipleByElement = {};
   for (const participant of data) {
@@ -208,3 +224,28 @@ export function downloadExcel() {
         console.error('Error:', error);
       });
   }
+
+
+export function languageByCountryInData(data){
+// Extract language and country data from input
+const languages = data.map(d => d.preferred_writing_language);
+const countries = data.map(d => d.country);
+
+// Get unique language and country values
+const uniqueLanguages = [...new Set(languages)];
+const uniqueCountries = [...new Set(countries)];
+
+// Initialize data object with empty arrays for each language
+const dataObject = {};
+uniqueLanguages.forEach(lang => {
+    dataObject[lang] = new Array(uniqueCountries.length).fill(0);
+});
+
+// Fill in data for each language and country
+data.forEach(d => {
+    const langIndex = uniqueLanguages.indexOf(d.preferred_writing_language);
+    const countryIndex = uniqueCountries.indexOf(d.country);
+    dataObject[d.preferred_writing_language][countryIndex]++;
+});
+return dataObject
+}

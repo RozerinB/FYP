@@ -1,3 +1,6 @@
+export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
+export const competencyScatterLabels = ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert']
+
 // Overall highest rated principles
 export function UDP(principles) {
     let countMap = new Map();
@@ -248,4 +251,12 @@ data.forEach(d => {
     dataObject[d.preferred_writing_language][countryIndex]++;
 });
 return dataObject
+}
+
+export function filteredDataForElements (data, element1, element2) {
+  const filteredData = data.map(obj => ({
+    x: obj[element1],
+    y: obj[element2],
+  })); 
+  return filteredData;
 }

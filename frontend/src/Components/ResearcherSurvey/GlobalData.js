@@ -4,7 +4,7 @@ import { Box, Button, Grid, Tab, Tabs } from '@mui/material';
 import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
-import {competencyByElementInData, ByElementInDataYesOrNo, designPrincipleByElementInData, downloadExcel, technologyByElementInData, deviceStatus, textDirectionalityByElementInData } from '../GlobalData/Data';
+import {competencyByElementInData, ByElementInDataYesOrNo, designPrincipleByElementInData, downloadExcel, technologyByElementInData, deviceStatus, textDirectionalityByElementInData, filteredDataForElements, labels, competencyScatterLabels } from '../GlobalData/Data';
 import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
@@ -12,8 +12,6 @@ import { ethnicGroups, genders, languages, nationalities } from '../ParticipantS
 import Chart from 'chart.js/dist/Chart.js'
 import DownloadIcon from '@mui/icons-material/Download';
 
-export const labels = ['Principle1', 'Principle2', 'Principle3', 'Principle4', 'Principle5', 'Principle6', 'Principle7'];
-export const competencyScatterLabels = ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert']
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -82,14 +80,6 @@ const GlobalData = (props) => {
     }
   });
 
-  function filteredDataForElements (data, element1, element2) {
-    const filteredData = data.map(obj => ({
-      x: obj[element1],
-      y: obj[element2],
-    })); 
-    return filteredData;
-  }
-
   // Selected Location Specific Data
   const selectedCountry = selectedValue.country;
   const dataForCountrySelected = data.filter((country) => country.country === selectedCountry);
@@ -148,7 +138,6 @@ const GlobalData = (props) => {
   const ageUsedTechVsCompetencyInSelectedCountry = selectedCountry ? filteredDataForElements(dataForCountrySelected , 'age_first_used_technology', 'competency_level') : []
   const ageFirstDeviceVsCompetencyInSelectedCountry = selectedCountry ? filteredDataForElements(dataForCountrySelected , 'age_when_first_owned_device', 'competency_level') : []
   const deviceOwnershipVsCompetencyInSelectedCountry = selectedCountry ? filteredDataForElements(dataForCountrySelected , 'device_ownership_status', 'competency_level'): []
-
 
   const technologyDeviceBySelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_type_owned', 'country');
   const technologyDeviceByNationalityInSelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_type_owned', 'nationality');
@@ -521,7 +510,6 @@ const GlobalData = (props) => {
         return counts;
       };
 
-  
       const chart = () => {
         const counts = count1s();
         setChartData({

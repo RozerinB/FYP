@@ -82,6 +82,18 @@ const GlobalData = (props) => {
     }
   });
 
+  function filteredDataForElements (data, element1, element2) {
+    const filteredData = data.map(obj => ({
+      x: obj[element1],
+      y: obj[element2],
+    })); 
+    return filteredData;
+  }
+
+  // Selected Location Specific Data
+  const selectedCountry = selectedValue.country;
+  const dataForCountrySelected = data.filter((country) => country.country === selectedCountry);
+
   // Competency, Design Principles 
   const competencyByCountry = competencyByElementInData(data, 'country');
   const competencyByEthnicity = competencyByElementInData(data, 'ethnicity');
@@ -111,21 +123,6 @@ const GlobalData = (props) => {
   const broadbandByNationality = ByElementInDataYesOrNo(data,'broadband_contract','nationality');
   const broadbandByGender= ByElementInDataYesOrNo(data,'broadband_contract','gender');
 
-  const filteredDataForCompetencyAgeDevice = data.map(obj => ({
-    x: obj.age_when_first_owned_device,
-    y: obj.competency_level,
-  }));
-
-  const filteredDataForCompetencyAgeTech = data.map(obj => ({
-    x: obj.age_first_used_technology,
-    y: obj.competency_level,
-  }));
-
-  const filteredDataForCompetencyAmountOfDevices = data.map(obj => ({
-    x: obj.device_ownership_status,
-    y: obj.competency_level,
-  }))
-
   // Cultural Dimensions
   const textDirectionalityByCountry = textDirectionalityByElementInData(data,'country') 
   const textDirectionalityByEthnicity = textDirectionalityByElementInData(data,'ethnicity')
@@ -144,10 +141,27 @@ const GlobalData = (props) => {
   const technologyAgeList = Object.keys(technologyDeviceByAge);
   const technologySharing = deviceStatus(data, 'device_sharing');
   const technologyOwnership = deviceStatus(data, 'device_ownership_status');
+  const ageUsedTechVsCompetency= filteredDataForElements(data , 'age_first_used_technology', 'competency_level')
+  const ageFirstDeviceVsCompetency = filteredDataForElements(data , 'age_when_first_owned_device', 'competency_level')
+  const deviceOwnershipVsCompetency = filteredDataForElements(data , 'device_ownership_status', 'competency_level')
 
-  // Selected Location Specific Data
-  const selectedCountry = selectedValue.country;
-  const dataForCountrySelected = data.filter((country) => country.country === selectedCountry);
+  const ageUsedTechVsCompetencyInSelectedCountry = selectedCountry ? filteredDataForElements(dataForCountrySelected , 'age_first_used_technology', 'competency_level') : []
+  const ageFirstDeviceVsCompetencyInSelectedCountry = selectedCountry ? filteredDataForElements(dataForCountrySelected , 'age_when_first_owned_device', 'competency_level') : []
+  const deviceOwnershipVsCompetencyInSelectedCountry = selectedCountry ? filteredDataForElements(dataForCountrySelected , 'device_ownership_status', 'competency_level'): []
+
+
+  const technologyDeviceBySelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_type_owned', 'country');
+  const technologyDeviceByNationalityInSelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_type_owned', 'nationality');
+  const technologyDeviceByEthnicityInSelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_type_owned', 'ethnicity');
+  const technologyDeviceByAgeInSelectedCountry = technologyByElementInData(dataForCountrySelected,'device_type_owned','age');
+  const technologyDeviceByGenderInSelectedCountry = technologyByElementInData(dataForCountrySelected,'device_type_owned','gender');
+  const technologyDeviceAccessBySelectedCountry = technologyByElementInData(dataForCountrySelected,'device_access','country');
+  const technologyDeviceAccessByNationalityInSelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_access', 'nationality');
+  const technologyDeviceAccessByEthnicityInSelectedCountry = technologyByElementInData(dataForCountrySelected, 'device_access', 'ethnicity');
+  const technologyDeviceAccessByGenderInSelectedCountry = technologyByElementInData(dataForCountrySelected,'device_access','gender');
+  const technologyAgeListInSelectedCountry = Object.keys(technologyDeviceByAgeInSelectedCountry);
+  const technologySharingInSelectedCountry = deviceStatus(dataForCountrySelected, 'device_sharing');
+  const technologyOwnershipInSelectedCountry = deviceStatus(dataForCountrySelected, 'device_ownership_status');
 
   const competencyBySelectedCountry =  selectedCountry ? competencyByElementInData(dataForCountrySelected, 'country') : [];
   const competencyByEthnicityInSelectedCountry = selectedCountry ?  competencyByElementInData(dataForCountrySelected, 'ethnicity') : [];
@@ -162,9 +176,22 @@ const GlobalData = (props) => {
   const nationalitiesInSelectedCountry = Object.keys(competencyByNationalityInSelectedCountry);
   const ethnicityInSelectedCountry = Object.keys(competencyByEthnicityInSelectedCountry);
   const genderInSelectedCountry = Object.keys(competencyByGenderInSelectedCountry);
-  const nationalitiesInSelectedCountryLabel = ethnicGroups.filter(ethnicity => ethnicityInSelectedCountry.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
-  const GenderInSelectedCountryLabel = genders.filter(gender => genderInSelectedCountry.includes(gender.value)).map(gender => gender.label);
+  const nationalitiesInSelectedCountryLabel = nationalities.filter(nationality => nationalitiesInSelectedCountry.includes(nationality.value)).map(nationality => nationality.label);
+  const genderInSelectedCountryLabel = genders.filter(gender => genderInSelectedCountry.includes(gender.value)).map(gender => gender.label);
   const selectedCountryLabel = countryArray.filter(country => countriesSelected.includes(country.value)).map(country => country.label);
+  const chartEthnicityInSelectedCountryLabel = ethnicGroups.filter(ethnicity => ethnicityInSelectedCountry.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
+  const textDirectionalityBySelectedCountry = textDirectionalityByElementInData(data,'country') 
+  const textDirectionalityByEthnicityInSelectedCountry = textDirectionalityByElementInData(data,'ethnicity')
+  const textDirectionalityByNationalityInSelectedCountry = textDirectionalityByElementInData(data,'nationality') 
+
+  const internetAccessBySelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','country');
+  const internetAccessByEthnicityInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','ethnicity');
+  const internetAccessByNationalityInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','nationality');
+  const internetAccessByGenderInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','gender');
+  const broadbandByCountryInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'broadband_contract','country');
+  const broadbandByEthnicityInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'broadband_contract','ethnicity');
+  const broadbandByNationalityInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'broadband_contract','nationality');
+  const broadbandByGenderInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'broadband_contract','gender');
 
   function createCompetencyChartData(selectedElementLabel, competencyByElement) {
     return {
@@ -359,7 +386,6 @@ const GlobalData = (props) => {
       ]
     };
   }
-
 
  function ScatterChart({data, title, x, y, labels}) {
     const canvasRef = useRef(null);
@@ -706,12 +732,49 @@ const GlobalData = (props) => {
           />
         </Grid>
       </Grid>
-      <div style={{display: selectedCountry? 'block' : 'none'}}> 
-        <BarChart data={createCompetencyChartData(selectedCountryLabel, competencyBySelectedCountry)} title = {"Competency By Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-        <BarChart data={createCompetencyChartData(ethnicityInSelectedCountry, competencyByEthnicityInSelectedCountry)} title = {"Competency By Ethnicity in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-        <BarChart data={createCompetencyChartData( nationalitiesInSelectedCountry, competencyByNationalityInSelectedCountry)} title = {"Competency By Nationality in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-        <BarChart data={createCompetencyChartData(GenderInSelectedCountryLabel, competencyByGenderInSelectedCountry)} title = {"Competency By Gender in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+      <div style={{display: selectedCountry? 'block' : 'none'}}>
         <DesignPrinciplesPieChart data={dataForCountrySelected} title = {"Most Chosen Design Principle"}/>
+        <BarChart data={createDesignPrincipleChartData(selectedCountryLabel, designPrinciplesByCountry)} title = {"Most Chosen Design Principle by Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+        <BarChart data={createDesignPrincipleChartData(chartEthnicityInSelectedCountryLabel, designPrinciplesByEthnicityInSelectedCountry)} title = {"Most Chosen Design Principle by Ethnicity In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+        <BarChart data={createDesignPrincipleChartData(nationalitiesInSelectedCountryLabel, designPrinciplesByNationalityInSelectedCountry)} title = {"Most Chosen Design Principle by Nationality In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+        <BarChart data={createDesignPrincipleChartData(competencyLabel, designPrinciplesByCompetencyInSelectedCountry)} title = {"Most Chosen Design Principle by Competency In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+        <BarChart data={createDesignPrincipleChartData(genderInSelectedCountryLabel, designPrinciplesByGenderInSelectedCountry)} title = {"Most Chosen Design Principle by Gender In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/> 
+
+        <DoughnutChart data={technologySharingInSelectedCountry} title = {"Device Sharing In Selected Country"}/>
+        <DoughnutChart data={technologyOwnershipInSelectedCountry} title = {"Device Sharing In Selected Country"}/>
+        <BarChart data={createTechnologyChartData(selectedCountryLabel, technologyDeviceBySelectedCountry)} title = {"Device Type Owned by Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>
+        <BarChart data={createTechnologyChartData(chartEthnicityInSelectedCountryLabel, technologyDeviceByEthnicityInSelectedCountry)} title = {"Device Type Owned by Ethnicity In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>   
+        <BarChart data={createTechnologyChartData(nationalitiesInSelectedCountryLabel, technologyDeviceByNationalityInSelectedCountry)} title = {"Device Type Owned by Nationality In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>   
+        <BarChart data={createTechnologyChartData(genderInSelectedCountryLabel, technologyDeviceByGenderInSelectedCountry)} title = {"Device Type Owned by Gender In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>      
+        <BarChart data={createTechnologyChartData(technologyAgeList, technologyDeviceByAgeInSelectedCountry)} title = {"Device Type Owned by Age In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/> 
+        <ScatterChart data={deviceOwnershipVsCompetencyInSelectedCountry} title={"Amount of Devices owned vs Competency Level In Selected Country"} x={"Amount of Devices Owned (6 equates to 6+ devices owned)"} y={"Competency level"} labels={competencyScatterLabels}/>
+        <ScatterChart data={ageFirstDeviceVsCompetencyInSelectedCountry} title={"Age of First Device vs Competency Level In Selected Country"} x={"Age when first owned device"} y={"Competency level"} labels={competencyScatterLabels}/>
+        <ScatterChart data={ageUsedTechVsCompetencyInSelectedCountry} title={"Age when started using Technology vs Competency Level In Selected Country"} x={"Age when started using Technology"} y={"Competency level"} labels={competencyScatterLabels}/>  
+        <BarChart data={createTechnologyChartData(selectedCountryLabel, technologyDeviceAccessBySelectedCountry)} title = {"Device Type Participant has access to by Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
+        <BarChart data={createTechnologyChartData(chartEthnicityInSelectedCountryLabel, technologyDeviceAccessByEthnicityInSelectedCountry)} title = {"Device Type Participant has access to by Ethnicity In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
+        <BarChart data={createTechnologyChartData(nationalitiesInSelectedCountryLabel, technologyDeviceAccessByNationalityInSelectedCountry)} title = {"Device Type Participant has access to by Nationality In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
+        <BarChart data={createTechnologyChartData(genderInSelectedCountryLabel, technologyDeviceAccessByGenderInSelectedCountry)} title = {"Device Type Participant has access to by Gender In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
+        
+        <HorizontalBarChart data={dataForCountrySelected} element={'preferred_reading_language'} title={'Preferred Reading Language By Selected Country'}/>
+        <HorizontalBarChart data={dataForCountrySelected} element={'preferred_writing_language'} title={'Preferred Writing Language By Selected Country'}/>
+        <BarChart data={createTextDirectionalityChartData(selectedCountryLabel, textDirectionalityBySelectedCountry)} title = {"Text Directionality by Selected Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/>  
+        <BarChart data={createTextDirectionalityChartData(chartEthnicityInSelectedCountryLabel, textDirectionalityByEthnicityInSelectedCountry)} title = {"Text Directionality by Ethnicity In Selected Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/> 
+        <BarChart data={createTextDirectionalityChartData(nationalitiesInSelectedCountryLabel, textDirectionalityByNationalityInSelectedCountry)} title = {"Text Directionality by Nationality In Selected Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/> 
+
+        <BarChart data={createInternetChartData(selectedCountryLabel, internetAccessBySelectedCountry)} title = {"Internet Stability By Selected Country"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(chartEthnicityInSelectedCountryLabel, internetAccessByEthnicityInSelectedCountry)} title = {"Internet Stability By Ethnicity In Selected Country"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(nationalitiesInSelectedCountryLabel, internetAccessByNationalityInSelectedCountry)} title = {"Internet Stability By Nationality In Selected Country"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(genderInSelectedCountryLabel, internetAccessByGenderInSelectedCountry)} title = {"Internet Stability By Gender In Selected Country"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(selectedCountryLabel, broadbandByCountryInSelectedCountry)} title = {"Broadband Contract By Selected Country"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(selectedCountryLabel, broadbandByEthnicityInSelectedCountry)} title = {"Broadband Contract By Ethnicity In Selected Country"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(chartEthnicityInSelectedCountryLabel, broadbandByNationalityInSelectedCountry)} title = {"Broadband Contract By Nationality In Selected Country"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+        <BarChart data={createInternetChartData(nationalitiesInSelectedCountryLabel, broadbandByGenderInSelectedCountry)} title = {"Broadband Contract By Gender In Selected Country"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+
+        <BarChart data={createCompetencyChartData(selectedCountryLabel, competencyBySelectedCountry)} title = {"Competency By Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+        <BarChart data={createCompetencyChartData(chartEthnicityInSelectedCountryLabel, competencyByEthnicityInSelectedCountry)} title = {"Competency By Ethnicity in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+        <BarChart data={createCompetencyChartData( nationalitiesInSelectedCountryLabel, competencyByNationalityInSelectedCountry)} title = {"Competency By Nationality in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+        <BarChart data={createCompetencyChartData(genderInSelectedCountryLabel, competencyByGenderInSelectedCountry)} title = {"Competency By Gender in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+
       </div>
     </TabPanel>
     <TabPanel value={value} index={2} >
@@ -723,7 +786,6 @@ const GlobalData = (props) => {
         </Typography>
         </Grid>
       </Grid>
-    
       <HorizontalBarChart data={data} element={'preferred_reading_language'} title={'Preferred Reading Language By Country'}/>
       <HorizontalBarChart data={data} element={'preferred_writing_language'} title={'Preferred Writing Language By Country'}/>
       <BarChart data={createTextDirectionalityChartData(chartCountryLabel, textDirectionalityByCountry)} title = {"Text Directionality by Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/>  
@@ -744,7 +806,7 @@ const GlobalData = (props) => {
       <BarChart data={createTechnologyChartData(chartNationalityLabel, technologyDeviceByNationality)} title = {"Device Type Owned by Nationality"}  x ={"Device Type"} y ={"Number of Participants"}/>   
       <BarChart data={createTechnologyChartData(chartGenderLabel, technologyDeviceByGender)} title = {"Device Type Owned by Gender"}  x ={"Device Type"} y ={"Number of Participants"}/>      
       <BarChart data={createTechnologyChartData(technologyAgeList, technologyDeviceByAge)} title = {"Device Type Owned by Age"}  x ={"Device Type"} y ={"Number of Participants"}/> 
-      <ScatterChart data={filteredDataForCompetencyAmountOfDevices} title={"Amount of Devices owned vs Competency Level"} x={"Amount of Devices Owned (6 equates to 6+ devices owned)"} y={"Competency level"} labels={competencyScatterLabels}/>  
+      <ScatterChart  data={deviceOwnershipVsCompetency}  title={"Amount of Devices owned vs Competency Level"} x={"Amount of Devices Owned (6 equates to 6+ devices owned)"} y={"Competency level"} labels={competencyScatterLabels}/>  
       <BarChart data={createTechnologyChartData(chartCountryLabel, technologyDeviceAccessByCountry)} title = {"Device Type Participant has access to by Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
       <BarChart data={createTechnologyChartData(chartEthnicityLabel, technologyDeviceAccessByEthnicity)} title = {"Device Type Participant has access to by Ethnicity"}  x ={"Device Type"} y ={"Number of Participants"}/>  
       <BarChart data={createTechnologyChartData(chartNationalityLabel, technologyDeviceAccessByNationality)} title = {"Device Type Participant has access to by Nationality"}  x ={"Device Type"} y ={"Number of Participants"}/>  
@@ -756,19 +818,17 @@ const GlobalData = (props) => {
       <BarChart data={createInternetChartData(chartNationalityLabel, internetAccessByNationality)} title = {"Internet Stability By Nationality"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
       <BarChart data={createInternetChartData(chartGenderLabel, internetAccessByGender)} title = {"Internet Stability By Gender"}  x ={"Internet Stability"} y ={"Number of Participants"}/>
       <BarChart data={createInternetChartData(chartCountryLabel, broadbandByCountry)} title = {"Broadband Contract By Country"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
-      <BarChart data={createInternetChartData(chartCountryLabel, broadbandByEthnicity)} title = {"Broadband Contract By Ethnicity"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
-      <BarChart data={createInternetChartData(chartEthnicityLabel, broadbandByNationality)} title = {"Broadband Contract By Nationality"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
-      <BarChart data={createInternetChartData(chartNationalityLabel, broadbandByGender)} title = {"Broadband Contract By Gender"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+      <BarChart data={createInternetChartData(chartEthnicityLabel, broadbandByEthnicity)} title = {"Broadband Contract By Ethnicity"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+      <BarChart data={createInternetChartData(chartNationalityLabel, broadbandByNationality)} title = {"Broadband Contract By Nationality"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
+      <BarChart data={createInternetChartData(chartGenderLabel, broadbandByGender)} title = {"Broadband Contract By Gender"}  x ={"Broadband Contract"} y ={"Number of Participants"}/>
     </TabPanel>
     <TabPanel value={value} index={5}>
       <BarChart data={createCompetencyChartData(chartCountryLabel, competencyByCountry)} title = {"Competency By Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
       <BarChart data={createCompetencyChartData(chartEthnicityLabel, competencyByEthnicity)} title = {"Competency By Ethnicity"}  x ={"Competency Level"} y ={"Number of Participants"}/>
       <BarChart data={createCompetencyChartData(chartNationalityLabel, competencyByNationality)} title = {"Competency By Nationality"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-      <ScatterChart data={filteredDataForCompetencyAgeDevice} title={"Age of First Device vs Competency Level"} x={"Age when first owned device"} y={"Competency level"} labels={competencyScatterLabels}/>
-      <ScatterChart data={filteredDataForCompetencyAgeTech} title={"Age when started using Technology vs Competency Level"} x={"Age when started using Technology"} y={"Competency level"} labels={competencyScatterLabels}/>
+      <ScatterChart data={ageFirstDeviceVsCompetency} title={"Age of First Device vs Competency Level"} x={"Age when first owned device"} y={"Competency level"} labels={competencyScatterLabels}/>
+      <ScatterChart data={ageUsedTechVsCompetency} title={"Age when started using Technology vs Competency Level"} x={"Age when started using Technology"} y={"Competency level"} labels={competencyScatterLabels}/>
     </TabPanel>
-
-     
     </div>
   </div>
   )

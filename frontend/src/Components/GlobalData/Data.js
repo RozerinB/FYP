@@ -179,7 +179,7 @@ export function calculateCompetencyCount(data) {
       return acc;
     }
     else if(element === 'device_ownership_status' ){
-      acc[curr[element] === 'None' ? 'no' : 'yes']++;
+      acc[curr[element] === '0' ? 'no' : 'yes']++;
       return acc;
     }}, { yes: 0, no: 0 }); 
   

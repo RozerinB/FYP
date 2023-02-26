@@ -19,7 +19,7 @@ import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/Resea
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
 import Success from './Success';
 
-const steps = ['Participant Information Sheet', 'Consent Form', 'Global Data', 'Evaluation Survey'];
+const steps = ['Participant Information Sheet', 'Consent Form', 'Data Visualisation (Global Data)', 'Evaluation Survey'];
 
 const { formId, formField } = SurveyFormModel;
 

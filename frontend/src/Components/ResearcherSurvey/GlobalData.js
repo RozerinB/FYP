@@ -62,6 +62,7 @@ const GlobalData = (props) => {
     getData();
   }, []);
 
+  const url = window.location.pathname
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -310,15 +311,15 @@ const GlobalData = (props) => {
       datasets: [
         {
           label: 'Left to Right',
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
-          borderColor: 'rgba(75, 192, 192, 0.2)',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
           borderWidth: 1,
           data: Object.keys(competencyByElement).map(element => competencyByElement[element].leftToRight)
         },
         {
           label: 'Right to Left',
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(153, 102, 255, 0.2)',
+          borderColor: 'rgba(153, 102, 255, 1)',
           borderWidth: 1,
           data: Object.keys(competencyByElement).map(element => competencyByElement[element].rightToLeft)
         }
@@ -573,7 +574,7 @@ const GlobalData = (props) => {
       });
     }, [chartData]);
   
-    return <canvas style={{ position: 'relative',  width:"300" , height:"300" }} ref={canvasRef} />;
+    return <canvas style={{ position: 'relative',  width:"200" , height:"200" }} ref={canvasRef} />;
   };
 
 
@@ -721,15 +722,22 @@ const GlobalData = (props) => {
         </Grid>
       </Grid>
       <div style={{display: selectedCountry? 'block' : 'none'}}>
+      <Grid item xs={12} sm={6}>
         <DesignPrinciplesPieChart data={dataForCountrySelected} title = {"Most Chosen Design Principle"}/>
         <BarChart data={createDesignPrincipleChartData(selectedCountryLabel, designPrinciplesByCountry)} title = {"Most Chosen Design Principle by Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(chartEthnicityInSelectedCountryLabel, designPrinciplesByEthnicityInSelectedCountry)} title = {"Most Chosen Design Principle by Ethnicity In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(nationalitiesInSelectedCountryLabel, designPrinciplesByNationalityInSelectedCountry)} title = {"Most Chosen Design Principle by Nationality In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(competencyLabel, designPrinciplesByCompetencyInSelectedCountry)} title = {"Most Chosen Design Principle by Competency In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(genderInSelectedCountryLabel, designPrinciplesByGenderInSelectedCountry)} title = {"Most Chosen Design Principle by Gender In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/> 
-
+      </Grid>
+      <Grid container spacing={2}>
+      <Grid item xs={6}>
         <DoughnutChart data={technologySharingInSelectedCountry} title = {"Device Sharing In Selected Country"}/>
+      </Grid>
+      <Grid item xs={6}>
         <DoughnutChart data={technologyOwnershipInSelectedCountry} title = {"Device Sharing In Selected Country"}/>
+      </Grid>
+      </Grid>
         <BarChart data={createTechnologyChartData(selectedCountryLabel, technologyDeviceBySelectedCountry)} title = {"Device Type Owned by Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>
         <BarChart data={createTechnologyChartData(chartEthnicityInSelectedCountryLabel, technologyDeviceByEthnicityInSelectedCountry)} title = {"Device Type Owned by Ethnicity In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>   
         <BarChart data={createTechnologyChartData(nationalitiesInSelectedCountryLabel, technologyDeviceByNationalityInSelectedCountry)} title = {"Device Type Owned by Nationality In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>   

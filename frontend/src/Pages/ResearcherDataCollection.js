@@ -12,7 +12,7 @@ import VerticalLinearStepper from '../Components/Stepper/Stepper'
 import "../Components/ParticipantSurvey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
 import { v4 as uuidv4 } from 'uuid';
-// import ValidationSchema from '../Components/ResearcherSurvey/ValidationSchema';
+import ValidationSchema from '../Components/ResearcherSurvey/ValidationSchema';
 import PIS from '../Components/ResearcherSurvey/PIS';
 import ConsentForm from '../Components/ResearcherSurvey/ConsentForm.jsx';
 import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/ResearcherDataCollectionSurvey';
@@ -42,7 +42,7 @@ function renderStepContent(step) {
 
 export default function ResearcherDataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
-  // const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
+  const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
@@ -74,7 +74,7 @@ export default function ResearcherDataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
-            // validationSchema={currentValidationSchema}
+            validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values) }
           >
               <Form id={formId}>

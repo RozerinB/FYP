@@ -5,6 +5,32 @@
     border-radius: 0 0 50% 50% / 50px;
 }
 
+.about{
+    background-color: #0E00AB;
+    height: 100vh;
+    color: white;
+    flex-wrap:wrap;
+}
+
+.title {
+    text-align: center;
+}
+.container {
+    display: flex;
+    margin-top: 20px;
+}
+.text-auto {
+    flex: 1 1 200px;
+    padding: 80px 0;
+    margin: auto;
+    color: white;
+  }
+
+  .text-centre {
+    flex: 1;
+    color: white;
+  }
+  
 .home path {
     fill: white;
     opacity: 0.09;

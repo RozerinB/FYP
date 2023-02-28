@@ -31,6 +31,18 @@ const {
 } = surveyFormModel
 
 export default [
+
+  //PIS
+  Yup.object().shape({}),
+
+  //Consent form
+  Yup.object().shape({
+    [consent_form.name]: Yup.bool()
+    .nullable()
+    .required(`${consent_form.requiredErrorMsg}`)
+    .oneOf([true],`${consent_form.requiredErrorMsg}`),
+    }),
+
   // Data collection Survey 1
   Yup.object().shape({
     [age.name]: Yup.string()
@@ -109,11 +121,5 @@ export default [
       .nullable()
       .required(`${principle7.requiredErrorMsg}`),
   }),
-  //Consent form
-  Yup.object().shape({
-    [consent_form.name]: Yup.bool()
-    .nullable()
-    .required(`${consent_form.requiredErrorMsg}`)
-    .oneOf([true],`${consent_form.requiredErrorMsg}`),
-    }),
+  
 ];

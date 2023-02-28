@@ -4,7 +4,7 @@ import "./Survey.css"
 import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import RadioField from '../FormFields/RadioField.jsx';
-import { experience, experience2, proudness, health, scale, educationAge, jobList, importanceKey, agreementKey } from './Questions';
+import { experience, experience2, proudness, health, scale, educationAge, jobList, importanceKey, agreementKey, nationalities } from './Questions';
 import ListField from '../FormFields/ListField.jsx';
 import SelectField from '../FormFields/SelectField';
 
@@ -36,7 +36,8 @@ export default function CulturalDimensions(props) {
         organization_structure,
         organization_rules,
         education,
-        job
+        job,
+        nationality_from_birth
     }
   } = props;
 
@@ -324,6 +325,15 @@ export default function CulturalDimensions(props) {
                 fullWidth
                 row={false}
                 />
+        </Grid> 
+        <Grid item xs={12} >
+          <SelectField
+            name={nationality_from_birth.name}
+            label={nationality_from_birth.label}
+            data={nationalities}
+            placeholder={nationality_from_birth.placeholder}
+            fullWidth
+          />
         </Grid>   
         </Grid>
     </div>

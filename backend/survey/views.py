@@ -17,6 +17,8 @@ def export_surveys_to_excel(request):
     # Write headers
     headers = [
             'client_id',
+            'age',
+            'gender',
             'time_personal_home_life',
             'good_performance',
             'employment',
@@ -42,13 +44,16 @@ def export_surveys_to_excel(request):
             'organization_rules',
             'education',
             'job',
-            'age'
+            'nationality',
+            'nationality_from_birth'
             ]
     for col_num, header in enumerate(headers, 1):
         worksheet.cell(row=1, column=col_num, value=header)
     # Write data
     for row_num, row_data in enumerate(data, 2):
         row = [row_data['client_id'],
+                row_data['age'],
+                row_data['gender'],
                 row_data['time_personal_home_life'],
                 row_data['good_performance'], 
                 row_data['employment'], 
@@ -74,7 +79,8 @@ def export_surveys_to_excel(request):
                 row_data['organization_rules'],
                 row_data['education'],
                 row_data['job'],
-                row_data['age']
+                row_data['nationality'],
+                row_data['nationality_from_birth'],
                 ]
         for col_num, cell_value in enumerate(row, 1):
             worksheet.cell(row=row_num, column=col_num, value=cell_value)

@@ -52,8 +52,7 @@ function renderStepContent(step) {
 export default function DataCollection(props) {
 
   const [activeStep, setActiveStep] = useState(0);
-  const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
-
+  const currentValidationSchema = ValidationSchema[activeStep]
   const isLastStep = activeStep === steps.length - 1;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
@@ -120,7 +119,7 @@ export default function DataCollection(props) {
                       color="primary"
                       sx={{float:'right', m: 1, display: isLastStep ? 'none' : 'block'}}
                     >
-                      {isSurvey  || isConsentForm ? 'Submit' :'Next'}
+                      {isSurvey  || isFeedback || isConsentForm ? 'Submit' :'Next'}
                     </Button>
                   </div>
                 </div>

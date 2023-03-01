@@ -31,7 +31,6 @@ const {
 } = surveyFormModel
 
 export default [
-
   //PIS
   Yup.object().shape({}),
 
@@ -121,5 +120,6 @@ export default [
       .nullable()
       .required(`${principle7.requiredErrorMsg}`),
   }),
-  
+  Yup.object().shape({}),
+  Yup.object().shape({}),
 ];

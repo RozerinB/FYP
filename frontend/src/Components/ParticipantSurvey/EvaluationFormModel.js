@@ -10,10 +10,11 @@ export default {
       no_correlation_reason: {
         name: 'no_correlation_reason',
         label: 'If you answered no can you please give further information',
+        placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
       correlation_culture: {
-        name: 'preferred_writing_language',
+        name: 'correlation_culture',
         label: 'Do you believe the visualised data is an accurate representation of your culture?*',
         placeholder: 'Select an option',
         requiredErrorMsg: 'This field is required'
@@ -21,6 +22,7 @@ export default {
       no_correlation_culture_reason: {
         name: 'no_correlation_culture_reason',
         label: 'If you answered no can you please give further information',
+        placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
       representation_of_user: {
@@ -32,6 +34,7 @@ export default {
       no_representation_reason: {
         name: 'no_representation_reason',
         label: 'If you answered no can you please give further information',
+        placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
       generalisability: {
@@ -41,8 +44,9 @@ export default {
         requiredErrorMsg: 'This field is required'
       },
       no_generalisability_reason: {
-        name: 'no_representation_reason',
+        name: 'no_generalisability_reason',
         label: 'If you answered no can you please give further information',
+        placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
     },

@@ -13,8 +13,6 @@ export default function FormCheckBox(props) {
   const [field, meta, helper] = useField(props);
   const isError = meta.touched && Boolean(meta.error);
 
-  const { setFieldValue } = useFormikContext();
-
   const handleChange = (event) => {
     const value = event.target.value;
     const isChecked = event.target.checked;

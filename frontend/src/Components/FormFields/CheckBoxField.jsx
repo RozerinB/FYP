@@ -11,7 +11,7 @@ export default function CheckBoxField(props) {
     const [field, meta, helper] = useField(props);
     const { setValue } = helper;
     const isError = meta.value === false;
-
+    console.log('meta', meta)
     function _onChange(e) {
       setValue(e.target.checked);
     }

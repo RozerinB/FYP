@@ -1,6 +1,6 @@
 import evaluationSurveyModel from './EvaluationFormModel';
 const {
-  formField: {
+  evaluationFormField: {
     correlation,
     no_correlation_reason,
     correlation_culture,

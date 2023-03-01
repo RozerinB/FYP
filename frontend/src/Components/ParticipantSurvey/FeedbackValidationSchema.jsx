@@ -19,26 +19,26 @@ export default [
     [correlation.name]: Yup.string()
       .nullable()
       .required(`${correlation.requiredErrorMsg}`),
-    // [no_correlation_reason.name]: Yup.string()
-    //   .when('correlation', {is: 'No', then: Yup.string()
-    //   .required(`${no_correlation_reason.requiredErrorMsg}`)}),
+    [no_correlation_reason.name]: Yup.string()
+      .when('correlation', {is: 'No', then: Yup.string()
+      .required(`${no_correlation_reason.requiredErrorMsg}`)}),
     [correlation_culture.name]: Yup.string()
       .nullable()
       .required(`${correlation_culture.requiredErrorMsg}`),
-    // [no_correlation_culture_reason.name]: Yup.string()
-    // .when('correlation_culture', {is: 'No', then: Yup.string()
-    // .required(`${no_correlation_culture_reason.requiredErrorMsg}`)}),
+    [no_correlation_culture_reason.name]: Yup.string()
+    .when('correlation_culture', {is: 'No', then: Yup.string()
+    .required(`${no_correlation_culture_reason.requiredErrorMsg}`)}),
     [representation_of_user.name]: Yup.string()
       .nullable()
       .required(`${representation_of_user.requiredErrorMsg}`),
-    // [no_representation_reason.name]: Yup.string()
-    //   .when('representation_of_user', {is: 'No', then: Yup.string()
-    //   .required(`${no_representation_reason.requiredErrorMsg}`)}),
+    [no_representation_reason.name]: Yup.string()
+      .when('representation_of_user', {is: 'No', then: Yup.string()
+      .required(`${no_representation_reason.requiredErrorMsg}`)}),
     [generalisability.name]: Yup.string()
       .nullable()
       .required(`${generalisability.requiredErrorMsg}`),
-    // [no_generalisability_reason.name]: Yup.string()
-    //   .when('generalisability', {is: 'No', then: Yup.string()
-    //   .required(`${no_generalisability_reason.requiredErrorMsg}`)}),
+    [no_generalisability_reason.name]: Yup.string()
+      .when('generalisability', {is: 'No', then: Yup.string()
+      .required(`${no_generalisability_reason.requiredErrorMsg}`)}),
   }),
 ];

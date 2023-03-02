@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Survey, Evaluation
+from .models import Survey, Evaluation, ParticipantEvaluation
 class SurveyAdmin(admin.ModelAdmin):
     list_display = (
         'role',
@@ -48,6 +48,7 @@ class SurveyAdmin(admin.ModelAdmin):
         'organization_rules',
         'education',
         'job',
+        'nationality_from_birth'
         )
 
 class EvaluationAdmin(admin.ModelAdmin):
@@ -61,6 +62,19 @@ class EvaluationAdmin(admin.ModelAdmin):
         'design_for_western',
         'feedback',
     )
+
+class ParticipantEvaluationAdmin(admin.ModelAdmin):
+    list_display = (
+        'correlation',
+        'no_correlation_reason',
+        'correlation_culture',
+        'no_correlation_culture_reason',
+        'representation_of_user',
+        'no_representation_reason',
+        'generalisability',
+        'no_generalisability_reason'
+    )
     
 admin.site.register(Survey, SurveyAdmin)
 admin.site.register(Evaluation, EvaluationAdmin)
+admin.site.register(ParticipantEvaluation, ParticipantEvaluationAdmin)

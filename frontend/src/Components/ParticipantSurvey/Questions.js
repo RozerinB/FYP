@@ -1,10 +1,46 @@
 import countryList from 'react-select-country-list'
 
+
+export const principlesLabel = {
+    principle1: {
+      name: "principle1",
+      label: "Principle 1: Equitable Use -  The design is useful and marketable to people with diverse abilities.",
+    },
+    principle2: {
+      name: "principle2",
+      label: "Principle 2: Flexibility in Use - The design accommodates a wide range of individual preferences and abilities.",
+    },
+    principle3: {
+      name: "principle3",
+      label: "Principle 3: Simple and Intuitive Use - Use of the design is easy to understand, regardless of the user’s experience, knowledge, language skills, or current concentration level.",
+    },
+    principle4: {
+      name: "principle4",
+      label: "Principle 4: Perceptible Information - The design communicates necessary information effectively to the user, regardless of ambient conditions or the user’s sensory abilities.",
+    },
+    principle5: {
+      name: "principle5",
+      label: "Principle 5: Tolerance for Error - The design minimizes hazards and the adverse consequences of accidental or unintended actions.",
+    },
+    principle6: {
+      name: "principle6",
+      label: "Principle 6: Low Physical Effort - The design can be used efficiently and comfortably and with a minimum of fatigue.",
+    },
+    principle7: {
+      name: "principle7",
+      label: "Principle 7: Size and Space for Approach and Use - Appropriate size and space are provided for approach, reach, manipulation, and use regardless of user’s body size, posture, or mobility.",
+    },
+  }
+
 export let allAge = [];
 for (let i = 18; i <= 90; i++) {
     allAge.push({ value: i.toString() , label: i.toString() });
 }
 
+export let technologyAge = [];
+for (let i = 5; i <= 90; i++) {
+    technologyAge.push({ value: i.toString() , label: i.toString() });
+}
 
 export const importanceKey = [
     {
@@ -265,72 +301,102 @@ export const proudness =
 
 export const yesOrNo = [
     {
-        value: 'yes',
+        value: 'Yes',
         label: 'Yes'
     },
     {
-        value: 'no',
+        value: 'No',
         label: 'No'
     }
 ]
 
 export const noOfDevices = [
     {
-        value: 'none',
+        value: '0',
         label: 'None'
     },
     {
-        value: '1-3',
-        label: '1-3'
+        value: '1',
+        label: '1'
     },
     {
-        value: '3-5',
-        label: '3-5'
+        value: '2',
+        label: '2'
+    },
+    {
+        value: '3',
+        label: '3'
+    },
+    {
+        value: '4',
+        label: '4'
     },
     {
         value: '5',
-        label: '5+'
+        label: '5'
+    },
+    {
+        value: '6',
+        label: '6+'
     }
 ]
 
 export const deviceType = [
     {
-        value: '1',
-        label: 'Tablet'
-    },
-    {
-        value: '2',
+        value: 'computer',
         label: 'Computer'
     },
     {
-        value: '3',
+        value: 'laptop',
+        label: 'Laptop'
+    },
+    {
+        value: 'tablet',
+        label: 'Tablet'
+    },
+    {
+        value: 'smartphone',
         label: 'Smartphone'
     },
     {
-        value: '4',
+        value: 'nonsmartphone',
         label: 'Non-smartphone'
-    }
+    },
+    {
+        value: 'other',
+        label: 'Other'
+    },
+    {
+        value: 'none',
+        label: 'None'
+    },
+    
 ]
 
 export const competency = [
-    {
-        value: '1',
+    {   
+        scale:1,
+        value: 'Fundamental',
         label: 'Fundamental Awareness'
     },
     {
-        value: '2',
+        scale:2,
+        value: 'Novice',
         label: 'Novice'
     },
     {
-        value: '3',
+        scale:3,
+        value: 'Intermediate',
         label: 'Intermediate'
     },
     {
-        value: '4',
+        scale:4,
+        value: 'Advanced',
         label: 'Advanced'
     },
     {
-        value: '4',
+        scale:5,
+        value: 'Expert',
         label: 'Expert'
     }
 
@@ -339,37 +405,29 @@ export const competency = [
 export const genders = [
   {
     value: 'female',
-    label: 'Female'
+    label: 'Female (including Transgender Women)'
   }, 
   {
     value: 'male',
-    label: 'Male'
-  }, 
-  {
-    value: 't-female',
-    label: 'Transgender Female'
-  }, 
-  {
-    value: 't-male',
-    label: 'Transgender Male'
+    label: 'Male (including Transgender Men)'
   }, 
   {
     value: 'gender-variant',
     label: 'Gender Variant / Non-Conforming'
   }, 
   {
-    value: 'not-listed',
-    label: 'Not Listed'
+    value: 'other',
+    label: 'Other'
   }, 
 ];
 
 export const textDirectionalities = [
   {
-    value: 'left-to-right', 
+    value: 'leftToRight', 
     label: 'Left-to-Right Text'
   },
   {
-    value: 'right-to-left', 
+    value: 'rightToLeft', 
     label: 'Right-to-Left Text'
   }
 ];
@@ -441,10 +499,6 @@ export const ethnicGroups = [
   {
     value: 'other-white',
     label: 'Any other White background, please describe'
-  }, 
-  {
-    value: 'n/a',
-    label: 'Prefer not to answer'
   }, 
 ];
 

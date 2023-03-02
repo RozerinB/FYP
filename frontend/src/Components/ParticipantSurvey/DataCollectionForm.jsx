@@ -5,9 +5,9 @@ import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import SelectField from '../FormFields/SelectField.jsx';
 import RadioField from '../FormFields/RadioField.jsx';
-import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge } from './Questions';
+import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge, technologyAge } from './Questions';
 import DataGridField from '../FormFields/DataGridField.jsx';
-import CheckBoxField from '../FormFields/CheckBoxField';
+import FormCheckBox from '../FormFields/FormCheckBox.jsx';
 
 export default function DataCollection(props) {
   const {
@@ -18,7 +18,6 @@ export default function DataCollection(props) {
       preferred_reading_language,
       country,
       nationality,
-      nationality_from_birth,
       ethnicity,
       text_directionality,
       device_ownership_status,
@@ -76,15 +75,6 @@ export default function DataCollection(props) {
         </Grid> 
         <Grid item xs={12} >
           <SelectField
-            name={nationality_from_birth.name}
-            label={nationality_from_birth.label}
-            data={nationalities}
-            placeholder={nationality.placeholder}
-            fullWidth
-          />
-        </Grid> 
-        <Grid item xs={12} >
-          <SelectField
             name={ethnicity.name}
             label={ethnicity.label}
             data={ethnicGroups}
@@ -110,7 +100,7 @@ export default function DataCollection(props) {
           <SelectField
             name={age_first_used_technology.name}
             label={age_first_used_technology.label}
-            data={allAge}
+            data={technologyAge}
             placeholder={age_first_used_technology.placeholder}
             fullWidth
           />
@@ -139,7 +129,7 @@ export default function DataCollection(props) {
           <SelectField
             name={age_when_first_owned_device.name}
             label={age_when_first_owned_device.label}
-            data={allAge}
+            data={technologyAge}
             fullWidth
           />
         </Grid> 
@@ -162,18 +152,20 @@ export default function DataCollection(props) {
           />
         </Grid> 
         <Grid item xs={12} >
-          <RadioField
+          <FormCheckBox
             name={device_type_owned.name}
             label={device_type_owned.label}
+            fieldName="device_type_owned"
             data={deviceType}
             placeholder={device_type_owned.placeholder}
             fullWidth
           />
         </Grid> 
         <Grid item xs={12} >
-          <RadioField
+          <FormCheckBox
             name={device_access.name}
             label={device_access.label}
+            fieldName="device_access"
             data={deviceType}
             placeholder={device_access.placeholder}
             fullWidth

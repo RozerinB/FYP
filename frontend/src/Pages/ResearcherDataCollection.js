@@ -12,15 +12,16 @@ import VerticalLinearStepper from '../Components/Stepper/Stepper'
 import "../Components/ParticipantSurvey/Survey.css"
 import Sidebar from '../Components/Sidebar/Sidebar';
 import { v4 as uuidv4 } from 'uuid';
-// import ValidationSchema from '../Components/ResearcherSurvey/ValidationSchema';
+import ValidationSchema from '../Components/ResearcherSurvey/ValidationSchema';
 import PIS from '../Components/ResearcherSurvey/PIS';
 import ConsentForm from '../Components/ResearcherSurvey/ConsentForm.jsx';
 import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/ResearcherDataCollectionSurvey';
+import GlobalData from '../Components/ResearcherSurvey/GlobalData';
+import Success from './Success';
 
-const steps = ['Participant Information Sheet', 'Consent Form', 'Global Data', 'Data Collection'];
+const steps = ['Participant Information Sheet', 'Consent Form', 'Data Visualisation (Global Data)', 'Evaluation Survey'];
 
 const { formId, formField } = SurveyFormModel;
-console.log(formField)
 
 function renderStepContent(step) {
   switch (step) {
@@ -29,9 +30,11 @@ function renderStepContent(step) {
     case 1:
       return <ConsentForm formField={formField}/>;
     case 2:
-      return <ResearcherDataCollectionSurvey formField={formField} />;
+      return <GlobalData formField={formField} />; 
     case 3: 
-      return <ResearcherDataCollectionSurvey formField={formField} />;
+      return <ResearcherDataCollectionSurvey formField={formField} />; 
+    case 4: 
+    return <Success/>;
     default:
       return <div>Not Found</div>;
   }
@@ -39,9 +42,9 @@ function renderStepContent(step) {
 
 export default function ResearcherDataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
-  // const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
+  const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
   const isLastStep = activeStep === steps.length - 1;
-  const isSurvey = activeStep === 2 || activeStep === 3;
+  const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
 
   function submitForm(values) {
@@ -68,13 +71,10 @@ export default function ResearcherDataCollection(props) {
       </Typography>
         <VerticalLinearStepper activeStep={activeStep} steps={steps} />   
       </div>
-        {/* {activeStep === steps.length ? (
-          <success />
-        ) : ( */}
         <div className='survey-container'>
           <Formik
             initialValues={SurveyInitialValues}
-            // validationSchema={currentValidationSchema}
+            validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values) }
           >
               <Form id={formId}>

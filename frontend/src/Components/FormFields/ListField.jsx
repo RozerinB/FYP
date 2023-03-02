@@ -14,6 +14,7 @@ export default function ListField(props) {
   const [meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
   const isError = touched && error && true;
+  
   return (
     <FormControl {...rest} error={isError}>   
     <FormLabel>{label}</FormLabel>
@@ -23,7 +24,6 @@ export default function ListField(props) {
               <ListItemText primary={item.label}/>
           </ListItem>
         ))}
-
       </List>
     </FormControl>
   );

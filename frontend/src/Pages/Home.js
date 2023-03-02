@@ -9,7 +9,6 @@ import { Form } from 'reactstrap';
 export default function Home(props) {
   const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
-
   return (
     <div>
       <div className='home'> 

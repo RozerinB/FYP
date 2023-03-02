@@ -17,10 +17,5 @@ export default function VerticalLinearStepper(props) {
           </Step>
         ))}
       </Stepper>
-      {props.activeStep === props.steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you're finished</Typography>
-        </Paper>
-      )}
     </Box>
     )}

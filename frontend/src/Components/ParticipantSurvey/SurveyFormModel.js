@@ -9,8 +9,9 @@ export default {
       },
       gender: {
         name: 'gender',
-        label: 'To which gender identity do you identify the most with?',
-        placeholder: 'Select gender'
+        label: 'To which gender identity do you identify the most with?*',
+        placeholder: 'Select gender',
+        requiredErrorMsg: 'This field is required',
       },
       preferred_writing_language: {
         name: 'preferred_writing_language',

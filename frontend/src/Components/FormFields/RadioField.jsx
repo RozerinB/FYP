@@ -6,27 +6,30 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
-  RadioGroup
+  RadioGroup,
+  FormHelperText,
 } from '@mui/material';
 
 export default function RadioField(props) {
   const { data, name, label, ...rest } = props;
   const [field, meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
-  const isError = touched && error && true;
+  const isError =  meta.error && !meta.touched || touched && error;
+
   return (
     <FormControl {...rest} error={isError}>   
     <FormLabel>{label}</FormLabel>
     <RadioGroup {...field} {...props}>   
       {data.map((item) => (
         <FormControlLabel
-        value={item.label}
-        checked={field.value === item.label}
+        key={item}
+        value={item.value}
+        checked={field.value === item.value}
         onChange={field.onChange}
         label={item.label}
         control={<Radio />}
         sx={{fontSize: 2}}
-        error={meta.touched && meta.error && true}
+        error={meta.touched && meta.error }
         row={props.row}
       />
       ))}

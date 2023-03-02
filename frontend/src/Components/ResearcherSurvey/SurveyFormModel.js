@@ -36,6 +36,10 @@ export default {
       feedback: {
         name: 'feedback',
         label: 'Do you have any additional feedback or comments regarding this web application? If yes, please let me know below'
+      },
+      country: {
+        name:'country',
+        label: 'Select the country data you would like to view *'
       }
     }
   };

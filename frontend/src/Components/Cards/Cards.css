@@ -28,7 +28,7 @@
     border-radius: 10px;
   }
   
-  .cards__item__link {
+  .cards__item__main {
     display: flex;
     flex-flow: column;
     width: 100%;

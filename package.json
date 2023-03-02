@@ -34,10 +34,10 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cd frontend && react-scripts --openssl-legacy-provider start",
+    "build": "cd frontend && react-scripts --openssl-legacy-provider build",
+    "test":  "cd frontend && react-scripts test",
+    "eject": "cd frontend && react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

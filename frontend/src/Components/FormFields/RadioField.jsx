@@ -7,14 +7,13 @@ import {
   FormControlLabel,
   FormLabel,
   RadioGroup,
-  FormHelperText,
 } from '@mui/material';
 
 export default function RadioField(props) {
   const { data, name, label, ...rest } = props;
   const [field, meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
-  const isError =  meta.error && !meta.touched || touched && error;
+  const isError =  (meta.error && !meta.touched) || (touched && error);
 
   return (
     <FormControl {...rest} error={isError}>   

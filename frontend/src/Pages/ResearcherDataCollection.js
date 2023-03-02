@@ -43,7 +43,6 @@ function renderStepContent(step) {
 export default function ResearcherDataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
-  const isLastStep = activeStep === steps.length - 1;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
 

@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
 import SelectField from '../FormFields/SelectField.jsx';
 import RadioField from '../FormFields/RadioField.jsx';
-import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, allAge, technologyAge } from './Questions';
+import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, technologyAge } from './Questions';
 import DataGridField from '../FormFields/DataGridField.jsx';
 import FormCheckBox from '../FormFields/FormCheckBox.jsx';
 

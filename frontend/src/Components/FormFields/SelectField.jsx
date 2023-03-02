@@ -13,7 +13,7 @@ function SelectField(props) {
   const { placeholder, label, data, ...rest } = props;
   const [field, meta] = useField(props);
   const { value: selectedValue } = field;
-  const [touched, error] = at(meta, 'touched', 'error');
+  const [error] = at(meta, 'touched', 'error');
   const isError = error && true;
   
   return (

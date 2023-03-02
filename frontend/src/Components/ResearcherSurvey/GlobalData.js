@@ -4,7 +4,7 @@ import { Box, Button, Grid, Tab, Tabs } from '@mui/material';
 import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
-import {competencyByElementInData, ByElementInDataYesOrNo, designPrincipleByElementInData, downloadExcel, technologyByElementInData, deviceStatus, textDirectionalityByElementInData, filteredDataForElements, labels, competencyScatterLabels } from '../GlobalData/Data';
+import {competencyByElementInData, ByElementInDataYesOrNo, designPrincipleByElementInData, downloadExcel, technologyByElementInData, deviceStatus, textDirectionalityByElementInData, filteredDataForElements, competencyScatterLabels } from '../GlobalData/Data';
 import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';

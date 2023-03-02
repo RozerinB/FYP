@@ -14,7 +14,6 @@ const {
 } = evaluationSurveyModel;
 
 export default [
-  // Feedback Survey
   Yup.object().shape({
     [correlation.name]: Yup.string()
       .nullable()

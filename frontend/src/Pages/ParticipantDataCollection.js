@@ -17,12 +17,11 @@ import ValidationSchema from '../Components/ParticipantSurvey/ValidationSchema';
 import PIS from '../Components/ParticipantSurvey/PIS';
 import ConsentForm from '../Components/ParticipantSurvey/ConsentForm.jsx';
 import CulturalDimensions from '../Components/ParticipantSurvey/CulturalDimensionsForm';
-// import Report from '../Components/ParticipantSurvey/Report';
 import FeedbackForm from '../Components/ParticipantSurvey/FeedbackForm';
 import EvaluationFormModel from '../Components/ParticipantSurvey/EvaluationFormModel';
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
 import Success from './Success';
-import FeedbackValidationSchema from '../Components/ParticipantSurvey/FeedbackValidationSchema';
+// import FeedbackValidationSchema from '../Components/ParticipantSurvey/FeedbackValidationSchema';
 import EvaluationInitialValues from '../Components/ParticipantSurvey/EvaluationInitialValues';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Data Visualisation', 'Feedback',];
@@ -57,7 +56,7 @@ export default function DataCollection(props) {
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
   const isFeedback = activeStep === 5;
-  const currentValidationSchema = !isFeedback ? ValidationSchema[activeStep] : FeedbackValidationSchema[0] ;
+  const currentValidationSchema = ValidationSchema[activeStep];
 
   function submitForm(values) {
     if (isSurvey) {
@@ -100,7 +99,7 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={isFeedback? EvaluationInitialValues : SurveyInitialValues}
-            // validationSchema={currentValidationSchema}
+            validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values)}
           >
               <Form id={isFeedback ? evaluationFormId : formId}>

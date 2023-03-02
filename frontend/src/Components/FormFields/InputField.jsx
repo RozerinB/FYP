@@ -11,7 +11,7 @@ export default function InputField(props) {
   const { placeholder, label, errorText, ...rest } = props;
   const [field, meta] = useField(props);
   const [touched, error] = at(meta, 'touched', 'error');
-  const isError = touched && error && true;
+  const isError =  meta.error && !meta.touched || touched && error;
 
   return (
     <FormControl {...rest} error= {isError}>   

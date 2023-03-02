@@ -3,9 +3,7 @@ appdirs==1.4.4
 asgiref==3.3.4
 attrs==20.3.0
 billiard==3.6.4.0
-black==21.5b2
 cached-property==1.5.2
-celery==5.1.0
 certifi==2022.12.7
 cffi==1.15.1
 click==7.1.2
@@ -33,10 +31,8 @@ MarkupSafe==1.1.1
 matplotlib==3.3.0
 mpld3==0.5.1
 mypy-extensions==0.4.3
-numpy==1.19.1
 openpyxl==3.1.1
 packaging==20.9
-pandas==1.1.0
 pathspec==0.8.1
 Pillow==7.2.0
 pipenv==2022.12.19
@@ -61,8 +57,5 @@ threadpoolctl==2.1.0
 toml==0.10.2
 typed-ast==1.4.3
 typing-extensions==3.7.4.3
-vine==5.0.0
-virtualenv==20.17.1
-virtualenv-clone==0.5.7
 wcwidth==0.2.5
 zipp==3.4.1

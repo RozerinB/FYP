@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from survey import views
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r'survey', views.SurveyView, 'survey')
@@ -27,4 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('export-to-excel/', views.export_surveys_to_excel, name='export_to_excel'),
+    re_path(r".*", TemplateView.as_view(template_name='index.html')),
 ]

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 import TextField from '@mui/material/TextField';
+import { at } from 'lodash';
 import {
   FormControl,
   FormLabel
@@ -9,9 +10,11 @@ import {
 export default function InputField(props) {
   const { placeholder, label, errorText, ...rest } = props;
   const [field, meta] = useField(props);
+  const [touched, error] = at(meta, 'touched', 'error');
+  const isError = touched && error && true;
 
   return (
-    <FormControl {...rest}>   
+    <FormControl {...rest} error= {isError}>   
     <FormLabel>{label}</FormLabel>
     <TextField
       placeholder={placeholder}

@@ -27,7 +27,12 @@
   .survey-questions {
     background-color: white;
     padding: 2rem;
-    
+  }
+
+  .button-container {
+    display: flex !important;
+    justify-content: space-between;
+    margin-top: 2rem;
   }
 
   .css-1w2fhyx-MuiFormControlLabel-root {

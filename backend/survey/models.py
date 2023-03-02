@@ -1,4 +1,5 @@
 from django.db import models
+from django_cryptography.fields import encrypt
 class DesignPrinciple(models.Model):
     principle1 = models.IntegerField(default=None, blank=True)
     principle2 = models.IntegerField(default=None, blank=True)
@@ -11,7 +12,8 @@ class DesignPrinciple(models.Model):
 class Survey(models.Model):
     role= models.TextField(default="")
     client_id = models.CharField(max_length=100, primary_key=True, default=None)
-    age = models.TextField(default="18-19")
+    age = encrypt(models.TextField(default="18-19"))
+    print(age)
     gender = models.TextField(default="")
     preferred_writing_language = models.TextField(default="")
     preferred_reading_language = models.TextField(default="")

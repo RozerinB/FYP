@@ -82,6 +82,10 @@ export default function DataCollection(props) {
     }
   }
 
+  function handleBack() {
+    setActiveStep(activeStep - 1);
+  }
+
   return (
     <div className='survey'>
     <div className='survey-sidebar'>
@@ -93,22 +97,29 @@ export default function DataCollection(props) {
       </Typography>
         <VerticalLinearStepper activeStep={activeStep} steps={steps} />   
       </div>
-        {activeStep === steps.length ? (
-          <div className='survey-heading'>
-            <Typography variant="h6">
-              <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Thank you for your participation! </Box>
-            </Typography>
-          </div>
-        ) : (
         <div className='survey-container'>
           <Formik
             initialValues={isFeedback? EvaluationInitialValues : SurveyInitialValues}
-            validationSchema={currentValidationSchema}
+            // validationSchema={currentValidationSchema}
             onSubmit={(values) => submitForm(values)}
           >
               <Form id={isFeedback ? evaluationFormId : formId}>
                 {renderStepContent(activeStep)}
-                  <div>
+                <div className="button-container"> 
+                  <div className="button"> 
+                    {isFeedback && (
+                        <Button  
+                          type="submit"
+                          variant="outlined"
+                          color="primary" 
+                          onClick={handleBack} 
+                          sx={{m: 1}}
+                          >
+                          Back
+                        </Button>
+                      )}
+                  </div>
+                  <div className="button">
                     <Button
                       type="submit"
                       variant="contained"
@@ -118,10 +129,9 @@ export default function DataCollection(props) {
                       {isSurvey || isFeedback || isConsentForm ? 'Submit' :'Next'}
                     </Button>
                   </div>
+                </div>
               </Form>
           </Formik>
-          
         </div>
-    )}
     </div>
   )};

@@ -100,6 +100,8 @@ export default function DataCollection(props) {
           <Formik
             initialValues={isFeedback? EvaluationInitialValues : SurveyInitialValues}
             validationSchema={currentValidationSchema}
+            validateOnChange={false}
+            validateOnBlur={false}
             onSubmit={(values) => submitForm(values)}
           >
               <Form id={isFeedback ? evaluationFormId : formId}>

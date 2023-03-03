@@ -40,7 +40,7 @@ Before deciding whether you wish to take part, it is important to understand why
         <Box sx={{fontWeight: 'Bold' }}>What will happen to me if I take part?</Box>
       </Typography>
       <Typography variant="body1">
-        <Box sx={{ m:1, p:0.5}}>Once you click the link to the web application, you will be able to answer a set of questions to evaluate my application alongside viewing the global data collected by the participants. This survey should not take long to complete.</Box>
+        <Box sx={{ m:1, p:0.5}}>Once you click the link to the web application, you will be able to answer a set of questions to evaluate my application alongside viewing the global data collected by the participants. This survey should not take long to complete. Please note that if you close the tab, the data you have inputted will be lost.</Box>
       </Typography>
       <Typography variant="subtitle1">
         <Box sx={{fontWeight: 'Bold' }}>Are there any lifestyle restrictions? </Box>

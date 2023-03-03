@@ -1,13 +1,13 @@
 from django.db import models
 from django_cryptography.fields import encrypt
 class DesignPrinciple(models.Model):
-    principle1 = models.IntegerField(default=None, blank=True)
-    principle2 = models.IntegerField(default=None, blank=True)
-    principle3 = models.IntegerField(default=None, blank=True)
-    principle4 = models.IntegerField(default=None, blank=True)
-    principle5 = models.IntegerField(default=None, blank=True)
-    principle6 = models.IntegerField(default=None, blank=True)
-    principle7 = models.IntegerField(default=None, blank=True)
+    principle1 = models.DecimalField(default=None, blank=True, decimal_place=0)
+    principle2 = models.DecimalField(default=None, blank=True, decimal_place=0)
+    principle3 = models.DecimalField(default=None, blank=True, decimal_place=0)
+    principle4 = models.DecimalField(default=None, blank=True, decimal_place=0)
+    principle5 = models.DecimalField(default=None, blank=True, decimal_place=0)
+    principle6 = models.DecimalField(default=None, blank=True, decimal_place=0)
+    principle7 = models.DecimalField(default=None, blank=True, decimal_place=0)
     
 class Survey(models.Model):
     role= models.TextField(default="")
@@ -22,9 +22,9 @@ class Survey(models.Model):
     text_directionality = encrypt(models.TextField(default=""))
     internet_stability = encrypt(models.TextField(default=""))
     broadband_contract = encrypt(models.TextField(default=""))
-    age_first_used_technology = encrypt(models.PositiveIntegerField(default=18))
+    age_first_used_technology = encrypt(models.DecimalField(default=18, decimal_places=0))
     competency_level = encrypt(models.TextField(default=""))
-    age_when_first_owned_device = encrypt(models.PositiveIntegerField(default=18))
+    age_when_first_owned_device = encrypt(models.DecimalField(default=18, decimal_places=0))
     device_ownership_status = encrypt(models.TextField(default=""))
     device_sharing_status = encrypt(models.TextField(default=""))
     device_type_owned = encrypt(models.JSONField(default=list))

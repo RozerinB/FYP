@@ -498,7 +498,7 @@ export const ethnicGroups = [
   }, 
   {
     value: 'other-white',
-    label: 'Any other White background, please describe'
+    label: 'Any other White background'
   }, 
 ];
 

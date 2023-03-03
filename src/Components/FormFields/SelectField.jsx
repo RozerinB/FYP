@@ -13,8 +13,8 @@ function SelectField(props) {
   const { placeholder, label, data, ...rest } = props;
   const [field, meta] = useField(props);
   const { value: selectedValue } = field;
-  const [error] = at(meta, 'touched', 'error');
-  const isError = error && true;
+  const [touched, error] = at(meta, 'touched', 'error');
+  const isError =  (meta.error && !meta.touched) || (touched && error);
   
   return (
     <FormControl {...rest} error={isError}>

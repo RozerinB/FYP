@@ -41,7 +41,7 @@ const PIS = () => {
         <Box sx={{fontWeight: 'Bold' }}>What will happen to me if I take part?</Box>
       </Typography>
       <Typography variant="body1">
-        <Box sx={{ m:1, p:0.5}}>Once you are on the web application survey you will be asked to answer a set of questions which will allow the collection of data to be visualised. Examples of these survey questions include providing your age, gender, country you live in, nationality and ethnicity etc. This should not take a long time to complete and you will be able to view the global data collected.</Box>
+        <Box sx={{ m:1, p:0.5}}>Once you are on the web application survey you will be asked to answer a set of questions which will allow the collection of data to be visualised. Examples of these survey questions include providing your age, gender, country you live in, nationality and ethnicity etc. This should not take a long time to complete and you will be able to view the global data collected. Please note that if you close the tab, the data you have inputted will be lost.</Box>
       </Typography>
       <Typography variant="subtitle1">
         <Box sx={{fontWeight: 'Bold' }}>Are there any lifestyle restrictions? </Box>

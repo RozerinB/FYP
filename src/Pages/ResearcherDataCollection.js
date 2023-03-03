@@ -74,7 +74,9 @@ export default function ResearcherDataCollection(props) {
           <Formik
             initialValues={SurveyInitialValues}
             validationSchema={currentValidationSchema}
-            onSubmit={(values) => submitForm(values) }
+            validateOnChange={false}
+            validateOnBlur={false}
+            onSubmit={(values) => submitForm(values)}
           >
               <Form id={formId}>
                 {renderStepContent(activeStep)}

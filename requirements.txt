@@ -19,3 +19,4 @@ mypy-extensions==0.4.3
 openpyxl==3.1.1
 packaging==20.9
 pipenv==2022.12.19
+python-decouple==3.8

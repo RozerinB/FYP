@@ -17,7 +17,7 @@ function Navbar() {
           <div className="navbar-container container">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
               <IoIcons.IoMdGlobe className="navbar-icon" />
-                GDC
+                GDCUX
             </Link>
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}

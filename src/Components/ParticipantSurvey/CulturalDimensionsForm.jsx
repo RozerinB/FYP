@@ -46,6 +46,9 @@ export default function CulturalDimensions(props) {
         <Typography variant="h6">
         <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Data Collection </Box>
       </Typography>
+      <Typography variant="caption">
+        <Box sx={{ pl:5 }}> *Please note that if you close the tab, all the data you have inputted will be lost </Box>
+      </Typography>
       <div className='survey-questions'> 
       <Typography variant="subtitle1">
         <Box sx={{ mt: 1, fontWeight: 'bold'}}> The following fields are optional, but if you could provide more data, I would be able to provide more information within the Global Data for UX Researchers to view.</Box>

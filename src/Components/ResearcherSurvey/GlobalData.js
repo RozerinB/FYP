@@ -1,6 +1,6 @@
 import React , {useEffect, useState, useRef} from 'react'
 import Typography from '@mui/material/Typography';
-import { Box, Button, Grid, Tab, Tabs } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Tab, Tabs, Tooltip } from '@mui/material';
 import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
@@ -696,15 +696,51 @@ const GlobalData = (props) => {
     <div className='survey-questions'> 
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
+      <Tooltip title="Does not add if it already exists.">
         <Tab sx={{fontSize: '0.82rem'}} label="Universal Design Principles" {...a11yProps(0)} />
+      </Tooltip>
+      <Tooltip title="Does not add if it already exists.">
         <Tab sx={{fontSize: '0.82rem'}} label="Specific Location" {...a11yProps(1)} />
+      </Tooltip>
+      <Tooltip title="Does not add if it already exists."> 
         <Tab sx={{fontSize: '0.82rem'}} label="Cross Cultural Design" {...a11yProps(2)} />
+      </Tooltip>  
+      <Tooltip title="Does not add if it already exists."> 
         <Tab sx={{fontSize: '0.82rem'}} label="Device Availability" {...a11yProps(3)} /> 
+      </Tooltip>
+      <Tooltip title="Does not add if it already exists.">
         <Tab sx={{fontSize: '0.82rem'}} label="Internet Access" {...a11yProps(4)} />
+       </Tooltip>
+       <Tooltip title="Does not add if it already exists.">
         <Tab sx={{fontSize: '0.82rem'}} label="Competency" {...a11yProps(5)} />
+        </Tooltip>
       </Tabs>
     </Box>
     <TabPanel value={value} index={0}>
+    <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography variant="h6" color="text.secondary">
+          Universal Design Principles
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          Principle 1: Equitable Use -  The design is useful and marketable to people with diverse abilities.
+          <br />
+          Principle 2: Flexibility in Use - The design accommodates a wide range of individual preferences and abilities.
+          <br />
+          Principle 3: Simple and Intuitive Use - Use of the design is easy to understand, regardless of the user’s experience, knowledge, language skills, or current concentration level.
+          <br />
+          Principle 4: Perceptible Information - The design communicates necessary information effectively to the user, regardless of ambient conditions or the user’s sensory abilities.
+          <br />
+          Principle 5: Tolerance for Error - The design minimizes hazards and the adverse consequences of accidental or unintended actions.
+          <br />
+          Principle 6: Low Physical Effort - The design can be used efficiently and comfortably and with a minimum of fatigue.
+          <br />
+          Principle 7: Size and Space for Approach and Use - Appropriate size and space are provided for approach, reach, manipulation, and use regardless of user’s body size, posture, or mobility.
+          <br />
+        </Typography>
+      </CardContent>
+      
+    </Card>
       <BarChart data={createDesignPrincipleChartData(chartCountryLabel, designPrinciplesByCountry)} title = {"Most Chosen Design Principle by Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
       <BarChart data={createDesignPrincipleChartData(chartEthnicityLabel, designPrinciplesByEthnicity)} title = {"Most Chosen Design Principle by Ethnicity"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
       <BarChart data={createDesignPrincipleChartData(chartNationalityLabel, designPrinciplesByNationality)} title = {"Most Chosen Design Principle by Nationality"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>

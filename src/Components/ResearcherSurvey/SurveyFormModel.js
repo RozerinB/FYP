@@ -15,7 +15,7 @@ export default {
       },
       usefulness_for_profession: {
         name: "usefulness_for_profession",
-        label: "How useful is this web application for your profession?*"
+        label: "How useful is this web application for your profession? (1 being very useful 5 being not useful at all)*"
       },
       usefulness_for_researcher: {
         name: 'usefulness_for_researcher',
@@ -37,9 +37,5 @@ export default {
         name: 'feedback',
         label: 'Do you have any additional feedback or comments regarding this web application? If yes, please let me know below'
       },
-      country: {
-        name:'country',
-        label: 'Select the country data you would like to view *'
-      }
     }
   };

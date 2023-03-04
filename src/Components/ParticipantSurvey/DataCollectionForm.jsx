@@ -2,12 +2,13 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import "./Survey.css"
 import { Box } from '@mui/system';
-import { Grid } from '@mui/material';
+import { Grid, Tooltip, IconButton } from '@mui/material';
 import SelectField from '../FormFields/SelectField.jsx';
 import RadioField from '../FormFields/RadioField.jsx';
 import { countries, ageList, genders, textDirectionalities, ethnicGroups, nationalities, yesOrNo, noOfDevices, deviceType, competency, languages, technologyAge } from './Questions';
 import DataGridField from '../FormFields/DataGridField.jsx';
 import FormCheckBox from '../FormFields/FormCheckBox.jsx';
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function DataCollection(props) {
   const {
@@ -35,13 +36,27 @@ export default function DataCollection(props) {
 
   return (
     <div className='survey-heading'> 
-        <Typography variant="h6">
+      <Typography variant="h6">
         <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Data Collection </Box>
       </Typography>
-      <div className='survey-questions'> 
-      <Typography variant="subtitle1">
-        <Box sx={{ fontWeight: 'bold'}}> About you </Box>
+      <Typography variant="caption">
+        <Box sx={{ pl:5 }}> *Please note that if you close the tab, all the data you have inputted will be lost </Box>
       </Typography>
+      <div className='survey-questions'> 
+        <Grid container>
+          <Grid item xs={11}>
+            <Typography variant="subtitle1">
+              <Box sx={{ fontWeight: 'bold'}}> About you </Box>
+            </Typography>
+          </Grid>
+          <Grid item xs="auto">
+            <Tooltip title="Through examining demographic factors such as age, gender, nationality, ethnicity, and more, this section will allow for the identification of how these variables can influence technology user experiences. With this knowledge, Usability Engineers can develop designs that are culturally sensitive and considerate of diverse age groups, genders, and ethnicities, thus catering to a global audience.">
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
+          </Grid>
+        </Grid>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <SelectField name={age.name} label={age.label} data={ageList} placeholder={age.placeholder} fullWidth />
@@ -92,9 +107,20 @@ export default function DataCollection(props) {
           />
         </Grid> 
       </Grid>
-      <Typography variant="subtitle1">
-          <Box sx={{ mt: 1,fontWeight: 'bold'}}> Technology </Box>
-        </Typography>
+      <Grid container sx={{mt: 1}}>
+        <Grid item xs={11}>
+          <Typography variant="subtitle1">
+            <Box sx={{ mt: 1,fontWeight: 'bold'}}> Technology </Box>
+          </Typography>
+        </Grid>
+        <Grid item xs="auto">
+          <Tooltip title="By analyzing the age at which individuals first use technology and their level of internet access, this section will facilitate drawing conclusions about how exposure to technology can be evaluated. This information can be leveraged to investigate the relationship between the age at which technology was first introduced and individuals' proficiency levels, enabling Usability Engineers to develop an offline-first strategy in areas with unreliable internet access.">
+            <IconButton>
+              <InfoIcon />
+            </IconButton>
+          </Tooltip>
+        </Grid>
+      </Grid>
       <Grid container spacing={3}>
       <Grid item xs={12} >
           <SelectField
@@ -121,9 +147,20 @@ export default function DataCollection(props) {
           />
         </Grid> 
       </Grid>
-      <Typography variant="subtitle1">
-          <Box sx={{ mt: 1, fontWeight: 'bold'}}> Devices </Box>
-      </Typography>
+      <Grid container sx={{mt: 1}}>
+        <Grid item xs={11}>
+          <Typography variant="subtitle1">
+            <Box sx={{ mt: 1, fontWeight: 'bold'}}> Devices </Box>
+          </Typography>
+        </Grid>
+        <Grid item xs="auto">
+          <Tooltip title="Gathering data about the types of devices users possess and have access to can aid in designing tailored interfaces for specific locations and devices. By examining demographic information such as age, gender, and location, we can further deduce the number of devices owned by users. Such insights can assist in creating user-centric designs that cater to the device preferences of specific demographics.">
+            <IconButton>
+              <InfoIcon />
+            </IconButton>
+          </Tooltip>
+        </Grid>
+      </Grid>
       <Grid container spacing={3}> 
       <Grid item xs={12} >
           <SelectField
@@ -172,14 +209,25 @@ export default function DataCollection(props) {
           />
         </Grid> 
       </Grid>
-      <Typography variant="subtitle1">
+      <Grid container sx={{mt: 1}}>
+        <Grid item xs={11}>
+        <Typography variant="subtitle1">
           <Box sx={{ mt: 1, fontWeight: 'bold'}}> Design Principles </Box>
         </Typography>
-        <Grid container spacing={3}> 
+        </Grid>
+        <Grid item xs="auto">
+          <Tooltip title="Connell et al. (1997) pointed out that universal design strives to create products and environments that are accessible to all individuals, including those with varying device types and cultural backgrounds, without requiring any specialized design modifications. The seven principles of universal design are listed below, and comprehending their significance may assist Usability Engineers in developing designs that cater to specific demographic groups.">
+            <IconButton>
+              <InfoIcon />
+            </IconButton>
+          </Tooltip>
+        </Grid>
+      </Grid>
+      <Grid container spacing={3}> 
         <Grid item xs={12} >
           <DataGridField name={design_principles.name} label={design_principles.label} data = {design_principles.principleLabel.filter((i) => i.name)}/>
           </Grid>   
-        </Grid>  
+       </Grid>  
     </div>
     </div>
   )

@@ -23,8 +23,11 @@ export default function FeedbackForm(props) {
   
     return (
       <div className='survey-heading'> 
-          <Typography variant="h6">
+        <Typography variant="h6">
           <Box sx={{ fontWeight: 'bold', m: 1, p:2 }}> Evaluation Form </Box>
+        </Typography>
+        <Typography variant="caption">
+          <Box sx={{ pl:5 }}> *Please note that if you close the tab, all the data you have inputted will be lost </Box>
         </Typography>
         <div className='survey-questions'> 
         <Typography variant="h6">
@@ -35,25 +38,25 @@ export default function FeedbackForm(props) {
         <RadioField name={correlation.name} label={correlation.label} data = {yesOrNo} placeholder={correlation.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-        <InputField name={no_correlation_reason.name} label={no_correlation_reason.label} data = {yesOrNo} placeholder={no_correlation_reason.placeholder} fullWidth />
+        <InputField name={no_correlation_reason.name} label={no_correlation_reason.label} placeholder={no_correlation_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
         <RadioField name={correlation_culture.name} label={correlation_culture.label} data = {yesOrNo} placeholder={correlation_culture.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-        <InputField name={no_correlation_culture_reason.name} label={no_correlation_culture_reason.label} data={yesOrNo} placeholder={no_correlation_culture_reason.placeholder} fullWidth />
+        <InputField name={no_correlation_culture_reason.name} label={no_correlation_culture_reason.label} placeholder={no_correlation_culture_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
         <RadioField name={representation_of_user.name} label={representation_of_user.label} data = {yesOrNo} placeholder={representation_of_user.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-        <InputField name={no_representation_reason.name} label={no_representation_reason.label} data = {yesOrNo} placeholder={no_representation_reason.placeholder} fullWidth />
+        <InputField name={no_representation_reason.name} label={no_representation_reason.label} placeholder={no_representation_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
         <RadioField name={generalisability.name} label={generalisability.label} data = {yesOrNo} placeholder={generalisability.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-        <InputField name={no_generalisability_reason.name} label={no_generalisability_reason.label} data = {yesOrNo} placeholder={no_generalisability_reason.placeholder} fullWidth />
+        <InputField name={no_generalisability_reason.name} label={no_generalisability_reason.label}  placeholder={no_generalisability_reason.placeholder} fullWidth />
         </Grid>
         </Grid>   
  

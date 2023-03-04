@@ -121,7 +121,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 

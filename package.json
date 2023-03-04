@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
-  "proxy": "https://process.env.DB_URI",
+  "proxy": "https://process.env.DATABASE_URL",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

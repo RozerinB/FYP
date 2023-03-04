@@ -34,24 +34,27 @@ export default function ResearcherDataCollectionSurvey (props) {
       <Typography variant="h6" sx={{mb: 1}}>
         <Box sx={{ fontWeight: 'bold'}}> Usability Engineering and the importance of the level of exposure to technology </Box>
       </Typography>
+      <Typography variant="body2">
+        <Box sx={{ p: 2 }}> Due to the constraints of this project being a dissertation and the limited time frame, it is probable that the data visualizations may not encompass a diverse range of ethnic groups, nationalities, and locations. </Box>
+      </Typography>
       <Grid container spacing={3}> 
         <Grid item xs={12} >
           <RadioField name={usefulness_for_profession.name} label={usefulness_for_profession.label} data={scale} row={true} fullWidth />
         </Grid>   
         <Grid item xs={12} >
-        <InputField name={usefulness_for_profession_reason.name} label={usefulness_for_profession_reason.label} placeholder={usefulness_for_profession_reason.placeholder} fullWidth />
+          <InputField name={usefulness_for_profession_reason.name} label={usefulness_for_profession_reason.label} placeholder={usefulness_for_profession_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
           <RadioField name={usefulness_for_researcher.name} label={usefulness_for_researcher.label} data = {yesOrNo} row={true} fullWidth />
         </Grid>
         <Grid item xs={12} >
-        <InputField name={usefulness_for_researcher_reason.name} label={usefulness_for_researcher_reason.label} placeholder={usefulness_for_researcher_reason.placeholder}  fullWidth />
+          <InputField name={usefulness_for_researcher_reason.name} label={usefulness_for_researcher_reason.label} placeholder={usefulness_for_researcher_reason.placeholder}  fullWidth />
         </Grid>
         <Grid item xs={12} >
           <RadioField name={design_globally.name} label={design_globally.label} data={yesOrNo} row={true} fullWidth />
         </Grid>    
         <Grid item xs={12} >
-        <InputField name={design_globally_reason.name} label={design_globally_reason.label} placeholder={design_globally_reason.placeholder} fullWidth />
+          <InputField name={design_globally_reason.name} label={design_globally_reason.label} placeholder={design_globally_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
           <RadioField name={design_for_non_western.name} label={design_for_non_western.label} data={yesOrNo} row={true} fullWidth />

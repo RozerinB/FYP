@@ -24,7 +24,7 @@ export default {
       },
       design_globally: {
         name: 'design_globally',
-        label: 'Do you believe this web application will enable you to design for the world wide population?*'
+        label: 'Do you believe this web application will enable you to design for the world wide population and/or make research easier for you? (Please note that although the data visualizations may not encompass a wide range of countries, please provide your response as if the data included this variety)*'
       },
       design_globally_reason: {
         name: 'design_globally_reason',
@@ -32,7 +32,7 @@ export default {
       },
       design_for_non_western: {
         name: 'design_for_non_western',
-        label: 'Do you think this web application will enable you to design for the non-western world?*'
+        label: 'Do you think this web application will enable you to design for the non-western world? This can include the research you need to do prior to designing. (Please note that although the data visualizations may not encompass a wide range of countries, please provide your response as if the data included this variety)*'
       },
       design_for_non_western_reason: {
         name: 'design_for_non_western_reason',
@@ -40,7 +40,7 @@ export default {
       },
       design_for_western: {
         name:'design_for_western',
-        label: 'Do you think this web application will enable you to design for the western world?*'
+        label: 'Do you think this web application will enable you to design for the western world? This can include the research you need to do prior to designing. (Please note that although the data visualizations may not encompass a wide range of countries, please provide your response as if the data included this variety) *'
       },
       design_for_western_reason: {
         name:'design_for_western_reason',

@@ -696,22 +696,22 @@ const GlobalData = (props) => {
     <div className='survey-questions'> 
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
-      <Tooltip title="Does not add if it already exists.">
+      <Tooltip title="Universal design is the creation of products and environments that can be used by all people to the greatest extent possible, without adaptation or specialized design. It differs from accessibility and inclusive design in its goal to create a single design solution that can serve the largest possible range of users. The presented data in this tab demonstrates how various demographics perceive the importance of the 7 design principles. This information can assist usability engineers in designing for specific user groups or determining the most significant principle to incorporate into their designs.">
         <Tab sx={{fontSize: '0.82rem'}} label="Universal Design Principles" {...a11yProps(0)} />
       </Tooltip>
-      <Tooltip title="Does not add if it already exists.">
+      <Tooltip title="Designing for everyone and meeting their needs is not always feasible, so compromises must be made. However, when designing for a specific location, it may be beneficial to analyze demographic data and technological exposure levels to better understand user needs. This can be accomplished by examining user location (including ethnicity, nationality, and gender), determining correlations between users' access to device types, technical proficiency levels, ranking of universal design principles, and more.">
         <Tab sx={{fontSize: '0.82rem'}} label="Specific Location" {...a11yProps(1)} />
       </Tooltip>
-      <Tooltip title="Does not add if it already exists."> 
+      <Tooltip title="Cultural dimensions provide valuable insights into the differences in countries and their behavioral patterns. Hofstede (1991) defines culture as something learned within one's social environment, rather than being determined by genetics, and he initially identified five cultural dimensions. By understanding these patterns and visualizing data such as language preferences, text directionality, and the five cultural dimensions, UX designers can potentially improve their research."> 
         <Tab sx={{fontSize: '0.82rem'}} label="Cross Cultural Design" {...a11yProps(2)} />
       </Tooltip>  
-      <Tooltip title="Does not add if it already exists."> 
+      <Tooltip title="Device availability can serve as an indicator of an individual's or country's wealth. This data is significant for designers because it enables them to tailor their designs for different device types and better understand how familiar users may be with certain components and technologies. Additionally, by examining how different demographics use technological devices and the impact of varying degrees of exposure to technology on their competency levels, UX designers can draw conclusions about how to improve designs for these users."> 
         <Tab sx={{fontSize: '0.82rem'}} label="Device Availability" {...a11yProps(3)} /> 
       </Tooltip>
-      <Tooltip title="Does not add if it already exists.">
+      <Tooltip title="Internet access can directly affect an individual's exposure to technology by limiting their ability to access up-to-date applications and tools. This can, in turn, impact their technical proficiency and enjoyment of using technology. Designers and developers can employ an offline-first approach to their work if they are aware of this limitation beforehand.">
         <Tab sx={{fontSize: '0.82rem'}} label="Internet Access" {...a11yProps(4)} />
        </Tooltip>
-       <Tooltip title="Does not add if it already exists.">
+       <Tooltip title="Competency levels may vary depending on several factors, including location, device types owned, internet access levels, age, and other demographic factors.">
         <Tab sx={{fontSize: '0.82rem'}} label="Competency" {...a11yProps(5)} />
         </Tooltip>
       </Tabs>

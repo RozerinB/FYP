@@ -11,7 +11,6 @@ import { useField } from 'formik';
 import { competency, ethnicGroups, genders, languages, nationalities } from '../ParticipantSurvey/Questions';
 import DownloadIcon from '@mui/icons-material/Download';
 import Chart from 'chart.js/dist/Chart.js'
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -617,7 +616,7 @@ const GlobalData = (props) => {
     return <canvas style={{ position: 'relative', width: "300", height: "300" }} ref={canvasRef} />;
   }
   
- function HorizontalBarChart({data, element, title, countryArray}) {
+ function HorizontalBarChart({data, element, title}) {
     // Extract language and country data from input
     const languagesInElement = data.map(d => d[element]);
     const countries = data.map(d => d.country);

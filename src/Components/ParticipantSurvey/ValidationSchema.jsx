@@ -34,14 +34,20 @@ const {
 
 const {
   evaluationFormField: {
-        correlation,
-        no_correlation_reason,
-        correlation_culture,
-        no_correlation_culture_reason,
-        representation_of_user,
-        no_representation_reason,
-        generalisability,
-        no_generalisability_reason
+    correlation,
+    no_correlation_reason,
+    correlation_culture,
+    no_correlation_culture_reason,
+    correlation_ethnicity,
+    no_correlation_ethnicity_reason,
+    correlation_age,
+    no_correlation_age_reason,
+    correlation_nationality,
+    no_correlation_nationality_reason,
+    representation_of_user,
+    no_representation_reason,
+    generalisability,
+    no_generalisability_reason
   }
 } = evaluationSurveyModel;
 
@@ -148,8 +154,26 @@ export default [
       .nullable()
       .required(`${correlation_culture.requiredErrorMsg}`),
     [no_correlation_culture_reason.name]: Yup.string()
-    .when('correlation_culture', {is: 'No', then: Yup.string()
-    .required(`${no_correlation_culture_reason.requiredErrorMsg}`)}),
+      .when('correlation_culture', {is: 'No', then: Yup.string()
+      .required(`${no_correlation_culture_reason.requiredErrorMsg}`)}),
+    [correlation_ethnicity.name]: Yup.string()
+      .nullable()
+      .required(`${correlation_ethnicity.requiredErrorMsg}`),
+    [no_correlation_ethnicity_reason.name]: Yup.string()
+      .when('correlation_ethnicity', {is: 'No', then: Yup.string()
+      .required(`${no_correlation_ethnicity_reason.requiredErrorMsg}`)}),
+    [correlation_age.name]: Yup.string()
+      .nullable()
+      .required(`${correlation_age.requiredErrorMsg}`),
+    [no_correlation_age_reason.name]: Yup.string()
+      .when('correlation_age', {is: 'No', then: Yup.string()
+      .required(`${no_correlation_age_reason.requiredErrorMsg}`)}),
+    [correlation_nationality.name]: Yup.string()
+      .nullable()
+      .required(`${correlation_nationality.requiredErrorMsg}`),
+    [no_correlation_nationality_reason.name]: Yup.string()
+      .when('correlation_nationality', {is: 'No', then: Yup.string()
+      .required(`${no_correlation_nationality_reason.requiredErrorMsg}`)}),
     [representation_of_user.name]: Yup.string()
       .nullable()
       .required(`${representation_of_user.requiredErrorMsg}`),

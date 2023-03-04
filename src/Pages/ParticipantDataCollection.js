@@ -21,7 +21,6 @@ import FeedbackForm from '../Components/ParticipantSurvey/FeedbackForm';
 import EvaluationFormModel from '../Components/ParticipantSurvey/EvaluationFormModel';
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
 import Success from './Success';
-// import FeedbackValidationSchema from '../Components/ParticipantSurvey/FeedbackValidationSchema';
 import EvaluationInitialValues from '../Components/ParticipantSurvey/EvaluationInitialValues';
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Data Visualisation', 'Feedback',];

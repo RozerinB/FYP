@@ -14,6 +14,12 @@ export default function FeedbackForm(props) {
         no_correlation_reason,
         correlation_culture,
         no_correlation_culture_reason,
+        correlation_ethnicity,
+        no_correlation_ethnicity_reason,
+        correlation_age,
+        no_correlation_age_reason,
+        correlation_nationality,
+        no_correlation_nationality_reason,
         representation_of_user,
         no_representation_reason,
         generalisability,
@@ -45,6 +51,24 @@ export default function FeedbackForm(props) {
         </Grid>
         <Grid item xs={12} >
         <InputField name={no_correlation_culture_reason.name} label={no_correlation_culture_reason.label} placeholder={no_correlation_culture_reason.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <RadioField name={correlation_ethnicity.name} label={correlation_ethnicity.label} data = {yesOrNo} placeholder={correlation_ethnicity.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <InputField name={no_correlation_ethnicity_reason.name} label={no_correlation_ethnicity_reason.label} placeholder={no_correlation_ethnicity_reason.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <RadioField name={correlation_age.name} label={correlation_age.label} data = {yesOrNo} placeholder={correlation_age.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <InputField name={no_correlation_age_reason.name} label={no_correlation_age_reason.label} placeholder={no_correlation_age_reason.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <RadioField name={correlation_nationality.name} label={correlation_nationality.label} data = {yesOrNo} placeholder={correlation_nationality.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <InputField name={no_correlation_nationality_reason.name} label={no_correlation_nationality_reason.label} placeholder={no_correlation_nationality_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
         <RadioField name={representation_of_user.name} label={representation_of_user.label} data = {yesOrNo} placeholder={representation_of_user.placeholder} fullWidth />

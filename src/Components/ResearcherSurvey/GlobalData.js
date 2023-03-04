@@ -1,6 +1,6 @@
 import React , {useEffect, useState, useRef} from 'react'
 import Typography from '@mui/material/Typography';
-import { Box, Button, Card, CardContent, Grid, Tab, Tabs, Tooltip } from '@mui/material';
+import { Box, Button, Card, CardContent, Grid, Link, Tab, Tabs, Tooltip } from '@mui/material';
 import PropTypes from 'prop-types';
 import './index.css'
 import axios from 'axios';
@@ -816,8 +816,12 @@ const GlobalData = (props) => {
       <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center"> 
         <Grid item xs={12}>
         <Button variant="contained" size="large" endIcon={<DownloadIcon/>} onClick={downloadExcel}>Download data collected on Hofstedes Cultural Dimensions</Button>
-        <Typography variant="caption" display="block">
-          *Please note that this was optional within the participant surveys therefore data collected may be incomplete.
+        <Typography variant="caption" display="block" sx={{ wordBreak: "break-word" }}>
+          *Please note that this was optional within the participant surveys therefore data collected may be incomplete. 
+        </Typography>
+        <Typography variant="caption" display="block" sx={{ wordBreak: "break-word" }}>
+        To understand the data collected and to curate the measurements 
+            <Link target="_blank" rel="noreferrer" href="https://geerthofstede.com/research-and-vsm/vsm-2013/"> please check out the manual. </Link>
         </Typography>
         </Grid>
       </Grid>

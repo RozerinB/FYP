@@ -15,7 +15,6 @@ export default function RadioField(props) {
   const [touched, error] = at(meta, 'touched', 'error');
   const isError =  (meta.error && !meta.touched) || (touched && error);
 
-  console.log('field.value', field.value)
   return (
     <FormControl {...rest} error={isError}>   
     <FormLabel>{label}</FormLabel>

@@ -104,7 +104,7 @@ export default {
       },
       device_access: {
         name: 'device_access',
-        label: 'If you have access to a device which of the following devices do you have access to?*',
+        label: 'If you have access to a device which of the following devices do you have access to? (The devices you personally do not own but can borrow or use e.g. at work, school, libraries etc)*',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },

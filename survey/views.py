@@ -104,7 +104,6 @@ class ParticipantEvaluationView(viewsets.ModelViewSet):
     serializer_class = ParticipantEvaluationSerializer
     queryset = ParticipantEvaluation.objects.all()
     
-    # Add this CBV
 class Assets(View):
 
     def get(self, _request, filename):

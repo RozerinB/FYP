@@ -1,9 +1,7 @@
 import surveyFormModel from './SurveyFormModel';
 const {
   formField: {
-    role,
     consent_form,
-    client_id,
     usefulness_for_profession,
     usefulness_for_profession_reason,
     usefulness_for_researcher,
@@ -15,13 +13,12 @@ const {
     design_for_western,
     design_for_western_reason,
     feedback,
+    country
   }
 } = surveyFormModel;
 
 export default {
-  [role.name]: '',
   [consent_form.name]: false,
-  [client_id.name]: '',
   [usefulness_for_profession.name]:'',
   [usefulness_for_profession_reason.name]:'',
   [usefulness_for_researcher.name]:'',
@@ -33,4 +30,5 @@ export default {
   [design_for_western.name]: '',
   [design_for_western_reason.name]: '',
   [feedback.name]: '',
+  [country.name]: ''
 };

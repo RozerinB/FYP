@@ -42,25 +42,25 @@ export default function ResearcherDataCollectionSurvey (props) {
         <InputField name={usefulness_for_profession_reason.name} label={usefulness_for_profession_reason.label} placeholder={usefulness_for_profession_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-          <RadioField name={usefulness_for_researcher.name} label={usefulness_for_researcher.label} data = {yesOrNo} fullWidth />
+          <RadioField name={usefulness_for_researcher.name} label={usefulness_for_researcher.label} data = {yesOrNo} row={true} fullWidth />
         </Grid>
         <Grid item xs={12} >
-        <InputField name={usefulness_for_researcher_reason.name} label={usefulness_for_researcher_reason.label} placeholder={usefulness_for_researcher_reason.placeholder} fullWidth />
+        <InputField name={usefulness_for_researcher_reason.name} label={usefulness_for_researcher_reason.label} placeholder={usefulness_for_researcher_reason.placeholder}  fullWidth />
         </Grid>
         <Grid item xs={12} >
-          <RadioField name={design_globally.name} label={design_globally.label} data={yesOrNo} fullWidth />
+          <RadioField name={design_globally.name} label={design_globally.label} data={yesOrNo} row={true} fullWidth />
         </Grid>    
         <Grid item xs={12} >
         <InputField name={design_globally_reason.name} label={design_globally_reason.label} placeholder={design_globally_reason.placeholder} fullWidth />
         </Grid>
         <Grid item xs={12} >
-          <RadioField name={design_for_non_western.name} label={design_for_non_western.label} data = {yesOrNo} fullWidth />
+          <RadioField name={design_for_non_western.name} label={design_for_non_western.label} data={yesOrNo} row={true} fullWidth />
         </Grid>  
         <Grid item xs={12} >
         <InputField name={design_for_non_western_reason.name} label={design_for_non_western_reason.label} placeholder={design_for_non_western_reason.placeholder} fullWidth />
         </Grid> 
         <Grid item xs={12} >
-          <RadioField name={design_for_western.name} label={design_for_western.label} data = {yesOrNo} fullWidth />
+          <RadioField name={design_for_western.name} label={design_for_western.label} data={yesOrNo} row={true} fullWidth />
         </Grid>   
         <Grid item xs={12} >
         <InputField name={design_for_western_reason.name} label={design_for_western_reason.label} placeholder={design_for_western_reason.placeholder} fullWidth />

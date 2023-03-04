@@ -38,7 +38,7 @@ export default [
         .nullable()
         .required(`${usefulness_for_profession.requiredErrorMsg}`),
       [usefulness_for_profession_reason.name]: Yup.string()
-        .when('usefulness_for_profession', {is: 'No', then: Yup.string()
+        .when('usefulness_for_profession', {is: '5', then: Yup.string()
         .required(`${usefulness_for_profession_reason.requiredErrorMsg}`)}),
       [usefulness_for_researcher.name]: Yup.string()
         .nullable()

@@ -8,9 +8,9 @@ import {competencyByElementInData, ByElementInDataYesOrNo, designPrincipleByElem
 import SelectField from '../FormFields/SelectField';
 import countryList from 'react-select-country-list';
 import { useField } from 'formik';
-import { ethnicGroups, genders, languages, nationalities } from '../ParticipantSurvey/Questions';
-import Chart from 'chart.js/dist/Chart.js'
+import { competency, ethnicGroups, genders, languages, nationalities } from '../ParticipantSurvey/Questions';
 import DownloadIcon from '@mui/icons-material/Download';
+import { BarChart, DesignPrinciplesPieChart, DoughnutChart, HorizontalBarChart, ScatterChart } from '../GlobalData/Chart';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,6 +53,7 @@ const GlobalData = (props) => {
   } = props;
   const [field] = useField(props);
   const { value: selectedValue } = field;
+
   const [data, setData] = useState([]);
   const getData = async () => {
     const { data } = await axios.get('/api/survey/');
@@ -61,8 +62,7 @@ const GlobalData = (props) => {
   useEffect(() => {
     getData();
   }, []);
-
-  const url = window.location.pathname
+  
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -89,20 +89,22 @@ const GlobalData = (props) => {
   const competencyByCountry = competencyByElementInData(data, 'country');
   const competencyByEthnicity = competencyByElementInData(data, 'ethnicity');
   const competencyByNationality = competencyByElementInData(data, 'nationality');
+  const competencyByGender = competencyByElementInData(data, 'gender');
+  const competencyCountries= Object.keys(competencyByCountry);
+  const competencyEthnicity = Object.keys(competencyByEthnicity);
+  const competencyNationality = Object.keys(competencyByNationality);
+  const chartCountryLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
+  const chartNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
+  const chartEthnicityLabel = competencyEthnicity.map(ethnicity => ethnicGroups.find(e => e.value === ethnicity).label);
   const designPrinciplesByCountry = designPrincipleByElementInData(data, 'country');
   const designPrinciplesByEthnicity = designPrincipleByElementInData(data, 'ethnicity');
   const designPrinciplesByNationality = designPrincipleByElementInData(data, 'nationality');
   const designPrinciplesByCompetency = designPrincipleByElementInData(data, 'competency_level');
   const designPrinciplesByGender = designPrincipleByElementInData(data, 'gender');
-  const competencyCountries= Object.keys(competencyByCountry);
-  const competencyEthnicity = Object.keys(competencyByEthnicity);
-  const competencyNationality = Object.keys(competencyByNationality);
   const genderList = Object.keys(designPrinciplesByGender);
-  const chartCountryLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
-  const chartEthnicityLabel = ethnicGroups.filter(ethnicity => competencyEthnicity.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
-  const chartNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
-  const chartGenderLabel = genders.filter(gender => genderList.includes(gender.value)).map(gender => gender.label);
-  const competencyLabel = ['Fundamental', 'Novice', 'Intermediate', 'Advanced' ,'Expert']
+  const competencyList = Object.keys(designPrinciplesByCompetency)
+  const chartGenderLabel = genderList.map(gender => genders.find(g => g.value === gender).label);
+  const competencyLabel = competency.filter(competence => competencyList.includes(competence.value)).map(competence => competence.label);
 
   //Internet Page
   const internetAccessByCountry = ByElementInDataYesOrNo(data,'internet_stability','country');
@@ -166,13 +168,15 @@ const GlobalData = (props) => {
   const nationalitiesInSelectedCountry = Object.keys(competencyByNationalityInSelectedCountry);
   const ethnicityInSelectedCountry = Object.keys(competencyByEthnicityInSelectedCountry);
   const genderInSelectedCountry = Object.keys(competencyByGenderInSelectedCountry);
+  const competencyListForSelectedCountry = Object.keys(designPrinciplesByCompetencyInSelectedCountry)
   const nationalitiesInSelectedCountryLabel = nationalities.filter(nationality => nationalitiesInSelectedCountry.includes(nationality.value)).map(nationality => nationality.label);
-  const genderInSelectedCountryLabel = genders.filter(gender => genderInSelectedCountry.includes(gender.value)).map(gender => gender.label);
+  const genderInSelectedCountryLabel = genderInSelectedCountry.map(gender => genders.find(g => g.value === gender).label);
   const selectedCountryLabel = countryArray.filter(country => countriesSelected.includes(country.value)).map(country => country.label);
-  const chartEthnicityInSelectedCountryLabel = ethnicGroups.filter(ethnicity => ethnicityInSelectedCountry.includes(ethnicity.value)).map(ethnicity => ethnicity.label);
-  const textDirectionalityBySelectedCountry = textDirectionalityByElementInData(data,'country') 
-  const textDirectionalityByEthnicityInSelectedCountry = textDirectionalityByElementInData(data,'ethnicity')
-  const textDirectionalityByNationalityInSelectedCountry = textDirectionalityByElementInData(data,'nationality') 
+  const chartEthnicityInSelectedCountryLabel = ethnicityInSelectedCountry.map(ethnicity => ethnicGroups.find(e => e.value === ethnicity).label);
+  const textDirectionalityBySelectedCountry = selectedCountry ?  textDirectionalityByElementInData(dataForCountrySelected,'country') : []
+  const textDirectionalityByEthnicityInSelectedCountry = selectedCountry ?  textDirectionalityByElementInData(dataForCountrySelected,'ethnicity'): []
+  const textDirectionalityByNationalityInSelectedCountry = selectedCountry ?  textDirectionalityByElementInData(dataForCountrySelected,'nationality') :[]
+  const selectedCountryCompetencyLabel = competency.filter(competence => competencyListForSelectedCountry.includes(competence.value)).map(competence => competence.label);
 
   const internetAccessBySelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','country');
   const internetAccessByEthnicityInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','ethnicity');
@@ -377,314 +381,6 @@ const GlobalData = (props) => {
     };
   }
 
- function ScatterChart({data, title, x, y, labels}) {
-    const canvasRef = useRef(null);
-    useEffect(() => {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        const scatterChart = new Chart(canvas, {
-          type: 'scatter',
-          data: {
-            datasets: [
-              {
-                label:title,
-                data: data,
-                backgroundColor: 'rgba(54, 162, 235, 1)'
-              }
-            ]
-          },
-          options: {
-            title: {
-              display: true,
-              text: title,
-              fontSize: 18
-            },
-            scales: {
-              xAxes: [{ 
-                position: 'bottom',
-                scaleLabel: {
-                  display: true,
-                  labelString:  x
-                }
-              }],
-              yAxes: [{
-                type: 'category',
-                labels: labels,
-                ticks: {
-                  reverse: true
-                },
-                scaleLabel: {
-                  display: true,
-                  labelString: y
-                }
-              }]
-            }
-          }
-        });
-      }
-    }, []);
-    return <canvas style = {{position: 'relative', width:"300" , height:"300"}}ref={canvasRef} />;
-  }
-
-   function BarChart({data, title, x , y}) {
-    const canvasRef = useRef(null);
-    useEffect(() => {
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        const chart = new Chart(canvas, {
-          type: 'bar',
-          data: data,
-          options: {
-            plugins: {
-              colors: {
-                forceOverride: true
-              }
-            },
-            title: {
-              display: true,
-              text: title,
-              fontSize: 18
-            },
-            legend: {
-              display: true,
-              position: 'bottom',
-              labels: {
-                fontColor: '#333',
-                fontSize: 14
-              }
-            },
-            scales: {
-              xAxes: [{
-                ticks: {
-                  fontColor: '#333',
-                  fontSize: 14,
-                  beginAtZero: true
-                },
-                scaleLabel: {
-                  display: true,
-                  labelString: x,
-                  fontColor: '#333',
-                  fontSize: 16
-                }
-              }],
-              yAxes: [{
-                stacked: false,
-                ticks: {
-                  fontColor: '#333',
-                  fontSize: 14,
-                  beginAtZero: true
-                },
-                scaleLabel: {
-                  display: true,
-                  labelString: y,
-                  fontColor: '#333',
-                  fontSize: 16
-                }
-              }]
-            }
-          }
-        });
-      }
-    }, []);
-    return <canvas style = {{position: 'relative' , width:"300" , height:"300"}}ref={canvasRef} />;
-  }
-
-  function DesignPrinciplesPieChart({ data, title }){
-    const [chartData, setChartData] = useState({});
-
-    useEffect(() => {
-      const count1s = () => {
-        const counts = {};
-        data.forEach((item) => {
-          Object.keys(item.design_principles).forEach((key) => {
-            if (item.design_principles[key] === 1) {
-              if (counts[key]) {
-                counts[key] += 1;
-              } else {
-                counts[key] = 1;
-              }
-            }
-          });
-        });
-        return counts;
-      };
-
-      const chart = () => {
-        const counts = count1s();
-        setChartData({
-          labels: [
-            'Principle 1',
-            'Principle 2',
-            'Principle 3',
-            'Principle 4',
-            'Principle 5',
-            'Principle 6',
-            'Principle 7',
-          ],
-          datasets: [
-            {
-              label: 'Design Principles',
-              data: [
-                counts.principle1 || 0,
-                counts.principle2 || 0,
-                counts.principle3 || 0,
-                counts.principle4 || 0,
-                counts.principle5 || 0,
-                counts.principle6 || 0,
-                counts.principle7 || 0,
-              ],
-              backgroundColor: [
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(189, 195, 199, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(255, 148, 112, 0.2)',
-              ],
-            },
-          ],
-        });
-      };
-      chart();
-    }, [data]);
-  
-    const canvasRef = useRef(null);
-  
-    useEffect(() => {
-      const ctx = canvasRef.current.getContext('2d');
-      const chart = new Chart(ctx, {
-        type: 'pie',
-        data: chartData,
-        options: {
-          plugins: {
-            colors: {
-              forceOverride: true
-            }
-          },
-          title: {
-            display: true,
-            text: title,
-            fontSize: 18
-          },
-        
-          }
-      });
-    }, [chartData]);
-  
-    return <canvas style={{ position: 'relative',  width:"200" , height:"200" }} ref={canvasRef} />;
-  };
-
-
-  function DoughnutChart({ data, title }) {
-    const canvasRef = useRef(null);
-  
-    useEffect(() => {
-      const ctx = canvasRef.current.getContext('2d');
-      const chart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          datasets: [{
-            data: [data.elementYesCount || 0 , data.elementNoCount || 0],
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(255, 99, 132, 0.2)',
-            ],
-          }],
-          labels: ['Yes', 'No'],
-        },
-        options: {
-          plugins: {
-            colors: {
-              forceOverride: true,
-            },
-          },
-          title: {
-            display: true,
-            text: title,
-            fontSize: 18,
-          },
-        },
-      });
-    }, []);
-  
-    return <canvas style={{ position: 'relative', width: "300", height: "300" }} ref={canvasRef} />;
-  }
-  
-  function HorizontalBarChart({data, element, title}) {
-    // Extract language and country data from input
-    const languagesInElement = data.map(d => d[element]);
-    const countries = data.map(d => d.country);
-
-    // Get unique language and country values
-    const uniqueLanguages = [...new Set(languagesInElement)];
-    const uniqueCountries = [...new Set(countries)];
-
-    // Initialize data object with zeros for each language
-    const dataObject = {};
-    uniqueLanguages.forEach(lang => {
-        dataObject[lang] = new Array(uniqueCountries.length).fill(0);
-    });
-
-    const countryLabelsMap = uniqueCountries.map(c => c);
-    const chartCountryLabel = countryArray.filter(country => countryLabelsMap.includes(country.value)).map(country => country.label);
-
-    // Fill in data for each language and country
-    data.forEach(d => {
-        const langIndex = uniqueLanguages.indexOf(d[element]);
-        const countryIndex = uniqueCountries.indexOf(d.country);
-        dataObject[d[element]][countryIndex]++;
-    });
-
-    // Generate datasets array dynamically
-    const baseColor = "rgba(54, 162, 235, 1)";
-    const colorCount = Object.keys(dataObject).length;
-    const datasets = Object.keys(dataObject).map((lang, index) => {
-    // Find the language label from the languages array
-    const langObject = languages.find(l => l.value === lang);
-    const langLabel = langObject ? langObject.label : lang;
-    const color = Chart.helpers.color(baseColor).lighten(index / colorCount).rgbString();
-    return {
-        label: langLabel,
-        data: dataObject[lang],
-        backgroundColor: color,
-        borderColor: "rgba(54, 162, 235, 1)",
-        borderWidth: 1
-    }
-});
-
-    // Initialize chart
-    const canvasRef = useRef(null);
-  
-    useEffect(() => {
-      const ctx = canvasRef.current.getContext('2d');
-      const chart = new Chart(ctx, {
-        type: "horizontalBar",
-        data: {
-            labels: chartCountryLabel,
-            datasets: datasets
-        },
-        options: {
-          scales: {
-            xAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        },
-        title: {
-          display: true,
-          text: title,
-          fontSize: 18,
-        },
-        }
-    });
-  }, []);
-    return <canvas style={{ position: 'relative', width: "300", height: "300" }} ref={canvasRef} />;
-  }
-
   return (
     <div className='survey-heading'>  
     <Typography variant="h6">
@@ -724,10 +420,10 @@ const GlobalData = (props) => {
       <div style={{display: selectedCountry? 'block' : 'none'}}>
       <Grid item xs={12} sm={6}>
         <DesignPrinciplesPieChart data={dataForCountrySelected} title = {"Most Chosen Design Principle"}/>
-        <BarChart data={createDesignPrincipleChartData(selectedCountryLabel, designPrinciplesByCountry)} title = {"Most Chosen Design Principle by Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+        <BarChart data={createDesignPrincipleChartData(selectedCountryLabel, designPrinciplesBySelectedCountry)} title = {"Most Chosen Design Principle by Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(chartEthnicityInSelectedCountryLabel, designPrinciplesByEthnicityInSelectedCountry)} title = {"Most Chosen Design Principle by Ethnicity In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(nationalitiesInSelectedCountryLabel, designPrinciplesByNationalityInSelectedCountry)} title = {"Most Chosen Design Principle by Nationality In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
-        <BarChart data={createDesignPrincipleChartData(competencyLabel, designPrinciplesByCompetencyInSelectedCountry)} title = {"Most Chosen Design Principle by Competency In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
+        <BarChart data={createDesignPrincipleChartData(selectedCountryCompetencyLabel, designPrinciplesByCompetencyInSelectedCountry)} title = {"Most Chosen Design Principle by Competency In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/>
         <BarChart data={createDesignPrincipleChartData(genderInSelectedCountryLabel, designPrinciplesByGenderInSelectedCountry)} title = {"Most Chosen Design Principle by Gender In Selected Country"}  x ={"Universal Design Principles"} y ={"Number of Participants"}/> 
       </Grid>
       <Grid container spacing={2}>
@@ -742,7 +438,7 @@ const GlobalData = (props) => {
         <BarChart data={createTechnologyChartData(chartEthnicityInSelectedCountryLabel, technologyDeviceByEthnicityInSelectedCountry)} title = {"Device Type Owned by Ethnicity In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>   
         <BarChart data={createTechnologyChartData(nationalitiesInSelectedCountryLabel, technologyDeviceByNationalityInSelectedCountry)} title = {"Device Type Owned by Nationality In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>   
         <BarChart data={createTechnologyChartData(genderInSelectedCountryLabel, technologyDeviceByGenderInSelectedCountry)} title = {"Device Type Owned by Gender In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>      
-        <BarChart data={createTechnologyChartData(technologyAgeList, technologyDeviceByAgeInSelectedCountry)} title = {"Device Type Owned by Age In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/> 
+        <BarChart data={createTechnologyChartData(technologyAgeListInSelectedCountry, technologyDeviceByAgeInSelectedCountry)} title = {"Device Type Owned by Age In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/> 
         <ScatterChart data={deviceOwnershipVsCompetencyInSelectedCountry} title={"Amount of Devices owned vs Competency Level In Selected Country"} x={"Amount of Devices Owned (6 equates to 6+ devices owned)"} y={"Competency level"} labels={competencyScatterLabels}/>
         <ScatterChart data={ageFirstDeviceVsCompetencyInSelectedCountry} title={"Age of First Device vs Competency Level In Selected Country"} x={"Age when first owned device"} y={"Competency level"} labels={competencyScatterLabels}/>
         <ScatterChart data={ageUsedTechVsCompetencyInSelectedCountry} title={"Age when started using Technology vs Competency Level In Selected Country"} x={"Age when started using Technology"} y={"Competency level"} labels={competencyScatterLabels}/>  
@@ -751,8 +447,8 @@ const GlobalData = (props) => {
         <BarChart data={createTechnologyChartData(nationalitiesInSelectedCountryLabel, technologyDeviceAccessByNationalityInSelectedCountry)} title = {"Device Type Participant has access to by Nationality In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
         <BarChart data={createTechnologyChartData(genderInSelectedCountryLabel, technologyDeviceAccessByGenderInSelectedCountry)} title = {"Device Type Participant has access to by Gender In Selected Country"}  x ={"Device Type"} y ={"Number of Participants"}/>  
         
-        <HorizontalBarChart data={dataForCountrySelected} element={'preferred_reading_language'} title={'Preferred Reading Language By Selected Country'}/>
-        <HorizontalBarChart data={dataForCountrySelected} element={'preferred_writing_language'} title={'Preferred Writing Language By Selected Country'}/>
+        <HorizontalBarChart data={dataForCountrySelected} element={'preferred_reading_language'} title={'Preferred Reading Language By Selected Country'} countryArray={countryArray}/>
+        <HorizontalBarChart data={dataForCountrySelected} element={'preferred_writing_language'} title={'Preferred Writing Language By Selected Country'} countryArray={countryArray}/>
         <BarChart data={createTextDirectionalityChartData(selectedCountryLabel, textDirectionalityBySelectedCountry)} title = {"Text Directionality by Selected Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/>  
         <BarChart data={createTextDirectionalityChartData(chartEthnicityInSelectedCountryLabel, textDirectionalityByEthnicityInSelectedCountry)} title = {"Text Directionality by Ethnicity In Selected Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/> 
         <BarChart data={createTextDirectionalityChartData(nationalitiesInSelectedCountryLabel, textDirectionalityByNationalityInSelectedCountry)} title = {"Text Directionality by Nationality In Selected Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/> 
@@ -768,7 +464,7 @@ const GlobalData = (props) => {
 
         <BarChart data={createCompetencyChartData(selectedCountryLabel, competencyBySelectedCountry)} title = {"Competency By Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
         <BarChart data={createCompetencyChartData(chartEthnicityInSelectedCountryLabel, competencyByEthnicityInSelectedCountry)} title = {"Competency By Ethnicity in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
-        <BarChart data={createCompetencyChartData( nationalitiesInSelectedCountryLabel, competencyByNationalityInSelectedCountry)} title = {"Competency By Nationality in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+        <BarChart data={createCompetencyChartData(nationalitiesInSelectedCountryLabel, competencyByNationalityInSelectedCountry)} title = {"Competency By Nationality in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
         <BarChart data={createCompetencyChartData(genderInSelectedCountryLabel, competencyByGenderInSelectedCountry)} title = {"Competency By Gender in Selected Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
 
       </div>
@@ -782,8 +478,8 @@ const GlobalData = (props) => {
         </Typography>
         </Grid>
       </Grid>
-      <HorizontalBarChart data={data} element={'preferred_reading_language'} title={'Preferred Reading Language By Country'}/>
-      <HorizontalBarChart data={data} element={'preferred_writing_language'} title={'Preferred Writing Language By Country'}/>
+      <HorizontalBarChart data={data} element={'preferred_reading_language'} title={'Preferred Reading Language By Country'} countryArray={countryArray}/>
+      <HorizontalBarChart data={data} element={'preferred_writing_language'} title={'Preferred Writing Language By Country'} countryArray={countryArray}/>
       <BarChart data={createTextDirectionalityChartData(chartCountryLabel, textDirectionalityByCountry)} title = {"Text Directionality by Country"}  x ={"Text Directionality"} y ={"Number of Participants"}/>  
       <BarChart data={createTextDirectionalityChartData(chartEthnicityLabel, textDirectionalityByEthnicity)} title = {"Text Directionality by Ethnicity"}  x ={"Text Directionality"} y ={"Number of Participants"}/> 
       <BarChart data={createTextDirectionalityChartData(chartNationalityLabel, textDirectionalityByNationality)} title = {"Text Directionality by Nationality"}  x ={"Text Directionality"} y ={"Number of Participants"}/> 
@@ -822,6 +518,7 @@ const GlobalData = (props) => {
       <BarChart data={createCompetencyChartData(chartCountryLabel, competencyByCountry)} title = {"Competency By Country"}  x ={"Competency Level"} y ={"Number of Participants"}/>
       <BarChart data={createCompetencyChartData(chartEthnicityLabel, competencyByEthnicity)} title = {"Competency By Ethnicity"}  x ={"Competency Level"} y ={"Number of Participants"}/>
       <BarChart data={createCompetencyChartData(chartNationalityLabel, competencyByNationality)} title = {"Competency By Nationality"}  x ={"Competency Level"} y ={"Number of Participants"}/>
+      <BarChart data={createCompetencyChartData(chartGenderLabel, competencyByGender)} title = {"Competency By Gender"}  x ={"Competency Level"} y ={"Number of Participants"}/>
       <ScatterChart data={ageFirstDeviceVsCompetency} title={"Age of First Device vs Competency Level"} x={"Age when first owned device"} y={"Competency level"} labels={competencyScatterLabels}/>
       <ScatterChart data={ageUsedTechVsCompetency} title={"Age when started using Technology vs Competency Level"} x={"Age when started using Technology"} y={"Competency level"} labels={competencyScatterLabels}/>
     </TabPanel>

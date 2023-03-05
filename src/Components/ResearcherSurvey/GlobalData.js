@@ -64,6 +64,7 @@ const GlobalData = (props) => {
   
   const [value, setValue] = React.useState(0);
 
+  console.log(JSON.parse(data))
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

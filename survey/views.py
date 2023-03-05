@@ -7,6 +7,7 @@ from .serializers import SurveySerializer, EvaluationSerializer, ParticipantEval
 from .models import Survey, Evaluation, ParticipantEvaluation
 from openpyxl import Workbook
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
 
 @api_view(['GET'])
 def export_surveys_to_excel(request):
@@ -92,6 +93,7 @@ def export_surveys_to_excel(request):
     workbook.save(response)
     return response
 
+
 class SurveyView(viewsets.ModelViewSet):
     serializer_class = SurveySerializer
     queryset = Survey.objects.all()
@@ -105,7 +107,6 @@ class ParticipantEvaluationView(viewsets.ModelViewSet):
     queryset = ParticipantEvaluation.objects.all()
     
 class Assets(View):
-
     def get(self, _request, filename):
         path = os.path.join(os.path.dirname(__file__), 'static', filename)
 

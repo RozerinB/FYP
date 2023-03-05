@@ -9,6 +9,7 @@ import { countries, ageList, genders, textDirectionalities, ethnicGroups, nation
 import DataGridField from '../FormFields/DataGridField.jsx';
 import FormCheckBox from '../FormFields/FormCheckBox.jsx';
 import InfoIcon from '@mui/icons-material/Info';
+import cookie from "react-cookies";
 
 export default function DataCollection(props) {
   const {
@@ -57,6 +58,11 @@ export default function DataCollection(props) {
             </Tooltip>
           </Grid>
         </Grid>
+        <input
+        type="hidden"
+        value={cookie.load("csrftoken")}
+        name="csrfmiddlewaretoken"
+        />
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <SelectField name={age.name} label={age.label} data={ageList} placeholder={age.placeholder} fullWidth />

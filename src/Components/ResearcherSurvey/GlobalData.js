@@ -54,13 +54,15 @@ const GlobalData = (props) => {
   const { value: selectedValue } = field;
 
   const [data, setData] = useState([]);
+
   const getData = async () => {
     const { data } = await axios.get('/api/survey/');
     setData(data);
   };
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [data.length]);
   
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -92,7 +94,6 @@ const GlobalData = (props) => {
   const competencyEthnicity = Object.keys(competencyByEthnicity);
   const competencyNationality = Object.keys(competencyByNationality);
   const chartCountryLabel = countryArray.filter(country => competencyCountries.includes(country.value)).map(country => country.label);
-  const chartNationalityLabel = nationalities.filter(nationality => competencyNationality.includes(nationality.value)).map(nationality => nationality.label);
   const chartEthnicityLabel = competencyEthnicity.map(ethnicity => ethnicGroups.find(e => e.value === ethnicity).label);
   const designPrinciplesByCountry = designPrincipleByElementInData(data, 'country');
   const designPrinciplesByEthnicity = designPrincipleByElementInData(data, 'ethnicity');
@@ -102,6 +103,7 @@ const GlobalData = (props) => {
   const genderList = Object.keys(designPrinciplesByGender);
   const competencyList = Object.keys(designPrinciplesByCompetency)
   const chartGenderLabel = genderList.map(gender => genders.find(g => g.value === gender).label);
+  const chartNationalityLabel = competencyNationality.map(nationality => nationalities.find(n => n.value === nationality).label);
   const competencyLabel = competency.filter(competence => competencyList.includes(competence.value)).map(competence => competence.label);
 
   //Internet Page
@@ -167,7 +169,7 @@ const GlobalData = (props) => {
   const ethnicityInSelectedCountry = Object.keys(competencyByEthnicityInSelectedCountry);
   const genderInSelectedCountry = Object.keys(competencyByGenderInSelectedCountry);
   const competencyListForSelectedCountry = Object.keys(designPrinciplesByCompetencyInSelectedCountry)
-  const nationalitiesInSelectedCountryLabel = nationalities.filter(nationality => nationalitiesInSelectedCountry.includes(nationality.value)).map(nationality => nationality.label);
+  const nationalitiesInSelectedCountryLabel = nationalitiesInSelectedCountry.map(nationality => nationalities.find(n => n.value === nationality).label);
   const genderInSelectedCountryLabel = genderInSelectedCountry.map(gender => genders.find(g => g.value === gender).label);
   const selectedCountryLabel = countryArray.filter(country => countriesSelected.includes(country.value)).map(country => country.label);
   const chartEthnicityInSelectedCountryLabel = ethnicityInSelectedCountry.map(ethnicity => ethnicGroups.find(e => e.value === ethnicity).label);
@@ -576,7 +578,7 @@ const GlobalData = (props) => {
       });
     }, [chartData]);
   
-    return <canvas style={{ position: 'relative',  width:"200" , height:"200" }} ref={canvasRef} />;
+    return <canvas style={{ position: 'relative',  width:"300" , height:"300" }} ref={canvasRef} />;
   };
 
 

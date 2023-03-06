@@ -83,6 +83,7 @@ class Evaluation(models.Model):
         return self.client_id
     
 class ParticipantEvaluation(models.Model):
+    client_id = models.CharField(max_length=100, primary_key=True, default=None)
     correlation= encrypt(models.BooleanField(default=False))
     no_correlation_reason = encrypt(models.TextField(default="", blank=True))
     correlation_culture = encrypt(models.BooleanField(default=False))
@@ -101,4 +102,4 @@ class ParticipantEvaluation(models.Model):
 
     
     def _str_(self):
-        return self.correlation
+        return self.client_id

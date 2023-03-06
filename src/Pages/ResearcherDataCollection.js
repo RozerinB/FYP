@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -18,6 +18,7 @@ import ConsentForm from '../Components/ResearcherSurvey/ConsentForm.jsx';
 import ResearcherDataCollectionSurvey from '../Components/ResearcherSurvey/ResearcherDataCollectionSurvey';
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
 import Success from './Success';
+import cookie from "react-cookies";
 
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Visualisation (Global Data)', 'Evaluation Survey'];
 
@@ -34,7 +35,7 @@ function renderStepContent(step) {
     case 3: 
       return <ResearcherDataCollectionSurvey formField={formField} />; 
     case 4: 
-    return <Success/>;
+      return <Success/>;
     default:
       return <div>Not Found</div>;
   }
@@ -46,12 +47,16 @@ export default function ResearcherDataCollection(props) {
   const isEvaluation =  activeStep === 3;
   const isConsentForm = activeStep === 1;
 
+  const headers = {
+    'X-CSRFToken': cookie.load('csrftoken')
+  }
+
   function submitForm(values) {
     if(isEvaluation){
       values.client_id = uuidv4();
       values.role = "researcher";
       axios
-        .post("/api/evaluation/", values)
+        .post("/api/evaluation/", values, {headers: headers})
         setActiveStep(activeStep + 1);
     }
     else {

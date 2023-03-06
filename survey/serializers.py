@@ -99,6 +99,7 @@ class ParticipantEvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParticipantEvaluation
         fields = (
+             'client_id',
              'correlation',
              'no_correlation_reason',
              'correlation_culture',

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "homepage": ".",
   "private": true,
-  "proxy": "https://process.env.DATABASE_URL",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -19,6 +18,7 @@
     "countries-list": "^2.6.1",
     "crypto-js": "^4.1.1",
     "formik": "^2.2.9",
+    "http-proxy-middleware": "^2.0.6",
     "language-list": "^0.0.3",
     "pg": "^8.9.0",
     "react": "^18.2.0",

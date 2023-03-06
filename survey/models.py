@@ -1,15 +1,14 @@
 from django.db import models
 from django_cryptography.fields import encrypt, EncryptedMixin
 
-# EncryptedMixin.db_type = models.Field.db_type
 class DesignPrinciple(models.Model):
-    principle1 = encrypt(models.TextField(default=None, blank=True))
-    principle2 = encrypt(models.TextField(default=None, blank=True))
-    principle3 = encrypt(models.TextField(default=None, blank=True))
-    principle4 = encrypt(models.TextField(default=None, blank=True))
-    principle5 = encrypt(models.TextField(default=None, blank=True))
-    principle6 = encrypt(models.TextField(default=None, blank=True))
-    principle7 = encrypt(models.TextField(default=None, blank=True))
+    principle1 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
+    principle2 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
+    principle3 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
+    principle4 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
+    principle5 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
+    principle6 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
+    principle7 = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
     
 class Survey(models.Model):
     role= models.TextField(default="")
@@ -29,8 +28,8 @@ class Survey(models.Model):
     age_when_first_owned_device = encrypt(models.DecimalField(default=None, blank=True, decimal_places=0, max_digits=10))
     device_ownership_status = encrypt(models.TextField(default=""))
     device_sharing_status = encrypt(models.TextField(default=""))
-    device_type_owned = encrypt(models.JSONField(default=list))
-    device_access = encrypt(models.JSONField(default=list))
+    device_type_owned = encrypt(models.JSONField(default=str))
+    device_access = encrypt(models.JSONField(default=str))
     design_principles = models.ForeignKey(DesignPrinciple, on_delete=models.CASCADE, default=None, blank=True)
     time_personal_home_life = encrypt(models.TextField(blank=True))
     good_performance = encrypt(models.TextField(blank=True))

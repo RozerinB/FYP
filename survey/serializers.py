@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Survey, DesignPrinciple, Evaluation, ParticipantEvaluation
+import json
 class DesignPrincipleSerializer(serializers.ModelSerializer):
     class Meta:
         model = DesignPrinciple
@@ -59,7 +60,13 @@ class SurveySerializer(serializers.ModelSerializer):
             'education',
             'job',
         )
-        
+    def to_representation(self, data):
+        data = super(SurveySerializer, self).to_representation(data)
+        if type(data.get('device_access')) == str and type(data.get('device_type_owned')) == str :
+            data['device_access'] = json.loads(data.get('device_access'))
+            data['device_type_owned'] = json.loads(data.get('device_type_owned'))
+        return data
+
     def create(self, validated_data):
         design_principles_data = validated_data.pop('design_principles')
         design_principle = DesignPrinciple.objects.create(**design_principles_data)

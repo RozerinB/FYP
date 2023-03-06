@@ -22,7 +22,7 @@ import EvaluationFormModel from '../Components/ParticipantSurvey/EvaluationFormM
 import GlobalData from '../Components/ResearcherSurvey/GlobalData';
 import Success from './Success';
 import EvaluationInitialValues from '../Components/ParticipantSurvey/EvaluationInitialValues';
-
+import cookie from "react-cookies";
 const steps = ['Participant Information Sheet', 'Consent Form', 'Data Collection', 'Culture Survey (Optional)','Data Visualisation', 'Feedback',];
 
 const { formId, formField } = SurveyFormModel;
@@ -56,7 +56,9 @@ export default function DataCollection(props) {
   const isConsentForm = activeStep === 1;
   const isFeedback = activeStep === 5;
   const currentValidationSchema = ValidationSchema[activeStep];
-
+  const headers = {
+    'X-CSRFToken': cookie.load('csrftoken')
+  }
   function submitForm(values) {
     if (isSurvey) {
       Object.assign(values.design_principles, { principle1: values.principle1 });
@@ -66,11 +68,9 @@ export default function DataCollection(props) {
       Object.assign(values.design_principles, { principle5: values.principle5 });
       Object.assign(values.design_principles, { principle6: values.principle6 });
       Object.assign(values.design_principles, { principle7: values.principle7 });
-  
       values.role = 'participant';
       values.client_id = uuidv4();
-  
-      axios.post('/api/survey/', values);
+      axios.post('/api/survey/', values, {headers: headers});
       setActiveStep(activeStep + 1);
     } else if (isFeedback) {
       axios.post('/api/participant-evaluation/', values);
@@ -98,7 +98,7 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={isFeedback? EvaluationInitialValues : SurveyInitialValues}
-            validationSchema={currentValidationSchema}
+            // validationSchema={currentValidationSchema}
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={(values) => submitForm(values)}

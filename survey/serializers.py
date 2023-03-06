@@ -65,6 +65,9 @@ class SurveySerializer(serializers.ModelSerializer):
         if type(data.get('device_access')) == str and type(data.get('device_type_owned')) == str :
             data['device_access'] = json.loads(data.get('device_access'))
             data['device_type_owned'] = json.loads(data.get('device_type_owned'))
+        del data['client_id']
+        del data['role']
+        del data['consent_form']
         return data
 
     def create(self, validated_data):
@@ -89,8 +92,9 @@ class EvaluationSerializer(serializers.ModelSerializer):
             'design_for_western',
             'design_for_western_reason',
             'feedback',
+            'created_on',
             )
-
+        
 class ParticipantEvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParticipantEvaluation
@@ -108,5 +112,6 @@ class ParticipantEvaluationSerializer(serializers.ModelSerializer):
              'representation_of_user',
              'no_representation_reason',
              'generalisability',
-             'no_generalisability_reason'
+             'no_generalisability_reason',
+             'created_on'
             )

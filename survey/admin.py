@@ -48,7 +48,8 @@ class SurveyAdmin(admin.ModelAdmin):
         'organization_rules',
         'education',
         'job',
-        'nationality_from_birth'
+        'nationality_from_birth',
+        'created_on'
         )
 
 class EvaluationAdmin(admin.ModelAdmin):
@@ -65,6 +66,7 @@ class EvaluationAdmin(admin.ModelAdmin):
         'design_for_western',
         'design_for_western_reason',
         'feedback',
+        'created_on'
     )
 
 class ParticipantEvaluationAdmin(admin.ModelAdmin):
@@ -82,7 +84,8 @@ class ParticipantEvaluationAdmin(admin.ModelAdmin):
         'representation_of_user',
         'no_representation_reason',
         'generalisability',
-        'no_generalisability_reason'
+        'no_generalisability_reason',
+        'created_on'
     )
     
 admin.site.register(Survey, SurveyAdmin)

@@ -19,7 +19,6 @@ def export_surveys_to_excel(request):
     worksheet = workbook.active
     # Write headers
     headers = [
-            'client_id',
             'age',
             'gender',
             'time_personal_home_life',
@@ -54,7 +53,7 @@ def export_surveys_to_excel(request):
         worksheet.cell(row=1, column=col_num, value=header)
     # Write data
     for row_num, row_data in enumerate(data, 2):
-        row = [row_data['client_id'],
+        row = [
                 row_data['age'],
                 row_data['gender'],
                 row_data['time_personal_home_life'],
@@ -92,7 +91,6 @@ def export_surveys_to_excel(request):
     response['Content-Disposition'] = 'attachment; filename=cultural-dimensions.xlsx'
     workbook.save(response)
     return response
-
 
 class SurveyView(viewsets.ModelViewSet):
     serializer_class = SurveySerializer

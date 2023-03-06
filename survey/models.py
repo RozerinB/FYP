@@ -58,42 +58,47 @@ class Survey(models.Model):
     job = encrypt(models.TextField(blank=True))
     consent_form = models.BooleanField(default=False)
     nationality_from_birth = encrypt(models.TextField(blank=True))
+    created_on = encrypt(models.DateTimeField(auto_now_add=True))
     
     def _str_(self):
         return self.client_id
 
 class Evaluation(models.Model):
-    role= models.TextField(default="")
-    client_id = models.CharField(max_length=100, primary_key=True, default=None)
-    consent_form = models.BooleanField(default=False)
-    usefulness_for_profession = models.TextField(default="")
-    usefulness_for_profession_reason = models.TextField(default="")
-    usefulness_for_researcher = models.TextField(default="")
-    usefulness_for_researcher_reason = models.TextField(default="")
-    design_for_non_western = models.TextField(default="")
-    design_for_non_western_reason = models.TextField(default="")
-    design_for_western = models.TextField(default="")
-    design_for_western_reason = models.TextField(default="")
-    feedback = models.TextField(default="")
+    role = models.TextField(default="")
+    client_id = encrypt(models.CharField(max_length=100, primary_key=True, default=None))
+    consent_form = encrypt(models.BooleanField(default=False))
+    usefulness_for_profession = encrypt(models.TextField(default=""))
+    usefulness_for_profession_reason = encrypt(models.TextField(default=""))
+    usefulness_for_researcher =  encrypt(models.TextField(default=""))
+    usefulness_for_researcher_reason = encrypt(models.TextField(default=""))
+    design_for_non_western = encrypt(models.TextField(default=""))
+    design_for_non_western_reason = encrypt(models.TextField(default=""))
+    design_for_western = encrypt(models.TextField(default=""))
+    design_for_western_reason = encrypt(models.TextField(default=""))
+    feedback = encrypt(models.TextField(default=""))
+    created_on = encrypt(models.DateTimeField(auto_now_add=True))
+
     
     def _str_(self):
         return self.client_id
     
 class ParticipantEvaluation(models.Model):
-    correlation= models.BooleanField(default=False)
-    no_correlation_reason = models.TextField(default="", blank=True)
-    correlation_culture = models.BooleanField(default=False)
-    no_correlation_culture_reason = models.TextField(default="", blank=True)
-    correlation_ethnicity = models.TextField(default="")
-    no_correlation_ethnicity_reason = models.TextField(default="", blank=True)
-    correlation_age = models.TextField(default="")
-    no_correlation_age_reason = models.TextField(default="", blank=True)
-    correlation_nationality = models.TextField(default="")
-    no_correlation_nationality_reason = models.TextField(default="", blank=True)
-    representation_of_user = models.BooleanField(default=False)
-    no_representation_reason = models.TextField(default="", blank=True)
-    generalisability = models.BooleanField(default=False)
-    no_generalisability_reason = models.TextField(default="", blank=True)
+    correlation= encrypt(models.BooleanField(default=False))
+    no_correlation_reason = encrypt(models.TextField(default="", blank=True))
+    correlation_culture = encrypt(models.BooleanField(default=False))
+    no_correlation_culture_reason = encrypt(models.TextField(default="", blank=True))
+    correlation_ethnicity = encrypt(models.TextField(default=""))
+    no_correlation_ethnicity_reason = encrypt(models.TextField(default="", blank=True))
+    correlation_age = encrypt(models.TextField(default=""))
+    no_correlation_age_reason = encrypt(models.TextField(default="", blank=True))
+    correlation_nationality = encrypt(models.TextField(default=""))
+    no_correlation_nationality_reason = encrypt(models.TextField(default="", blank=True))
+    representation_of_user = encrypt(models.BooleanField(default=False))
+    no_representation_reason = encrypt(models.TextField(default="", blank=True))
+    generalisability = encrypt(models.BooleanField(default=False))
+    no_generalisability_reason = encrypt(models.TextField(default="", blank=True))
+    created_on = encrypt(models.DateTimeField(auto_now_add=True))
+
     
     def _str_(self):
         return self.correlation

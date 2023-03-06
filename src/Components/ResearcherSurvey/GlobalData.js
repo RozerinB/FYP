@@ -104,7 +104,7 @@ const GlobalData = (props) => {
   const competencyList = Object.keys(designPrinciplesByCompetency)
   const chartGenderLabel = genderList.map(gender => genders.find(g => g.value === gender).label);
   const chartNationalityLabel = competencyNationality.map(nationality => nationalities.find(n => n.value === nationality).label);
-  const competencyLabel = competency.filter(competence => competencyList.includes(competence.value)).map(competence => competence.label);
+  const competencyLabel = competencyList.map(competence => competency.find(c => c.value === competence).label);
 
   //Internet Page
   const internetAccessByCountry = ByElementInDataYesOrNo(data,'internet_stability','country');
@@ -176,7 +176,7 @@ const GlobalData = (props) => {
   const textDirectionalityBySelectedCountry = selectedCountry ?  textDirectionalityByElementInData(dataForCountrySelected,'country') : []
   const textDirectionalityByEthnicityInSelectedCountry = selectedCountry ?  textDirectionalityByElementInData(dataForCountrySelected,'ethnicity'): []
   const textDirectionalityByNationalityInSelectedCountry = selectedCountry ?  textDirectionalityByElementInData(dataForCountrySelected,'nationality') :[]
-  const selectedCountryCompetencyLabel = competency.filter(competence => competencyListForSelectedCountry.includes(competence.value)).map(competence => competence.label);
+  const selectedCountryCompetencyLabel = competencyListForSelectedCountry.map(competence => competency.find(c => c.value === competence).label);
 
   const internetAccessBySelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','country');
   const internetAccessByEthnicityInSelectedCountry = ByElementInDataYesOrNo(dataForCountrySelected,'internet_stability','ethnicity');

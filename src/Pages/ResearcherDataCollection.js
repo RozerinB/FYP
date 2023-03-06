@@ -43,11 +43,11 @@ function renderStepContent(step) {
 export default function ResearcherDataCollection(props) {
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
-  const isSurvey =  activeStep === 3;
+  const isEvaluation =  activeStep === 3;
   const isConsentForm = activeStep === 1;
 
   function submitForm(values) {
-    if(isSurvey){
+    if(isEvaluation){
       values.client_id = uuidv4();
       values.role = "researcher";
       axios
@@ -57,6 +57,10 @@ export default function ResearcherDataCollection(props) {
     else {
       setActiveStep(activeStep + 1);
     }
+  }
+
+  function handleBack() {
+    setActiveStep(activeStep - 1);
   }
 
   return (
@@ -80,7 +84,20 @@ export default function ResearcherDataCollection(props) {
           >
               <Form id={formId}>
                 {renderStepContent(activeStep)}
-                <div >
+                <div className="button-container"> 
+                  <div className="button"> 
+                    {isEvaluation && (
+                        <Button  
+                          type="submit"
+                          variant="outlined"
+                          color="primary" 
+                          onClick={handleBack} 
+                          sx={{m: 1}}
+                          >
+                          Back
+                        </Button>
+                      )}
+                  </div>
                   <div>
                     <Button
                       type="submit"
@@ -88,7 +105,7 @@ export default function ResearcherDataCollection(props) {
                       color="primary"
                       sx={{float:'right', m: 1}}
                     >
-                      {isSurvey  || isConsentForm ? 'Submit' : 'Next'}
+                      {isEvaluation  || isConsentForm ? 'Submit' : 'Next'}
                     </Button>
                   </div>
                 </div>

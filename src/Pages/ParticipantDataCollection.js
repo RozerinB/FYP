@@ -98,7 +98,7 @@ export default function DataCollection(props) {
         <div className='survey-container'>
           <Formik
             initialValues={isFeedback? EvaluationInitialValues : SurveyInitialValues}
-            // validationSchema={currentValidationSchema}
+            validationSchema={currentValidationSchema}
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={(values) => submitForm(values)}

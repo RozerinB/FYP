@@ -33,8 +33,8 @@ export default function FormCheckBox(props) {
             control={
               <Checkbox
                 name={option.label}
-                value={option.label}
-                checked={field.value.includes(option.label)}
+                value={option.value}
+                checked={field.value.includes(option.value)}
                 onChange={handleChange}
               />
             }

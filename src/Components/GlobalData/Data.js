@@ -62,7 +62,7 @@ export const competencyScatterLabels = ['Fundamental', 'Novice', 'Intermediate',
   }
 
   export function technologyByElementInData(data, constant, element) {
-    const technologyByElement = {};
+  const technologyByElement = {};
   for (const participant of data) {
     const technologies = participant[constant];
     const participant_element = participant[element];
@@ -72,8 +72,9 @@ export const competencyScatterLabels = ['Fundamental', 'Novice', 'Intermediate',
         Laptop:0,
         Tablet: 0,
         Smartphone: 0,
-        Nonsmartphone:0,
+        NonSmartPhone:0,
         Other: 0,
+        None: 0,
       };
     }
     for (const technology of technologies) {

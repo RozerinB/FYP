@@ -343,31 +343,31 @@ export const noOfDevices = [
 
 export const deviceType = [
     {
-        value: 'computer',
+        value: 'Computer',
         label: 'Computer'
     },
     {
-        value: 'laptop',
+        value: 'Laptop',
         label: 'Laptop'
     },
     {
-        value: 'tablet',
+        value: 'Tablet',
         label: 'Tablet'
     },
     {
-        value: 'smartphone',
+        value: 'Smartphone',
         label: 'Smartphone'
     },
     {
-        value: 'nonsmartphone',
+        value: 'NonSmartPhone',
         label: 'Non-smartphone'
     },
     {
-        value: 'other',
+        value: 'Other',
         label: 'Other'
     },
     {
-        value: 'none',
+        value: 'None',
         label: 'None'
     },
     

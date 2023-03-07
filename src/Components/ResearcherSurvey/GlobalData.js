@@ -368,7 +368,7 @@ const GlobalData = (props) => {
           backgroundColor: 'rgba(189, 195, 199, 0.2)',
           borderColor: 'rgba(189, 195, 199, 1)',
           borderWidth: 1,
-          data: Object.keys(competencyByElement).map(element => competencyByElement[element].Nonsmartphone)
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].NonSmartPhone)
         },
         {
           label: 'Other',
@@ -376,6 +376,13 @@ const GlobalData = (props) => {
           borderColor: 'rgba(255, 148, 112, 1)',
           borderWidth: 1,
           data: Object.keys(competencyByElement).map(element => competencyByElement[element].Other)
+        },
+        {
+          label: 'None',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 1,
+          data: Object.keys(competencyByElement).map(element => competencyByElement[element].None)
         },
       ]
     };

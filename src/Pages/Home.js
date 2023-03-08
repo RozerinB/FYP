@@ -36,9 +36,9 @@ export default function Home(props) {
       <NavLink to="/ParticipantDataCollection"  style={{ textDecoration: 'none' }}>
         <Button variant="contained" sx={{m:1}} > I am a participant </Button>
       </NavLink>
-      <NavLink to="/ResearcherDataCollection"  style={{ textDecoration: 'none' }}>
-        <Button variant="contained" sx={{m:1}} > I am a researcher </Button>
-      </NavLink>
+      {/* <NavLink to="/ResearcherDataCollection"  style={{ textDecoration: 'none' }}> */}
+        <Button disabled variant="contained" sx={{m:1}} > I am a researcher </Button>
+      {/* </NavLink> */}
       </div>
      </Form>
      

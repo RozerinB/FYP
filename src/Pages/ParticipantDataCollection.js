@@ -80,7 +80,7 @@ export default function DataCollection(props) {
   const isLastStep = steps[5] === 'Success' ? activeStep === 5 : activeStep === 6;
   const isSurvey =  activeStep === 3;
   const isConsentForm = activeStep === 1;
-  const isFeedback = activeStep[5] === 'Feedback' ? activeStep === 5 : null;
+  const isFeedback = steps[5] === 'Feedback' ? activeStep === 5 : null;
   const currentValidationSchema = ValidationSchema[activeStep];
   const headers = {
     'X-CSRFToken': cookie.load('csrftoken')

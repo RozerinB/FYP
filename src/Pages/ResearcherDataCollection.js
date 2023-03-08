@@ -46,7 +46,8 @@ export default function ResearcherDataCollection(props) {
   const currentValidationSchema = activeStep > 0 ? ValidationSchema[activeStep] : null;
   const isEvaluation =  activeStep === 3;
   const isConsentForm = activeStep === 1;
-
+  const isLastStep = activeStep === 4;
+  
   const headers = {
     'X-CSRFToken': cookie.load('csrftoken')
   }
@@ -108,7 +109,7 @@ export default function ResearcherDataCollection(props) {
                       type="submit"
                       variant="contained"
                       color="primary"
-                      sx={{float:'right', m: 1}}
+                      sx={{float:'right', m: 1, display: isLastStep ? 'none' : 'block'}}
                     >
                       {isEvaluation  || isConsentForm ? 'Submit' : 'Next'}
                     </Button>

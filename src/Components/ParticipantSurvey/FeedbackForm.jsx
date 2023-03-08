@@ -23,7 +23,8 @@ export default function FeedbackForm(props) {
         representation_of_user,
         no_representation_reason,
         generalisability,
-        no_generalisability_reason
+        no_generalisability_reason,
+        feedback
       }
     } = props;
   
@@ -81,6 +82,9 @@ export default function FeedbackForm(props) {
         </Grid>
         <Grid item xs={12} >
         <InputField name={no_generalisability_reason.name} label={no_generalisability_reason.label}  placeholder={no_generalisability_reason.placeholder} fullWidth />
+        </Grid>
+        <Grid item xs={12} >
+        <InputField name={feedback.name} label={feedback.label}  placeholder={feedback.placeholder} fullWidth />
         </Grid>
         </Grid>   
  

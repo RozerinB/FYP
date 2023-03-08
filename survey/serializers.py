@@ -91,6 +91,8 @@ class EvaluationSerializer(serializers.ModelSerializer):
             'design_for_non_western_reason',
             'design_for_western',
             'design_for_western_reason',
+            'design_globally',
+            'design_globally_reason',
             'feedback',
             'created_on',
             )
@@ -114,5 +116,6 @@ class ParticipantEvaluationSerializer(serializers.ModelSerializer):
              'no_representation_reason',
              'generalisability',
              'no_generalisability_reason',
+             'feedback',
              'created_on'
             )

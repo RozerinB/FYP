@@ -14,7 +14,8 @@ const {
     representation_of_user,
     no_representation_reason,
     generalisability,
-    no_generalisability_reason
+    no_generalisability_reason,
+    feedback
   }} = evaluationSurveyModel;
 
   export default {
@@ -32,4 +33,5 @@ const {
     [no_representation_reason.name]: '',
     [generalisability.name]: '',
     [no_generalisability_reason.name]: '',
+    [feedback.name]: ''
   };

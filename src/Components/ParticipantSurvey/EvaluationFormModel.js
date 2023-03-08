@@ -9,7 +9,7 @@ export default {
       },
       no_correlation_reason: {
         name: 'no_correlation_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -21,7 +21,7 @@ export default {
       },
       no_correlation_culture_reason: {
         name: 'no_correlation_culture_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -33,7 +33,7 @@ export default {
       },
       no_correlation_ethnicity_reason: {
         name: 'no_correlation_ethnicity_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -45,7 +45,7 @@ export default {
       },
       no_correlation_age_reason: {
         name: 'no_correlation_age_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -57,7 +57,7 @@ export default {
       },
       no_correlation_nationality_reason: {
         name: 'no_correlation_nationality_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -69,7 +69,7 @@ export default {
       },
       no_representation_reason: {
         name: 'no_representation_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
@@ -81,10 +81,15 @@ export default {
       },
       no_generalisability_reason: {
         name: 'no_generalisability_reason',
-        label: 'If you answered no can you please give further information',
+        label: 'If you answered no, can you please give further information?',
         placeholder: '',
         requiredErrorMsg: 'This field is required'
       },
+      feedback: {
+        name: 'feedback',
+        label: 'If you have any additional comments or feedback please share them here',
+        placeholder: '',
+      }
     },
   };
   

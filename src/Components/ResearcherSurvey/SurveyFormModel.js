@@ -20,7 +20,7 @@ export default {
       },
       usefulness_for_researcher_reason: {
         name: 'usefulness_for_researcher_reason',
-        label: 'If you have answered no to the previous question, can you please give further information.'
+        label: 'If you have answered no, to the previous question, can you please give further information?'
       },
       design_globally: {
         name: 'design_globally',
@@ -28,7 +28,7 @@ export default {
       },
       design_globally_reason: {
         name: 'design_globally_reason',
-        label: 'If you have answered no to the previous question, can you please give further information.'
+        label: 'If you have answered no, to the previous question, can you please give further information?'
       },
       design_for_non_western: {
         name: 'design_for_non_western',
@@ -36,7 +36,7 @@ export default {
       },
       design_for_non_western_reason: {
         name: 'design_for_non_western_reason',
-        label: 'If you have answered no to the previous question, can you please give further information.'
+        label: 'If you have answered no, to the previous question, can you please give further information?'
       },
       design_for_western: {
         name:'design_for_western',
@@ -44,7 +44,7 @@ export default {
       },
       design_for_western_reason: {
         name:'design_for_western_reason',
-        label: 'If you have answered no to the previous question, can you please give further information.'
+        label: 'If you have answered no, to the previous question, can you please give further information?'
       },
       feedback: {
         name: 'feedback',

@@ -65,28 +65,29 @@ class Survey(models.Model):
 
 class Evaluation(models.Model):
     role = models.TextField(default="")
-    client_id = encrypt(models.CharField(max_length=100, primary_key=True, default=None))
+    client_id = models.CharField(max_length=100, primary_key=True, default=None)
     consent_form = encrypt(models.BooleanField(default=False))
     usefulness_for_profession = encrypt(models.TextField(default=""))
-    usefulness_for_profession_reason = encrypt(models.TextField(default=""))
+    usefulness_for_profession_reason = encrypt(models.TextField(default="", blank=True))
     usefulness_for_researcher =  encrypt(models.TextField(default=""))
-    usefulness_for_researcher_reason = encrypt(models.TextField(default=""))
+    usefulness_for_researcher_reason = encrypt(models.TextField(default="", blank=True))
     design_for_non_western = encrypt(models.TextField(default=""))
-    design_for_non_western_reason = encrypt(models.TextField(default=""))
+    design_for_non_western_reason = encrypt(models.TextField(default="", blank=True))
     design_for_western = encrypt(models.TextField(default=""))
-    design_for_western_reason = encrypt(models.TextField(default=""))
-    feedback = encrypt(models.TextField(default=""))
+    design_for_western_reason = encrypt(models.TextField(default="", blank=True))
+    design_globally = encrypt(models.TextField(default=""))
+    design_globally_reason = encrypt(models.TextField(default="", blank=True))
+    feedback = encrypt(models.TextField(default="", blank=True))
     created_on = encrypt(models.DateTimeField(auto_now_add=True))
 
-    
     def _str_(self):
         return self.client_id
     
 class ParticipantEvaluation(models.Model):
     client_id = models.CharField(max_length=100, primary_key=True, default=None)
-    correlation= encrypt(models.BooleanField(default=False))
+    correlation= encrypt(models.TextField(default=""))
     no_correlation_reason = encrypt(models.TextField(default="", blank=True))
-    correlation_culture = encrypt(models.BooleanField(default=False))
+    correlation_culture = encrypt(models.TextField(default=""))
     no_correlation_culture_reason = encrypt(models.TextField(default="", blank=True))
     correlation_ethnicity = encrypt(models.TextField(default=""))
     no_correlation_ethnicity_reason = encrypt(models.TextField(default="", blank=True))
@@ -94,10 +95,11 @@ class ParticipantEvaluation(models.Model):
     no_correlation_age_reason = encrypt(models.TextField(default="", blank=True))
     correlation_nationality = encrypt(models.TextField(default=""))
     no_correlation_nationality_reason = encrypt(models.TextField(default="", blank=True))
-    representation_of_user = encrypt(models.BooleanField(default=False))
+    representation_of_user = encrypt(models.TextField(default=""))
     no_representation_reason = encrypt(models.TextField(default="", blank=True))
-    generalisability = encrypt(models.BooleanField(default=False))
+    generalisability = encrypt(models.TextField(default=""))
     no_generalisability_reason = encrypt(models.TextField(default="", blank=True))
+    feedback = encrypt(models.TextField(default="", blank=True))
     created_on = encrypt(models.DateTimeField(auto_now_add=True))
 
     
